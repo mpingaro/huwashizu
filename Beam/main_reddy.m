@@ -25,13 +25,13 @@ ndy = 8;                                      % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.3;                                % poisson modulus
 % Neumann boudary conditions
-bcn = [4];                                     % index of edges 
+bcn = 4;                                      % index of edges 
 fn(1,:) = [0, 0];                             % Traction edge 1
 fn(2,:) = [0, 0];                             % Traction edge 2
 fn(3,:) = [0, 0];                             % Traction edge 3
-fn(4,:) = [0, -1];                             % Traction edge 4
+fn(4,:) = [0, -1];                            % Traction edge 4
 % Dirichlet boudary conditions
-bcd = [3];                                  % index of edges
+bcd = 3;                                      % index of edges
 ud(1,:) = [0, 0];                             % Displacement edge 1 
 ud(2,:) = [0, 0];                             % Displacement edge 2
 ud(3,:) = [0, 0];                             % Displacement edge 3
