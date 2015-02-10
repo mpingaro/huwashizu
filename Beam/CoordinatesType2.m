@@ -2,7 +2,6 @@
 
 function [coordinates,nnod]=CoordinatesType2(ndx,ndy,dx,dy)
 
-
 n1 = (ndx+1)*(ndy+1);
 n2 = ndx*ndy;
 nnod = n1+n2;

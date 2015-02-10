@@ -20,16 +20,22 @@ clear all; close all; clc;
 %% INPUT
 length = 5;                                   % length 
 height = 1;                                   % heigth
-ndx = 40;                                     % partition in x direction
-ndy = 8;                                      % partition in y direction
+ndx = 10;                                     % partition in x direction
+ndy = 2;                                      % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.3;                                % poisson modulus
-% Neumann boudary conditions
+% Neumann boudary conditions (edges)
 bcn = 4;                                      % index of edges 
 fn(1,:) = [0, 0];                             % Traction edge 1
 fn(2,:) = [0, 0];                             % Traction edge 2
 fn(3,:) = [0, 0];                             % Traction edge 3
-fn(4,:) = [0, -1];                            % Traction edge 4
+fn(4,:) = [0, 0];                             % Traction edge 4
+% Neumann boudary conditions (edges)
+bct = 4;                                      % index of edges 
+ft(1,:) = [0, 0];                             % Traction vertex 1
+ft(2,:) = [0, 0];                             % Traction vertex 2
+ft(3,:) = [0, 0];                             % Traction vertex 3
+ft(4,:) = [0, -1];                            % Traction vertex 4
 % Dirichlet boudary conditions
 bcd = 3;                                      % index of edges
 ud(1,:) = [0, 0];                             % Displacement edge 1 
@@ -58,7 +64,7 @@ alpha = 2*mu;
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
 
 %% SOLVE
-spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bcd,ud);
+spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
