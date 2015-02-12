@@ -3,6 +3,7 @@
 % ------    LINEAR ELASTICITY BASED ON BIORTHOGONAL SYSTEMS       ------- %
 % ----------------------------------------------------------------------- %
 % ----------------   By (Marco Pingaro, Paolo Venini)   ----------------- %
+% ----------------              3D VERSION              ----------------- %
 %                                                                         %
 % - Marco Pingaro    : Phd Student of University of Pavia                 %
 %               mail : marco.pingaro@iusspavia.it                         %
@@ -10,13 +11,14 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = P1 + B  C^0               
-% ------- Strain       : tensor (2,2) = P1      C^0              
-% ------- Stress       : tensor (2,2) = P1      C^-1
+% ------- Displacement : P1 + B  C^0               
+% ------- Strain       : P1      C^0              
+% ------- Stress       : P1      C^-1
 % -- B is the space of boubble function
 % ------------------------------------------------------------------------%
 clear all; close all; clc;
 
+global coordinates
 %% INPUT
 length = 5;
 width  = 1;
@@ -37,22 +39,22 @@ fn(5,:) = [0, 0, 0];                          % Traction edge 5
 fn(6,:) = [0, 0, 0];                          % Traction edge 6
 % Neumann boudary conditions (nodes)
 bct = [];                                     % index of edges 
-ft(1,:) = [0, 0, 0];                          % Traction nodes 1
-ft(2,:) = [0, 0, 0];                          % Traction nodes 2
-ft(3,:) = [0, 0, 0];                          % Traction nodes 3
-ft(4,:) = [0, 0, 0];                          % Traction nodes 4
-ft(5,:) = [0, 0, 0];                          % Traction nodes 5
-ft(6,:) = [0, 0, 0];                          % Traction nodes 6
-ft(7,:) = [0, 0, 0];                          % Traction nodes 7
-ft(8,:) = [0, 0, 0];                          % Traction nodes 8
+ft(1,:) = [0, 0, 0];                          % Traction nodes 1 (0,0,0)
+ft(2,:) = [0, 0, 0];                          % Traction nodes 2 (lx,0,0)
+ft(3,:) = [0, 0, 0];                          % Traction nodes 3 (0,ly,0)
+ft(4,:) = [0, 0, 0];                          % Traction nodes 4 (lx,ly,0)
+ft(5,:) = [0, 0, 0];                          % Traction nodes 5 (0,0,lz)
+ft(6,:) = [0, 0, 0];                          % Traction nodes 6 (lx,0,lz)
+ft(7,:) = [0, 0, 0];                          % Traction nodes 7 (0,ly,lz)
+ft(8,:) = [0, 0, 0];                          % Traction nodes 8 (lx,ly,lz)
 % Dirichlet boudary conditions
-bcd = [];                                     % index of edges
-ud(1,:) = [0, 0, 0];                          % Displacement edge 1 
-ud(2,:) = [0, 0, 0];                          % Displacement edge 2
-ud(3,:) = [0, 0, 0];                          % Displacement edge 3
-ud(4,:) = [0, 0, 0];                          % Displacement edge 4
-ud(5,:) = [0, 0, 0];                          % Displacement edge 5
-ud(6,:) = [0, 0, 0];                          % Displacement edge 6
+bcd = 1 ;                                     % index of edges
+ud(1,:) = [0, 0, 0];                          % Displacement edge 1 (x=0) 
+ud(2,:) = [0, 0, 0];                          % Displacement edge 2 (x=lx)
+ud(3,:) = [0, 0, 0];                          % Displacement edge 3 (z=0)
+ud(4,:) = [0, 0, 0];                          % Displacement edge 4 (z=lz)
+ud(5,:) = [0, 0, 0];                          % Displacement edge 5 (y=0)
+ud(6,:) = [0, 0, 0];                          % Displacement edge 6 (y=ly)
 %% Body load
 g  = [0, 0, -1];                               % Body load
 
@@ -75,7 +77,7 @@ alpha = 2*mu;
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
 
 %% SOLVE
-spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
+spost = solve_HuWashizu(KASSEM,F,length,width,thick,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);

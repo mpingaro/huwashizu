@@ -30,7 +30,7 @@ grd(:,4) = inv_jac*[ 0;  0;  1];
 
 for i = 1:size(wt,2) % Cycle on gauss points --> Da ottimizzare.
     
-   x = xa(i); y = ya(i); z = za(i); w = wt(i);
+   x = xa(1,i); y = ya(1,i); z = za(1,i); w = wt(1,i);
    
    % Grad of Boubble function
    grd(:,5) = inv_jac*[256*y*z*(1-2*x-y-z); 256*x*z*(1-x-2*y-z); 256*x*y*(1-x-y-2*z)];   
