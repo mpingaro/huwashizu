@@ -23,13 +23,13 @@ global coordinates
 length = 5;
 width  = 1;
 thick  = 1;
-ndx = 2;                                      % partition in x direction
-ndy = 2;                                      % partition in y direction
-ndz = 2;                                      % partition in z direction
+ndx = 20;                                      % partition in x direction
+ndy = 5;                                      % partition in y direction
+ndz = 5;                                      % partition in z direction
 young = 1.e3;                                 % young modulus
 poisson = 0.3;                                % poisson modulus
 
-% Neumann boudary conditions (edges)
+% Neumann boudary conditions (edges) (not implemented)
 bcn = [];                                     % index of edges 
 fn(1,:) = [0, 0, 0];                          % Traction edge 1
 fn(2,:) = [0, 0, 0];                          % Traction edge 2

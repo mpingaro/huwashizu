@@ -9,7 +9,7 @@ function [A,B,K,M,W,D] = reddy_3Delement(point,lambda,G)
 Cblk1 = [lambda+2*G, lambda, lambda;
       lambda, lambda+2*G, lambda;
       lambda, lambda, lambda+2*G];
-Cblk2 = diag(2*G,5);
+Cblk2 = diag([2*G,2*G,2*G,2*G,2*G,2*G],0);
 C = blkdiag(Cblk1,Cblk2);
 
 %% Jacobian matrix 

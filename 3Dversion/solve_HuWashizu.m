@@ -5,7 +5,7 @@ function spost = solve_HuWashizu(KASSEM,F,lx,ly,lz,bcn,fn,bct,ft,bcd,ud)
 global coordinates
 
 % %% BOUNDARY IMPOSITION
-% % Neumann boundary conditions (edges)
+% % Neumann boundary conditions (edges) (not implemented)
 % for iside=bcn
 %     ncont = 1;
 %     bc = boundary_neumann(ndx,ndy,fn(iside,:),iside);
