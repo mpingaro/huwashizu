@@ -3,7 +3,8 @@
 function [A,B,K,M,W,D] = reddy_3Delement(point,lambda,G)
 
 %% Quadrature
-[xa,ya,za,wt] = TetQuadDat(4); % Max order of quadrature
+[xa,ya,za,wt] = TetQuadDat(3);
+%[xa,ya,za,wt]=tetraquad(5,[0,0,0;1,0,0;0,1,0;0,0,1]);
 
 %% - Legame
 Cblk1 = [lambda+2*G, lambda, lambda;
@@ -30,7 +31,7 @@ grd(:,4) = inv_jac*[ 0;  0;  1];
 
 for i = 1:size(wt,2) % Cycle on gauss points --> Da ottimizzare.
     
-   x = xa(1,i); y = ya(1,i); z = za(1,i); w = wt(1,i);
+   x = xa(i); y = ya(i); z = za(i); w = wt(i);
    
    % Grad of Boubble function
    grd(:,5) = inv_jac*[256*y*z*(1-2*x-y-z); 256*x*z*(1-x-2*y-z); 256*x*y*(1-x-y-2*z)];   

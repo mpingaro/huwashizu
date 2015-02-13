@@ -13,5 +13,4 @@ defo = coordinates + [Ux, Uy, Uz];
 strain = D*W*spost;
 % Recovery Stress
 stress = D*(-alpha*B*spost + (K + alpha*M)*strain);
-
 end
