@@ -27,7 +27,7 @@ ndx = 10;                                     % partition in x direction
 ndy = 4;                                      % partition in y direction
 ndz = 4;                                      % partition in z direction
 young = 1.e3;                                 % young modulus
-poisson = 0.49999;                            % poisson modulus
+poisson = 0.3;                                % poisson modulus
 
 % Neumann boudary conditions (edges) (not implemented)
 bcn = [];                                     % index of edges 
@@ -38,15 +38,15 @@ fn(4,:) = [0, 0, 0];                          % Traction edge 4
 fn(5,:) = [0, 0, 0];                          % Traction edge 5
 fn(6,:) = [0, 0, 0];                          % Traction edge 6
 % Neumann boudary conditions (nodes)
-bct = [2,4,6,8];                              % index of edges 
+bct = [6,8];                              % index of edges 
 ft(1,:) = [0, 0, 0];                          % Traction nodes 1 (0,0,0)
-ft(2,:) = [0, 0, 5];                          % Traction nodes 2 (lx,0,0)
+ft(2,:) = [0, 0, 0];                          % Traction nodes 2 (lx,0,0)
 ft(3,:) = [0, 0, 0];                          % Traction nodes 3 (0,ly,0)
-ft(4,:) = [0, 0,-5];                          % Traction nodes 4 (lx,ly,0)
+ft(4,:) = [0, 0, 0];                          % Traction nodes 4 (lx,ly,0)
 ft(5,:) = [0, 0, 0];                          % Traction nodes 5 (0,0,lz)
-ft(6,:) = [0, 0, 5];                          % Traction nodes 6 (lx,0,lz)
+ft(6,:) = [0, 0,-2];                          % Traction nodes 6 (lx,0,lz)
 ft(7,:) = [0, 0, 0];                          % Traction nodes 7 (0,ly,lz)
-ft(8,:) = [0, 0,-5];                          % Traction nodes 8 (lx,ly,lz)
+ft(8,:) = [0, 0,-2];                          % Traction nodes 8 (lx,ly,lz)
 % Dirichlet boudary conditions
 bcd = 1 ;                                     % index of edges
 ud(1,:) = [0, 0, 0];                          % Displacement edge 1 (x=0) 
