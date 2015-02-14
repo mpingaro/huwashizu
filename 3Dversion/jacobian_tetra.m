@@ -1,4 +1,4 @@
-function [jac,inv_jac,djac] = jacobina_tetra(P)
+function [jac,inv_jac,djac] = jacobian_tetra(P)
 
 %% Jacobian matrix
 

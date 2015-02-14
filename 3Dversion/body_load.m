@@ -6,7 +6,7 @@ function load = body_load(point,g)
 [xa,ya,za,wt] = TetQuadDat(4); % Max order of quadrature
 
 %% Jacobian matrix 
-[jac,inv_jac,djac] = jacobina_tetra(point);
+[jac,inv_jac,djac] = jacobian_tetra(point);
 
 load = zeros(15,1);
 for i = 1:size(wt,2)

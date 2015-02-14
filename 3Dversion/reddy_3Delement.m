@@ -14,7 +14,7 @@ Cblk2 = diag([2*G,2*G,2*G,2*G,2*G,2*G],0);
 C = blkdiag(Cblk1,Cblk2);
 
 %% Jacobian matrix 
-[jac,inv_jac,djac] = jacobina_tetra(point);
+[jac,inv_jac,djac] = jacobian_tetra(point);
 
 A = zeros(15,15); % A
 B = zeros(24,15); % B
