@@ -20,7 +20,7 @@ clear all; close all; clc;
 %% INPUT
 length = 5;                                   % length 
 height = 1;                                   % heigth
-ndx = 20;                                     % partition in x direction
+ndx = 10;                                     % partition in x direction
 ndy = 4;                                      % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus

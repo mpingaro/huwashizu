@@ -12,12 +12,12 @@ elseif side == 2
     bc(2,:) = val;
 
 elseif side == 3
-    nnod = (ndx+1)*(ndy+1)+ndx*ndy-ndx;
+    nnod = (ndx+1)*(ndy+1)-ndx;
     bc(1,:) = [2*nnod-1, 2*nnod];
     bc(2,:) = val;
     
 elseif side == 4
-    nnod = (ndx+1)*(ndy+1)+ndx*ndy;
+    nnod = (ndx+1)*(ndy+1);
     bc(1,:) = [2*nnod-1, 2*nnod];
     bc(2,:) = val;
     
