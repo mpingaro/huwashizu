@@ -1,0 +1,37 @@
+% by Marco Pingaro & Paolo Venini
+
+function [usense,sigmasense] = compute_usens(spost,x)
+
+global KASSEM FIXEDDOFS FREEDOFS D DYOUNG ngdlu ngdls nelem KELE mc2 W D
+global A B M K
+
+LK  = length(KASSEM);
+LLK = length(K); 
+
+usense = sparse(LK,nelem);
+prodku = sparse(LK,nelem);
+sigmasense = sparse(LLK,nelem);
+
+for k=1:nelem
+        indice = rem(k,4); 
+        if indice == 0 
+            indice = 4;
+        end
+        KPRIME = sparse(ngdls,ngdls);
+        size(KELE)
+        size(DYOUNG)
+        KPRIME(mc2(k,:),mc2(k,:)) = DYOUNG(k)*KELE(:,:,indice);
+        sigmasense(:,k) = (D*KPRIME*D*W)*spost;
+        prodku(:,k)= W'*sigmas;      
+        %prodku(:,k)= (W'*D*KPRIME*D*W)*spost;
+    end
+
+%% SOLVE LINEAR SYSTEMS
+usense(FREEDOFS,:) = KASSEM(FREEDOFS,FREEDOFS)\prodku(FREEDOFS,:);
+
+
+KASSEM = alpha.*A - alpha.*(B'*D*W + W'*D*B) + W'*D*(K + alpha.*M)*D*W;
+
+
+end
+
