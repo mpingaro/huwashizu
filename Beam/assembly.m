@@ -10,7 +10,7 @@ K = sparse(ngdls,ngdls);
 M = sparse(ngdls,ngdls);
 D = sparse(ngdls,ngdls);
 F = sparse(ngdlu,1);
-MM = sparse(ngdlu,ngdlu);
+S = sparse(ngdlu,ngdlu);
 
 %% ASSEMBLY GLOBAL MATRIX
 for k = 1:nelem
@@ -24,7 +24,7 @@ for k = 1:nelem
     for i=1:8
         for j=1:8
            A(mc(k,i),mc(k,j)) = A(mc(k,i),mc(k,j)) + AELEM(i,j);
-           MM(mc(k,i),mc(k,j)) = MM(mc(k,i),mc(k,j)) + MASS(i,j);
+           S(mc(k,i),mc(k,j)) = S(mc(k,i),mc(k,j)) + MASS(i,j);
         end
         for kk = 1:9
             B(mc2(k,kk), mc(k,i)) = B(mc2(k,kk),mc(k,i)) + BELEM(kk,i);
@@ -45,10 +45,9 @@ for k = 1:nelem
     end
 end
 
-D = inv(D);
-%% GLOBAL SYSTEM
-%KASSEM = alpha.*A - alpha.*(B'*D*W + W'*D*B) + W'*D*(K + alpha.*M)*D*W;
-KASSEM = []; % matrice globale del sistema 
-MASSEM = []; % matrice globale delle masse
+D = inv(D); 
+%% GLOBAL STIFFNESS AND MASS MATRIX
+KASSEM = [alpha.*A, -alpha.*B', W'; -alpha.*B, K+alpha.*M, -D'; W, -D, sparse(ngdls,ngdls)];
+MASSEM = [S, sparse(ngdlu,2*ngdls); sparse(2*ngdls,ngdlu+2*ngdls)];
 
 end
