@@ -24,6 +24,7 @@ ndx = 20;                                     % partition in x direction
 ndy = 4;                                      % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
+rho = 1.0;                                    % density    
 % Neumann boudary conditions (edges)
 bcn = [];                                     % index of edges 
 fn(1,:) = [0, 0];                             % Traction edge 1
@@ -61,13 +62,23 @@ mu = young/(2*(1+poisson));
 alpha = 2*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
-[KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
+[KASSEM,MASSEM,F] = assembly(coordinates,element,mc,mc2,lambda,alpha,rho,mu,g,nelem,ngdlu,ngdls);
 
 %% SOLVE
-spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
+%
+% Crea un solve_HuWashizu_dynamics()
+% Si dovrà prendere anche MASSEM
+% Dovrai anche modificare gli input delle forzanti che ora saranno in funzione
+% del tempo. 
+
+% spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
-[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
+% Non serve più perchè ora hai tutte le variabili nel sistema..
+%[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-plotsolution(coordinates,element,defo,strain,stress);
+% Avrai delle matrici che contengono i vettori delle variabili per ogni istante
+% di tempo..
+
+% plotsolution(coordinates,element,defo,strain,stress);
