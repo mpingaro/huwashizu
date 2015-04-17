@@ -20,10 +20,10 @@ clear all; close all; clc;
 %% INPUT
 length = 5;                                   % length 
 height = 1;                                   % heigth
-ndx = 20;                                     % partition in x direction
+ndx = 8;                                      % partition in x direction
 ndy = 4;                                      % partition in y direction
 young = 1.e3;                                 % young modulus
-poisson = 0.4999;                             % poisson modulus
+poisson = 0.30;                               % poisson modulus
 rho = 1.0;                                    % density    
 % Neumann boudary conditions (edges)
 bcn = [];                                     % index of edges 
@@ -62,7 +62,7 @@ mu = young/(2*(1+poisson));
 alpha = 2*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
-[KASSEM,MASSEM,F] = assembly(coordinates,element,mc,mc2,lambda,alpha,rho,mu,g,nelem,ngdlu,ngdls);
+[KASSEM,MASSEM,F] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,rho,g,nelem,ngdlu,ngdls);
 
 %% SOLVE
 %
