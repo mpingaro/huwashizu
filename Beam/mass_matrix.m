@@ -22,7 +22,7 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
    psi(1) = 1-x-y;
    psi(2) = x;
    psi(3) = y;
-   psi(4) = 27*psi(1)*psi(1)*psi(1);
+   psi(4) = 27*psi(1)*psi(2)*psi(3);
    %
    u = [psi(1), 0, psi(2), 0, psi(3), 0, psi(4), 0; 
        0, psi(1), 0, psi(2), 0, psi(3), 0, psi(4)];
