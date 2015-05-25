@@ -12,7 +12,7 @@ if side == 1
 
 elseif side == 2
     val = val/ndx;
-    bc(1,:) = 2*(ndx+1)*ndy+2*ndx*ndy+1:2*(ndx+1)*(ndy+1)+2*ndx*ndy;
+    bc(1,:) = 2*(ndx+1)*ndy+1:2*(ndx+1)*(ndy+1);
     bc(2,:) = repmat(val,1,ndx+1);
     bc(2,[1, 2]) = val([1 2])/2;
     bc(2,[end-1, end]) = val([1 2])/2;

@@ -10,18 +10,18 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = P1 + B  C^0               
-% ------- Strain       : tensor (2,2) = P1      C^0              
-% ------- Stress       : tensor (2,2) = P1      C^-1
-% -- B is the space of boubble function
+% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
+% ------- Strain       : tensor (2,2) = Q1            C^0              
+% ------- Stress       : tensor (2,2) = Q1            C^-1
+% -- B1 and B2 are the two boubble functions
 % ------------------------------------------------------------------------%
 clear all; close all; clc;
 
 %% INPUT
 length = 5;                                   % length 
 height = 1;                                   % heigth
-ndx = 20;                                     % partition in x direction
-ndy = 4;                                      % partition in y direction
+ndx = 50;                                     % partition in x direction
+ndy = 10;                                     % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
 % Neumann boudary conditions (edges)
@@ -35,7 +35,7 @@ bct = 4;                                      % index of edges
 ft(1,:) = [0, 0];                             % Traction vertex 1
 ft(2,:) = [0, 0];                             % Traction vertex 2
 ft(3,:) = [0, 0];                             % Traction vertex 3
-ft(4,:) = [0, 1];                             % Traction vertex 4
+ft(4,:) = [0, -1];                            % Traction vertex 4
 % Dirichlet boudary conditions
 bcd = 3;                                      % index of edges
 ud(1,:) = [0, 0];                             % Displacement edge 1 
@@ -49,8 +49,8 @@ g       = [0, 0];                             % Body load
 dx = length/ndx;
 dy = height/ndy;
 % Mesh 
-[coordinates,nnod]=CoordinatesType2(ndx,ndy,dx,dy);
-[element,nelem]=ElementType2(ndx,ndy);
+[coordinates,nnod]=Coordinates(ndx,ndy,dx,dy);
+[element,nelem]=Element(ndx,ndy);
 %
 [mc,ngdlu]=CorrispoMC(element,nelem,nnod);  % Corrispondence Matrix displacement 
 mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stress
@@ -70,4 +70,5 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-plotsolution(coordinates,element,defo,strain,stress);
+% plotsolution(coordinates,element,defo,strain,stress);
+plotsol(coordinates,defo,ndx,ndy)
