@@ -70,5 +70,4 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-% plotsolution(coordinates,element,defo,strain,stress);
-plotsol(coordinates,defo,ndx,ndy)
+plotsol(coordinates,defo,strain,stress,ndx,ndy)
