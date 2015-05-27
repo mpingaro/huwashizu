@@ -11,7 +11,6 @@ C = [lambda+2*G, 0, 0, lambda;
     0, 0, 2*G, 0;
     lambda, 0, 0, lambda+2*G];
 
-
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);
 
