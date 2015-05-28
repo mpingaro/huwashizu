@@ -16,6 +16,6 @@ mc(:,8)  = 2*element(:,4);
 mc(:,9)  = 2*nnod+1:4:ngdlu-3;
 mc(:,10) = 2*nnod+2:4:ngdlu-2;
 mc(:,11) = 2*nnod+3:4:ngdlu-1;
-mc(:,12) = 2*nnod+3:4:ngdlu;
+mc(:,12) = 2*nnod+4:4:ngdlu;
 
 return
