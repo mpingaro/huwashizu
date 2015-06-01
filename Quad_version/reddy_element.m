@@ -15,12 +15,12 @@ C = [lambda+2*G, 0, 0, lambda;
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);
 
-A = zeros(11,11); % A
+A = zeros(11);    % A
 B = zeros(12,11); % B
 W = zeros(12,11); % W
-K = zeros(12,12); % K
-M = zeros(12,12); % M
-D = zeros(12,12); % D
+K = zeros(12);    % K
+M = zeros(12);    % M
+D = zeros(12);    % D
 %
 for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
     
@@ -39,7 +39,7 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
    grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
    % Grad of Boubble functions
    % First Boubble function
-   grdu(:,5) = DFF_i*[-8*x*(1-y^2); -8*y*(1-x^2)].*0.25;
+   grdu(:,5) = DFF_i*[-2*x*(1-y^2); -2*y*(1-x^2)];
    % Mixed Boubble function
    grdu(:,6) = DFF_i*[-2*x*(y-y^3-1+y^2); (1-3*y^2+2*y)*(1-x^2)].*0.25;
    grdu(:,7) = DFF_i*[(1-3*x^2+2*x)*(1-y^2); -2*y*(x-x^3-1+x^2)].*0.25;
@@ -50,7 +50,7 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
            grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2, (grdu(1,7)+grdu(2,6))/2;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
            grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2, (grdu(1,7)+grdu(2,6))/2;
-           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4), 0, grdu(2,5)/2, grdu(2,7)];
+           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4), 0, grdu(2,5), grdu(2,7)];
    
        
    d(1,1) = 0.25*(1-x)*(1-y) ;

@@ -10,10 +10,10 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
+% ------- Displacement : vertor (1,2) = Q1 + B        C^0               
 % ------- Strain       : tensor (2,2) = Q1            C^0              
 % ------- Stress       : tensor (2,2) = Q1            C^-1
-% -- B1 and B2 are the two boubble functions
+% -- B is the boubble function
 % ------------------------------------------------------------------------%
 clear all; close all; clc;
 %% COOK MEMBRANE PROBLEMS

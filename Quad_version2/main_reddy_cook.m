@@ -18,8 +18,8 @@
 clear all; close all; clc;
 %% COOK MEMBRANE PROBLEMS
 %% INPUT
-ndx = 80;                                     % partition in x direction
-ndy = 40;                                     % partition in y direction
+ndx = 40;                                     % partition in x direction
+ndy = 20;                                     % partition in y direction
 young = 250;                                  % young modulus
 poisson = 0.4999;                             % poisson modulus
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;

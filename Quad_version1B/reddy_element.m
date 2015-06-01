@@ -3,7 +3,7 @@
 function [A,B,K,M,W,D] = reddy_element(P,lambda,G)
 
 %% Quadrature
-[weight,gauss_x,gauss_y] = gauss_quadrature_16();
+[weight,gauss_x,gauss_y] = gauss_quadrature();
 
 %% - Legame
 C = [lambda+2*G, 0, 0, lambda; 
@@ -11,15 +11,16 @@ C = [lambda+2*G, 0, 0, lambda;
     0, 0, 2*G, 0;
     lambda, 0, 0, lambda+2*G];
 
+
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);
 
-A = zeros(12); % A
-B = zeros(12); % B
-W = zeros(12); % W
-K = zeros(12); % K
-M = zeros(12); % M
-D = zeros(12); % D
+A = zeros(10);    % A
+B = zeros(12,10); % B
+W = zeros(12,10); % W
+K = zeros(12);    % K
+M = zeros(12);    % M
+D = zeros(12);    % D
 %
 for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
     
@@ -37,17 +38,14 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
    grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
    grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
    % Grad of Boubble functions
-   % First Boubble function
    grdu(:,5) = DFF_i*[-2*x*(1-y^2); -2*y*(1-x^2)];
-   % Second Boubble function
-   grdu(:,6) = DFF_i*[(1-3*x^2-2*x*y)*(1-y^2);(1-2*x*y-3*y^2)*(1-x^2)];
    
-   epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0, grdu(1,5), 0, grdu(1,6), 0;
+   epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0, grdu(1,5), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
-           grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2, grdu(2,6)/2, grdu(1,6)/2;
+           grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
-           grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2, grdu(2,6)/2, grdu(1,6)/2;
-           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4), 0, grdu(2,5), 0, grdu(2,6)];
+           grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2;
+           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4), 0, grdu(2,5)];
    
        
    d(1,1) = 0.25*(1-x)*(1-y) ;

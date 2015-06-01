@@ -1,25 +1,7 @@
-% ----------------------------------------------------------------------- %
-% ------ A FINITE ELEMENT METHOD FOR A THREE-FIELD FORMULATION OF ------- %  
-% ------    LINEAR ELASTICITY BASED ON BIORTHOGONAL SYSTEMS       ------- %
-% ----------------------------------------------------------------------- %
-% ----------------   By (Marco Pingaro, Paolo Venini)   ----------------- %
-%                                                                         %
-% - Marco Pingaro    : Phd Student of University of Pavia                 %
-%               mail : marco.pingaro@iusspavia.it                         %
-% - Paolo Venini     : Professor of University of Pavia                   %
-%               mail : paolo.venini@unipv.it                              %
-% ----------------------------------------------------------------------- %
-% SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
-% ------- Strain       : tensor (2,2) = Q1            C^0              
-% ------- Stress       : tensor (2,2) = Q1            C^-1
-% -- B1 and B2 are the two boubble functions
-% ------------------------------------------------------------------------%
-clear all; close all; clc;
-%% COOK MEMBRANE PROBLEMS
-%% INPUT
-ndx = 40;                                     % partition in x direction
-ndy = 20;                                     % partition in y direction
+% By Marco Pingaro & Paolo Venini
+
+function sp = huwashizu_cook(ndx,ndy)
+
 young = 250;                                  % young modulus
 poisson = 0.4999;                             % poisson modulus
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
@@ -66,7 +48,11 @@ alpha = 2*mu;
 spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
-[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
+%[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-plotsol(coordinates,defo,strain,stress,ndx,ndy);
+%plotsol(coordinates,defo,strain,stress,ndx,ndy);
+
+sp = max(spost);
+
+return

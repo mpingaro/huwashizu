@@ -8,7 +8,7 @@ function load = body_load(P,g)
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);
 
-load = zeros(11,1);
+load = zeros(10,1);
 for i = 1:size(weight,2)
     
    x = gauss_x(1,i);
@@ -21,8 +21,6 @@ for i = 1:size(weight,2)
    psi(3) = 0.25*(1+x)*(1+y);
    psi(4) = 0.25*(1-x)*(1+y);
    psi(5) = (1-x^2)*(1-y^2);
-   psi(6) = (y-y^3-1+y^2)*(1-x^2)*0.25;
-   psi(7) = (x-x^3-1+x^2)*(1-y^3)*0.25;
        
    v(1,:)  = [psi(1), 0];
    v(2,:)  = [0, psi(1)];
@@ -34,9 +32,8 @@ for i = 1:size(weight,2)
    v(8,:)  = [0, psi(4)];
    v(9,:)  = [psi(5), 0];
    v(10,:) = [0, psi(5)];
-   v(11,:) = [psi(6),psi(7)];
    
-   for j = 1:11
+   for j = 1:10
        load(j,1) = load(j,1) + w*( g(1,1)*v(j,1)+g(1,2)*v(j,2) )*JF(i); 
    end
    
