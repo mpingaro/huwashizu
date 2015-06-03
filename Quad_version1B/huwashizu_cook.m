@@ -54,6 +54,6 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 %% PLOT SOLUTION
 %plotsol(coordinates,defo,strain,stress,ndx,ndy);
 
-sp = max(spost);
+sp = spost(2*nnod);
 
 return

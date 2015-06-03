@@ -1,6 +1,6 @@
 % by Marco Pingaro & Paolo Venini
 
-function [weight,gauss_x,gauss_y] = gauss_quadrature()
+function [weight,gauss_x,gauss_y] = gauss_quadrature_9()
 
  
 %% QUADRATURA DI GAUSS

@@ -1,6 +1,6 @@
 function [JJ,DJ] = jacobian(point)
 
-[weight,gauss_x,gauss_y] = gauss_quadrature_16();
+[weight,gauss_x,gauss_y] = gauss_quadrature_25();
 
 n_qp = size(weight,2);
 JJ   = zeros(2,2,n_qp);

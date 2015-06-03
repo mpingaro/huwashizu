@@ -3,7 +3,7 @@
 function load = body_load(P,g)
 
 %% Quadrature
-[weight,gauss_x,gauss_y] = gauss_quadrature();
+[weight,gauss_x,gauss_y] = gauss_quadrature_25();
 
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);

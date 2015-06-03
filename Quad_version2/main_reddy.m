@@ -20,8 +20,8 @@ clear all; close all; clc;
 %% INPUT
 length = 4;                                   % length 
 height = 1;                                   % heigth
-ndx =  80;                                    % partition in x direction
-ndy =  40;                                    % partition in y direction
+ndx =  20;                                    % partition in x direction
+ndy =  10;                                    % partition in y direction
 young = 1.e3;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
 % Neumann boudary conditions (edges)
@@ -37,13 +37,13 @@ ft(2,:) = [0, 0];                             % Traction vertex 2
 ft(3,:) = [0, 0];                             % Traction vertex 3
 ft(4,:) = [0, 0];                             % Traction vertex 4
 % Dirichlet boudary conditions
-bcd = [3, 4];                                 % index of edges
+bcd = 3;                                      % index of edges
 ud(1,:) = [0, 0];                             % Displacement edge 1 
 ud(2,:) = [0, 0];                             % Displacement edge 2
 ud(3,:) = [0, 0];                             % Displacement edge 3
 ud(4,:) = [0, 0];                             % Displacement edge 4
 % Body load
-g       = [0,-20];                            % Body load
+g       = [0,-10];                            % Body load
 
 %% GEOMETRY
 dx = length/ndx;

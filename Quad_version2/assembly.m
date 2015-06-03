@@ -22,24 +22,16 @@ for k = 1:nelem
     % ASSEMBLY A, B, W;
     for i=1:12
         for j=1:12
-           A(mc(k,i),mc(k,j)) = A(mc(k,i),mc(k,j))+ AELEM(i,j);
+           A(mc(k,i), mc(k,j))   = A(mc(k,i), mc(k,j))   + AELEM(i,j);
+           K(mc2(k,i), mc2(k,j)) = K(mc2(k,i), mc2(k,j)) + KELEM(i,j);
+           M(mc2(k,i), mc2(k,j)) = M(mc2(k,i), mc2(k,j)) + MELEM(i,j); 
+           B(mc2(k,i), mc(k,j))  = B(mc2(k,i), mc(k,j))  + BELEM(i,j);
+           W(mc2(k,i), mc(k,j))  = W(mc2(k,i), mc(k,j))  + WELEM(i,j);
         end
-        for kk = 1:12
-            B(mc2(k,kk), mc(k,i)) = B(mc2(k,kk),mc(k,i)) + BELEM(kk,i);
-            W(mc2(k,kk), mc(k,i)) = W(mc2(k,kk),mc(k,i)) + WELEM(kk,i);
-        end
-    end
-    % ASSEMBLY K, M, D
-    for ii = 1:12
-        for jj = 1:12
-            K(mc2(k,ii),mc2(k,jj)) = K(mc2(k,ii),mc2(k,jj)) + KELEM(ii,jj);
-            M(mc2(k,ii),mc2(k,jj)) = M(mc2(k,ii),mc2(k,jj)) + MELEM(ii,jj);
-        end
-        D(mc2(k,ii),mc2(k,ii)) = D(mc2(k,ii),mc2(k,ii)) + DELEM(ii,ii);
-    end
-    % ASSEMBLY BODY LOAD VECTOR
-    for z = 1:12
-        F(mc(k,z),1) = F(mc(k,z),1) + load(z,1);
+        D(mc2(k,i),mc2(k,i)) = D(mc2(k,i),mc2(k,i)) + DELEM(i,i);
+    
+        % ASSEMBLY BODY LOAD VECTOR
+        F(mc(k,i),1) = F(mc(k,i),1) + load(i,1);        
     end
 end
 
