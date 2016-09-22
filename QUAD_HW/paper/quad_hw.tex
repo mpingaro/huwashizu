@@ -1,0 +1,454 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{bm}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{fp}
+\usepackage{tikz, pgfplots}
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{arrows}
+\tikzset{>=latex}
+
+% Color definition
+\definecolor{green2}{RGB}{154, 205, 50}
+\definecolor{green3}{RGB}{141, 182, 0}
+\definecolor{blue2}{RGB}{0, 102, 255}
+\definecolor{lightgreen}{RGB}{178,255,102}
+
+
+%  Sistemazione margini
+\addtolength{\hoffset}{-20pt}  % Riduco spazio bordo alto
+\oddsidemargin = 10pt          % Riduco spazio dordo lati
+\textwidth = 500pt             % Allargo parte scritta (righe) 
+\textheight = 700pt            % Allargo parte scritta (colonne)
+
+\title{\textbf{Extension to Quadrilateral Element of Three Field Hu-Washizu Elasticity Formulation Based on Biorthogonal Systems}}
+\date{\today}
+\author{Bishnu P. Lamichhane, M.Pingaro, P.Venini}
+
+\begin{document}
+\maketitle
+
+\section{Linear elastic continuum problem}
+In this section we briefly recovery the equations governing the linear elastic problem. 
+The equilibrium equation is:
+\begin{equation} \label{eq:equilibrio01}
+- \mbox{div}(\bm{\sigma}) = \bm{f}\:,
+\end{equation}
+while in small deformation is:
+\begin{equation}\label{eq:congruenza01}
+\bm{d} = \bm{\varepsilon}(\bm{u}) = 
+\frac{1}{2}(\bm{\nabla} \: \bm{u} + \bm{\nabla} \: \bm{u}^{T}) \:.
+\end{equation}
+In the case of linear elasticity we have:
+\begin{equation} \label{eq:legame01}
+\bm{\sigma} = \lambda \: tr(\bm{\varepsilon}) \bm{I} 
++ 2\mu \: \bm{\varepsilon}
+\end{equation}
+where $\mu$ and $\lambda$ are the Lamé constant.
+By some algebra one obtains:
+\begin{equation} \label{eq:legame02}
+\bm{\sigma} =
+\left(
+\begin{array}{cc}
+\lambda (\varepsilon_{11} + \varepsilon_{22}) & 0 \\
+0 & \lambda (\varepsilon_{11} + \varepsilon_{22}) 
+\end{array}
+\right) +2\mu
+\left(
+\begin{array}{cc}
+\varepsilon_{11} & \varepsilon_{12} \\
+\varepsilon_{12} & \varepsilon_{22}
+\end{array}
+\right)\:,
+\end{equation}
+and rearranging the equation \eqref{eq:legame02}:
+\begin{equation} \label{eq:legame03}
+\bm{\sigma} =
+\left(
+\begin{array}{ll}
+(\lambda+2\mu) \varepsilon_{11} + \lambda \: \varepsilon_{22} & 2\mu \: \varepsilon_{12} \\
+2\mu \: \varepsilon_{12} & (\lambda+2\mu) \: \varepsilon_{22} + \lambda \: \varepsilon_{11}  \\
+\end{array}
+\right)\:.
+\end{equation}
+
+\section{Briefly introduction to modify Hu-Washizu}
+We define the trial variables: $\bm{\varepsilon}(\bm{u})$, $\bm{d}$ and 
+$\bm{\sigma}$, while the test variables are: $\bm{\varepsilon}(\bm{v})$, 
+$\bm{e}$ and $\bm{\tau}$. 
+\begin{equation}
+-\int_{\Omega} \mbox{div} ( \bm{C} : \bm{d}) )\cdot \bm{v} = \bm{f}
+\end{equation}
+
+\begin{eqnarray}
+& a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
++ b( (\bm{v}, \bm{e}), \bm{\sigma} ) &= l(\bm{v}) \\
+& b( (\bm{u},\bm{d}), \bm{\tau} )                                 &= 0
+\end{eqnarray}
+where:
+\begin{eqnarray}
+& a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
+&= \int_{\Omega} \bm{d} : (\bm{C}:\bm{e}) \: dx 
++ \alpha \int_{\Omega} (\bm{\varepsilon}(\bm{u}) 
+- \bm{d}):(\bm{\varepsilon}(\bm{v}) - \bm{e}) \: dx \:, \\
+& b( (\bm{u},\bm{d}), \bm{\tau} ) &= 
+\int_{\Omega} (\bm{\varepsilon}(\bm{u}) - \bm{d}) : \bm{\tau} \: dx \:.
+\end{eqnarray}
+The modify weak formulation of the problem is:
+\begin{equation} \label{eq:system_1}
+\left\lbrace
+\begin{array}{lll}
+\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
+\bm{\varepsilon}(\bm{v})\:dx 
++\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega}
+\bm{f}\cdot\bm{v}\:dx \\
+\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
+(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
+-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
+\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0 \\
+\end{array}
+\right.
+\end{equation}
+by rearranging:
+\begin{equation} \label{eq:system_2}
+\left\lbrace
+\begin{array}{lll}
+\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\varepsilon}(\bm{v})\:dx 
+-\alpha\int_{\Omega}\bm{d}:\bm{\varepsilon}(\bm{v})\:dx
++\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx 
+&=\int_{\Omega}\bm{f}\cdot\bm{v}\:dx\\ 
+-\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{e}\:dx
++\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx
++\alpha\int_{\Omega}\bm{d}:\bm{e}\:dx
+-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx&= 0 \\
+\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\tau}\:dx
+-\int_{\Omega}\bm{d}:\bm{\tau}\:dx &= 0 \\
+\end{array}
+\right.
+\end{equation}
+It is possible to rewrite the system in equation \eqref{eq:system_2} in matrix form in the following way: 
+\begin{equation}
+\left[
+\begin{array}{ccc}
+\alpha \bm{A} & -\alpha \bm{B} & \bm{W} \\
+-\alpha \bm{B}^{T} & \bm{K}+\alpha \bm{M} & -\bm{D} \\
+\bm{W}^{T}  & - \bm{D}^{T} & \bm{0} \\ 
+\end{array}
+\right] 
+\left[
+\begin{array}{c}
+\bm{x}_{u} \\
+\bm{x}_{d} \\
+\bm{x}_{\sigma} \\
+\end{array}
+\right] =
+\left[
+\begin{array}{c}
+\bm{b}_{f} \\
+\bm{0} \\
+\bm{0} \\
+\end{array}
+\right]\:,
+\end{equation}
+where 
+$\bm{A}=\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\varepsilon}(\bm{v})$, 
+$\bm{B}=\int_{\Omega}\bm{d}:\bm{\varepsilon}(\bm{v})$, 
+$\bm{W}=\int_{\Omega}\bm{\sigma}:\bm{\varepsilon}(\bm{v})$, 
+$\bm{K}=\int_{\Omega}\bm{C}\bm{e}:\bm{d}$, 
+$\bm{M}=\int_{\Omega}\bm{e}:\bm{d}$, 
+$\bm{D}=\int_{\Omega}\bm{\sigma}:\bm{e}$.  
+$\bm{D}$ is a diagonal matrix.
+Using this property it is possible condense statically $\bm{x}_{d}$ and $\bm{x}_{\sigma}$, and we obtain the following system in the only unknown 
+$\bm{x}_{u}$:
+\begin{equation}
+\left[ \alpha \bm{A} - \alpha \left( \bm{B} \bm{D}^{-1} \bm{W}^{-T} 
++ \bm{W} \bm{D}^{-1} \bm{B}^{T} \right) + 
+\bm{W} \bm{D}^{-1} \left( \bm{K} + \alpha \bm{M} \right) 
+\bm{D}^{-1} \bm{W}^{T} \right] \bm{x}_{u} = \bm{b}_{f}
+\end{equation}
+
+\section{Finite element discretization}
+We consider a quasi-uniform triangulation $\mathcal{T}_{h}$ of the polygonal domain $\Omega$ consists of simply, either quadrilateral or hexahedral.
+We take into account of standard bilinear finite element space $K_{h}\subset H^{1}(\Omega)$ defined on the triangulation $\mathcal{T}_{h}$, where:
+\begin{equation}
+K_{h} := \left\lbrace v \in C^{0}(\Omega): v_{\mid T}\in \mathcal{Q}_{1}(T), \: T\in \mathcal{T}_{h} \right\rbrace ,
+\:\:\:\:\: K_{h}^{0} = K_{h} \cap H_{0}^{1}(\Omega) ,
+\end{equation} 
+and the space of bubble functions
+\begin{equation}
+B_{h} := \left\lbrace b_{T}\in H^{1}(T): b_{T\mid \partial T}=0 
+\mbox{ and } \int_{T} b_{T} \: dx > 0, \: T\in \mathcal{T}_{h} 
+\right\rbrace ,
+\end{equation}
+and we define the spaces for strain and displacement as $\bm{S}_{h}:=[K_{h}]^{2\times 2}$ and $\bm{V}_{h}:=\left[K_{h}^{0} \bigoplus B_{h}\right]^{2}$. 
+In the next section we discuss the different choosing of bubble functions.
+For the discrete stress space we use:
+\begin{equation}
+\bm{M}_{h}:=\left\lbrace \bm{\tau}_{h}\in \left[M_{h}\right]^{2\times 2}: \: \int_{\Omega} \bm{\tau}_{h} : \bm{1} \: dx = 0 \right\rbrace \subset \bm{S}_{0}\:,
+\end{equation}
+and let $\left\lbrace \phi_{1}, \cdots, \phi_{n}\right\rbrace$ and 
+$\left\lbrace \mu_{1}, \cdots, \mu_{n}\right\rbrace$ the $n$ the basis functions for the space $V_{h}$ and $M_{h}$ respectively, we construct the functions $\mu_{i}$ using the following biorthogonality property between the space $V_{h}$ and $M_{h}$:
+\begin{equation}
+\int_{\Omega}\mu_{i}\phi_{j} \: dx = c_{j}\delta_{ij}\:, \:\: c_{j}\neq 0\:,
+\:\: 1 \leq i,j \leq n \:,
+\end{equation}
+where $\delta_{ij}$ is Kronecker symbol, and $c_{j}$ is a scaling factor which can be chosen to be proportion al to the area of support of $\phi_{j}$.
+The local basis function of $K_{h}$ and $M_{h}$ for the reference square element (see figure \ref{fig:ref_element}) $\hat{T}:=\left\lbrace (x,y): -1\leq x \leq 1 \:, -1\leq y \leq 1 \right\rbrace$ are:
+\begin{figure}[h!]
+\begin{center}
+\include{figure/reference_element}
+\caption{Reference Element \label{fig:ref_element}}
+\end{center}
+\end{figure}
+%
+\begin{equation}
+\begin{split}
+&\phi_{1}=\frac{1}{4}(1-x)(1-y) \:, \:\:\:\: \phi_{2}=\frac{1}{4}(1+x)(1-y) \:,\\
+&\phi_{3}=\frac{1}{4}(1+x)(1+y) \:, \:\:\:\: \phi_{4}=\frac{1}{4}(1-x)(1+y) \:.
+\end{split}
+\end{equation}   
+and
+\begin{equation}
+\begin{split}
+&\mu_{1} = 1 - 3x - 3y + 9xy \:, \:\:\:\: \mu_{2} = 1 + 3x - 3y - 9xy \:,\\
+&\mu_{3} = 1 + 3x + 3y + 9xy \:, \:\:\:\: \mu_{4} = 1 - 3x + 3y + 9xy \:.
+\end{split}
+\end{equation}
+It is important to observe that the global basis functions of the space $M_{h}$ are not continuous.
+   
+\section{Bubble functions}
+In this section we detail the different choosing of the bubble functions. Addition of the bubble functions is essential to create a stable space. we have four types of bubbles.
+In the first two cases we use a modification of the standard bubble function ,that is for the reference element:
+\begin{equation}\label{eq:standard_bubble_fun}
+b_{T}(x,y) = (1-x^{2})(1-y^{2})\:,
+\end{equation}
+while in the next two, we add to the standard bubble function another one.
+\subsection{One Bubble function (type 1)}
+As a first choice of bubble function we use:
+\begin{equation}\label{eq:bubble_1}
+\hat{b}_{T}(x,y) = c_{T}\cdot\phi_{T}(x,y)\cdot b_{T}(x,y)\:, 
+\end{equation}
+where $c_{T}$ is a coefficient in order to obtain $\hat{b}_{T}(x_{g},y_{g}) = 1$ (where $\bm{g}$ is the centroid of the elements), $\phi_{K}$ is the standard bilinear basis function corresponding to the lower-left corner of the square $T$.
+In the case of reference square element we obtain:
+\begin{equation} \label{eq:bubble_1_ref}
+\hat{b}_{T}(x,y) = (1-x)(1-y)(1-x^{2})(1-y^{2})\:.
+\end{equation}
+
+\subsection{One Bubble function (type 2)}
+The second choice of bubble function we take:
+\begin{equation}\label{eq:bubble_2}
+\hat{b}_{T}(x,y) = c_{T}\cdot (a+bx+cy)\cdot b_{T}(x,y)\:,
+\end{equation}
+where $a,b,c \in \mathrm{R}$ and $a,b,c \neq 0$.
+For simplicity we set $a=b=c=1$ and we obtain for the reference square:
+\begin{equation}\label{eq:bubble_2_ref}
+\hat{b}_{T}(x,y) = (1+x+y)(1-x^{2})(1-y^{2})\:.
+\end{equation} 
+
+\subsection{Two Bubble functions}
+Using two bubble functions, where the first is the standard bubble function and the second bubble is a modification of the standard bubble:
+\begin{equation}\label{eq:bubble_3}
+\begin{split}
+&\hat{b}_{T1}(x,y) = b_{T}\:, \\
+&\hat{b}_{T2}(x,y) = c_{T}\cdot (ax+by)\cdot b_{T}\:,
+\end{split}
+\end{equation}
+where $a,b \in \mathrm{R}$ and $a^{2}+b^{2}\neq 0$.
+For the sake of simplicity we adopt $a=b=1$.
+One obtains:
+\begin{equation}\label{eq:bubble_3_ref}
+\begin{split}
+&\hat{b}_{T1}(x,y) = (1-x^{2})(1-y^{2})\:, \\
+&\hat{b}_{T2}(x,y) = (x+y)(1-x^{2})(1-y^{2})\:.
+\end{split}
+\end{equation}
+
+\subsection{Two Bubble functions, which one mixed}
+As a finally choice of bubbles we use a standard bubble function plus one mixed bubble function for the two components of displacement.
+\begin{equation}
+\begin{split}
+&\hat{b}_{T1}(x,y) = b_{T}\:, \\
+&\hat{b}_{T2,x}(x,y) = (\nabla \phi_{1})_{x}\cdot b_{T}\:, \\
+&\hat{b}_{T2,y}(x,y) = (\nabla \phi_{1})_{y}\cdot b_{T}\:,
+\end{split}
+\end{equation}
+where $(\nabla\phi_{1})_{i}$ is $i$-th component of the gradient of the first shape function $\phi$.
+In this way we have as shape function for the displacement using the mixed bubble function the vector $\left[\hat{b}_{T2,x}(x,y),\hat{b}_{T2,y}(x,y)\right]$. 
+
+\section{Numerical example}
+In this section we report some examples using the presented formulation to proven the good behaviour. 
+
+\subsection{Square problem}
+First example is a unit square domain with homogeneous Dirichlet boundary conditions.
+The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$.
+By imposition of the previously exact solution one obtain for the body force $f$
+\begin{equation}
+\begin{split}
+&f_{1} = -\pi^{2} \cos(\pi x) \sin(\pi y) \left( \lambda + \mu + 2\lambda\cos(\pi y) + 
+12\mu\cos(\pi y)\right), \\
+&f_{2} = -\pi^{2}\sin(\pi x)\left( \lambda\cos(\pi y) + 3\mu\cos(\pi y) + 2\lambda\left(2\cos(\pi y)^{2} 
+- 1\right) + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
+\end{split}
+\end{equation}
+The exact solution is
+\begin{equation} \label{eq:exact_solution}
+u_{1} = \cos (\pi x) \sin(2\pi y), \mbox{ } u_{2} = \sin(\pi x)\cos(\pi y). 
+\end{equation} 
+The problem is study using two type of mesh: first of all using a square mesh and before using a trapezoidal mesh. The two types of mesh are shown in figures \ref{fig:square_regular} and \ref{fig:square_irregular}.
+Figures \ref{fig:error_l2_1B_type1}, \ref{fig:error_l2_1B_type2}, \ref{fig:error_l2_2B} and \ref{fig:error_l2_2B_mixed} shown the error in norm $L^{2}$ in the case of regular mesh for the different types of bubble functions used and types of coefficient $\alpha$. All types of element converge in a good way.
+In Figures  \ref{fig:error_dist_l2_1B_type1}, \ref{fig:error_dist_l2_1B_type2}, \ref{fig:error_dist_l2_2B} and \ref{fig:error_dist_l2_2B_mixed} we report the previously results in the case of trapezoidal meshes. 
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Regular mesh \label{fig:square_regular}]
+{\input{figure/square_regular}}
+\hspace{5pt}
+\subfigure[Trapezoidal mesh \label{fig:square_irregular}]{\input{figure/square_trapezoidal}}
+\caption{Square Problem}
+\end{center}
+\end{figure}
+% Error L2
+\begin{figure}[h!]
+\begin{center}
+\subfigure[type 1 \label{fig:error_l2_1B_type1}]
+{\input{square_example/bolla1_type1/elastic_error_1B_l2}}
+\subfigure[type 2 \label{fig:error_l2_1B_type2}]
+{\input{square_example/bolla1_type2/elastic_error_1B_l2}}
+\caption{The relative error vs. the number of elements measured relative 
+to the $L^{2}$ norm (Case one bubble function and regular mesh)}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case two bubble function \label{fig:error_l2_2B}]{\input{square_example/bolla2/elastic_error_2B_l2}}
+\subfigure[Case two bubble function of which one mixed \label{fig:error_l2_2B_mixed}]{\input{square_example/bolla2_mixed/elastic_error_2B_mixed_l2}}
+\caption{The relative error versus the number of elements measured relative to the $L^{2}$ norm (regular mesh)}
+\end{center}
+\end{figure}
+% Error L2 (Distorted)
+\begin{figure}[h!]
+\begin{center}
+\subfigure[type 1 \label{fig:error_dist_l2_1B_type1}]
+{\input{square_example/bolla1_type1/elastic_error_dist_1B_l2.tex}}
+\subfigure[type 2 \label{fig:error_dist_l2_1B_type2}]
+{\input{square_example/bolla1_type2/elastic_error_dist_1B_l2.tex}}
+\caption{The relative error vs. the number of elements measured relative 
+to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case two bubble function \label{fig:error_dist_l2_2B}]
+{\input{square_example/bolla2/elastic_error_dist_2B_l2.tex}}
+\subfigure[Case two bubble function of which one mixed \label{fig:error_dist_l2_2B_mixed}]
+{\input{square_example/bolla2_mixed/elastic_error_dist_2B_mixed_l2.tex}}
+\caption{The relative error vs. the number of elements measured relative 
+to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
+\end{center}
+\end{figure}
+%
+
+\subsection{Cantilever beam problem}
+Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure (). The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$ and subjected to a distributed load as in figure \ref{fig:beam_geometry} with $f=300$.
+%
+\begin{figure}[h!]
+\begin{center}
+\input{figure/beam}
+\caption{Beam cantilever geometry \label{fig:beam_geometry}}
+\end{center}
+\end{figure}
+%
+The exact solution is:
+\begin{equation}
+\begin{split}
+&u(x,y) = \frac{2 f}{E l} (1-\nu^{2}) x \left( \frac{l}{2} - y \right)\: , \\
+&v(x,y) = \frac{f}{E l} \left[ x^{2} + \frac{\nu}{1-\nu}\left(y^{2}-l y 
+\right) \right] \: .
+\end{split}
+\end{equation}
+We use to model the beam two types of mesh: regular anf trapezoidal as in the previously example (see figures \ref{fig:square_regular} and \ref{fig:square_irregular}).
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Type 1 \label{fig:beam_reg_1B_type1}]
+{\input{beam_example/regular/bolla1/elastic_error_1B_type_1_l2}}
+\subfigure[Type 2 \label{fig:beam_reg_1B_type2}]
+{\input{beam_example/regular/bolla1/elastic_error_1B_type_2_l2}}
+\caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case two bubble function \label{fig:beam_reg_2B}]
+{\input{beam_example/regular/bolla2/elastic_error_2B_l2}}
+\subfigure[Case two bubble function of which one mixed \label{fig:beam_reg_2B_mixed}]
+{\input{beam_example/regular/bolla2_mixed/elastic_error_2B_mixed_l2}}
+\caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)} 
+\end{center}
+\end{figure}
+we shown in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} the $L^{2}$-norm error for different types of bubble functions used in the case of $\alpha/mu:={1,2,3}$, while in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} the same plots using trapezoidal meshes.
+%% Trapezoidal mesh
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Type 1 \label{fig:beam_trap_1B_type1}]
+{\input{beam_example/trapezoidal/bolla1/elastic_error_1B_dist_type_1_l2}}
+\subfigure[Type 2 \label{fig:beam_trap_1B_type2}]
+{\input{beam_example/trapezoidal/bolla1/elastic_error_1B_dist_type_2_l2}}
+\caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case two bubble function \label{fig:beam_trap_2B}]
+{\input{beam_example/trapezoidal/bolla2/elastic_error_2B_dist_l2}}
+\subfigure[Case two bubble function of which one mixed 
+\label{fig:beam_trap_2B_mixed}]
+{\input{beam_example/trapezoidal/bolla2_mixed/elastic_error_2B_mixed_dist_l2}}
+\caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}
+\end{center}
+\end{figure}
+In the all cases the elements distorted have a good behaviour respect to the regular mesh.  
+
+\subsection{Cook's membrane}
+The final example is the Cook's membrane. That is a typical benchmark and consist of a beam with vertex: $(0,0)$, $(48,44)$, $(48,60)$ and $(0,44)$.
+The left vertical edge is clamped and the right vertical edge subjected to the vertical distributed forces with resultant $F=100$ as it shown in figure \ref{fig:cook}.
+%
+\begin{figure}[h!]
+\begin{center}
+\input{figure/cook_membrane}
+\caption{Cook's Membrane geometry \label{fig:cook}}
+\end{center}
+\end{figure}
+The material properties are taken to be $E = 250$ and $\nu = 0.4999$, so that a nearly incompressible response is obtained.
+We report in figures \ref{fig:cook_alpha_1}, \ref{fig:cook_alpha_1mu}, \ref{fig:cook_alpha_2mu} and \ref{fig:cook_alpha_3mu} the vertical displacement of the point $A$ versus the number of element per side for different choosing of the parameter $\alpha=\left\lbrace 1, \mu, 2\mu, 3\mu \right\rbrace$.
+% Alpha 1, 1*mu, 2*mu, 3*mu
+\begin{figure}[h!]
+\begin{center}
+\subfigure[$\alpha=1$ \label{fig:cook_alpha_1}]
+{\input{quad_cook_membrane_graph/alpha_1/quad_cook_membrane}}
+\subfigure[$\alpha/ \mu=1$ \label{fig:cook_alpha_1mu}]
+{\input{quad_cook_membrane_graph/alpha_1mu/quad_cook_membrane}}
+\subfigure[$\alpha/ \mu=2$ \label{fig:cook_alpha_2mu}]
+{\input{quad_cook_membrane_graph/alpha_2mu/quad_cook_membrane}}
+\subfigure[$\alpha/ \mu=3$ \label{fig:cook_alpha_3mu}]
+{\input{quad_cook_membrane_graph/alpha_3mu/quad_cook_membrane}}
+\caption{Vertical Displacement of point A vs. 
+the number of elements per side}
+\end{center}
+\end{figure}
+All elements return different behaviour using different coefficients $\alpha$. In the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results completely not converge to the reference solution.    
+
+\end{document}

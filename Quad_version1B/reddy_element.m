@@ -3,7 +3,11 @@
 function [A,B,K,M,W,D] = reddy_element(P,lambda,G)
 
 %% Quadrature
-[weight,gauss_x,gauss_y] = gauss_quadrature();
+%[weight,gauss_x,gauss_y] = gauss_quadrature();
+[weight, gauss] = GaussQuad2D(9,9);
+gauss_x = gauss(:,1);
+gauss_y = gauss(:,2);
+
 
 %% - Legame
 C = [lambda+2*G, 0, 0, lambda; 
@@ -22,11 +26,15 @@ K = zeros(12);    % K
 M = zeros(12);    % M
 D = zeros(12);    % D
 %
-for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
+for i = 1:size(weight,1) % Cycle on gauss points --> Da ottimizzare. (2 prima)
     
-   x = gauss_x(1,i);
-   y = gauss_y(1,i);
-   w = weight(1,i);
+   %x = gauss_x(1,i);
+   %y = gauss_y(1,i);
+   %w = weight(1,i);
+ 
+   x = gauss_x(i,1);
+   y = gauss_y(i,1);
+   w = weight(i,1);
    
    DFF_i = DFF(:,:,i);
    JF_i  = JF(i);
@@ -38,16 +46,16 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
    grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
    grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
    % Grad of Boubble functions
-   grdu(:,5) = DFF_i*[-2*x*(1-y^2); -2*y*(1-x^2)];
-   
+   grdu(:,5) = DFF_i*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
+   %grdu(:,5) = DFF_i*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
+
    epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0, grdu(1,5), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
            grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
            grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2;
            0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4), 0, grdu(2,5)];
-   
-       
+    
    d(1,1) = 0.25*(1-x)*(1-y) ;
    d(1,2) = 0.25*(1+x)*(1-y) ;
    d(1,3) = 0.25*(1+x)*(1+y) ;

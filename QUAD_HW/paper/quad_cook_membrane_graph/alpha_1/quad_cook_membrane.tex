@@ -1,0 +1,82 @@
+%\documentclass{article}
+
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{colortbl}
+%\usepackage{fp}
+%\usepackage{tikz, pgfplots}
+%\usetikzlibrary{calc}
+%\usetikzlibrary{patterns}
+%\usetikzlibrary{intersections}
+%\usetikzlibrary{arrows}
+%\tikzset{>=latex}
+%
+%% Color definition
+%\definecolor{green2}{RGB}{154, 205, 50}
+%\definecolor{green3}{RGB}{141, 182, 0}
+%\definecolor{blue2}{RGB}{0, 102, 255}
+%\definecolor{lightgreen}{RGB}{178,255,102}
+
+
+%\begin{document}
+
+%\begin{figure}[!h]
+%\begin{center}
+\begin{tikzpicture}
+ %transpose legend
+ \begin{axis}[width=0.45\textwidth, height=0.45\textwidth,
+  legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
+  legend columns=2,
+  xlabel={Number of Elements per Side},
+  ylabel={Vertical displacement of point A},
+  xmin=0, xmax=32,
+  ymin=0, ymax=100,
+  ytick={0, 20, 40, 60, 80, 100},
+  yticklabels={$0$, $20$, $40$, $60$, $80$, $100$},
+  xtick={0, 2, 4, 8, 16, 32},
+  xticklabels={$0$, $2$, $4$, $8$, $16$, $32$},
+ ]
+ % Reference
+ %\addplot[black, ultra thick] coordinates{
+ %(50, 1.8248e-5)
+ %(15000, 1.8248e-5)
+ %}; 
+ %\addlegendentry{Reference} 
+ %
+ \addplot[red, mark=+, thick, dashed, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {quad_cook_membrane_graph/alpha_1/cook_1B_type_1.txt};
+ \addlegendentry{1 Bubble type 1}
+ %
+ \addplot[red, mark=+, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {quad_cook_membrane_graph/alpha_1/cook_1B_type_2.txt};
+ \addlegendentry{1 Bubble type 2}
+ %
+  \addplot[green3, mark=o, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {quad_cook_membrane_graph/alpha_1/cook_2B.txt};
+ \addlegendentry{2 Bubble}
+ %
+ \addplot[blue, mark=x, thick, mark options={solid}]
+ table [x index={0}, y index={1}]
+ {quad_cook_membrane_graph/alpha_1/cook_2B_mixed.txt};
+ \addlegendentry{2 Bubble Mixed}
+ %
+ %\addplot[blue, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ %
+ %\addplot[green3, mark=x, very thick]
+ %table [x index={0}, y index={1}]
+ %{};
+ %\addlegendentry{}
+ % 
+ \end{axis}
+\end{tikzpicture}
+%\end{center}
+%\caption{Vertical Displacement of point A vs. the number of element per side}
+%\end{figure}
+
+%\end{document}
