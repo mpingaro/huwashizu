@@ -1,10 +1,50 @@
-\documentclass[a4paper,11pt]{article}
+%% 
+%% Copyright 2007, 2008, 2009 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+%% SP 2008/03/01
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
 \usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
+%\usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{lineno}
 
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -24,20 +64,88 @@
 \definecolor{lightgreen}{RGB}{178,255,102}
 
 
-%  Sistemazione margini
-\addtolength{\hoffset}{-20pt}  % Riduco spazio bordo alto
-\oddsidemargin = 10pt          % Riduco spazio dordo lati
-\textwidth = 500pt             % Allargo parte scritta (righe) 
-\textheight = 700pt            % Allargo parte scritta (colonne)
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
 
-\title{\textbf{Extension to Quadrilateral Element of Three Field Hu-Washizu Elasticity Formulation Based on Biorthogonal Systems}}
-\date{\today}
-\author{Bishnu P. Lamichhane, M.Pingaro, P.Venini}
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+\journal{Comput. Methods Appl. Mech. Eng}
 
 \begin{document}
-\maketitle
 
-\section{Linear elastic continuum problem}
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+\title{Extension to Quadrilateral Element of Three 
+Field Hu-Washizu 2D Elasticity Formulation Based on Biorthogonal Systems}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \address[label1]{}
+%% \address[label2]{}
+
+\author{B.P. Lamichhane\fnref{newcastle}}
+\author{M.Pingaro\corref{cor}\fnref{pavia}}
+\author{P.Venini\fnref{pavia}}
+
+\address{School of Mathematical and Physical Sciences, University of Newcastle, Callaghan, NSW 2308 \fnref{newcastle}}
+\address{Department of Civil Engineering and Architecture,
+University of Pavia, Pavia, Italy \fnref{pavia}}
+
+\ead{marco.pingaro@iusspavia.it}
+\cortext[cor]{Corresponding author: Tel. +39 0382 98.5464}
+
+
+\begin{abstract}
+New quadrilateral mixed finite element based on modified Hu-Washizu formulation are presented.
+The stability and consistency of the element are obtained by adding bubble function at the displacement field.
+Different type of bubble functions are successfully tested. 
+Many examples prove the efficiency and the stability of the element. The extension at the 3D case is straightforward.
+
+\end{abstract}
+
+\begin{keyword}
+mixed finite elements \sep quadrilateral element \sep Hu-Washizu \sep biorthogonal systems \sep elasticity.
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+\section{Introduction}\label{sec:one}
+
+The structure of the papers are the following: first of all in the  first section we recall the basic equations of linear elastic problem, in the second section three we briefly recall the modified Hu-Washizu formulations, section four we develop the finite element spaces.
+
+\section{Linear elastic continuum problem}\label{sec:two}
 In this section we briefly recovery the equations governing the linear elastic problem. 
 The equilibrium equation is:
 \begin{equation} \label{eq:equilibrio01}
@@ -104,18 +212,32 @@ where:
 \int_{\Omega} (\bm{\varepsilon}(\bm{u}) - \bm{d}) : \bm{\tau} \: dx \:.
 \end{eqnarray}
 The modify weak formulation of the problem is:
+%\begin{equation} \label{eq:system_1}
+%\left\lbrace
+%\begin{array}{lll}
+%\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
+%\bm{\varepsilon}(\bm{v})\:dx 
+%+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega}
+%\bm{f}\cdot\bm{v}\:dx \\
+%\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
+%(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
+%-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
+%\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0 \\
+%\end{array}
+%\right.
+%\end{equation}
+
+
 \begin{equation} \label{eq:system_1}
 \left\lbrace
-\begin{array}{lll}
+\begin{split}
 \alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
-\bm{\varepsilon}(\bm{v})\:dx 
-+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega}
-\bm{f}\cdot\bm{v}\:dx \\
+\bm{\varepsilon}(\bm{v})\:dx +\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega} \bm{f}\cdot\bm{v}\:dx \\
 \int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
 (\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
 -\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
-\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0 \\
-\end{array}
+\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0
+\end{split}
 \right.
 \end{equation}
 by rearranging:
@@ -296,7 +418,8 @@ By imposition of the previously exact solution one obtain for the body force $f$
 &f_{1} = -\pi^{2} \cos(\pi x) \sin(\pi y) \left( \lambda + \mu + 2\lambda\cos(\pi y) + 
 12\mu\cos(\pi y)\right), \\
 &f_{2} = -\pi^{2}\sin(\pi x)\left( \lambda\cos(\pi y) + 3\mu\cos(\pi y) + 2\lambda\left(2\cos(\pi y)^{2} 
-- 1\right) + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
+- 1\right) \right.\\
+&\left. \hspace{24pt} + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
 \end{split}
 \end{equation}
 The exact solution is
@@ -449,6 +572,56 @@ We report in figures \ref{fig:cook_alpha_1}, \ref{fig:cook_alpha_1mu}, \ref{fig:
 the number of elements per side}
 \end{center}
 \end{figure}
-All elements return different behaviour using different coefficients $\alpha$. In the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results completely not converge to the reference solution.    
+All elements return different behaviour using different coefficients $\alpha$. In the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results completely not converge to the reference solution.
 
+
+\section{Conclusions}
+
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%% If you have bibdatabase file and want bibtex to generate the
+%% bibitems, please use
+%%
+%%  \bibliographystyle{elsarticle-harv} 
+%%  \bibliography{<your bibdatabase>}
+
+%% else use the following coding to input the bibitems directly in the
+%% TeX file.
+
+\begin{thebibliography}{00}
+
+%% \bibitem[Author(year)]{label}
+%% Text of bibliographic item
+
+\bibitem[W.Bai (2007)]{The quadrilateral `Mini' finite element for Stokes problem}
+
+%\bibitem[W.Bai (2007)]{ W.Bai. 
+%``The quadrilateral `Mini' finite element for Stokes problem'',
+%{\it{Comput. Methods Appl. Mech. Engrg.}}, 143: 41-47, 1997.}
+
+%\bibitem{boffi} D. Boffi. ``On the finite element method on quadrilateral meshes", 
+%{\it{Appl. Num. Mathematics}}, 56: 1271-1282, 2006.
+%
+%\bibitem{lamichhane} B.P. Lamichhane. ``A quadrilateral `mini' finite element for the  Stokes problem using a single bubble function", 
+%{\it{Appl. Num. Math.}}, 56: 1271-1282, 2015. 
+%
+%\bibitem{djoko} J.K. Djoko, B.D. Reddy. ``An extended Hu-Washizu formulation for elasticity", 
+%{\it{Comput. Methods Appl. Mech. Engrg.}}, 195: 6330-6346, 2006. 
+%
+%\bibitem{lamichhane_three} B.P. Lamichhane, A.T. McBride, 
+%B.D. Reddy. ``A finite element method for three-field formulation of linear elasticity based on biorthogonal systems", 
+%{\it{Comput. Methods Appl. Mech. Engrg.}}, 258: 109-117, 2013.
+%
+%\bibitem{lamichhane_conv} B.P. Lamichhane, B.D. Reddy, B.I. Wohlmuth. ``Convergence in the incompressible limit of finite element approximation based on Hu-Washizu formulation", 
+%{\it{Numer. Math.}}, 104: 151-175, 2006.
+
+\end{thebibliography}
 \end{document}
+
+\endinput
