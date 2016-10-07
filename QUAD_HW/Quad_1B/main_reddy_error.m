@@ -92,6 +92,8 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 % Compute error in norm L2
 er_u = error_l2_norm(spost, coordinates, lambda, mu);    
 
+
+
 % Print results
 %fprintf(f1, '%6.4f \t %6.5e \n', ndx, er_ux);
 %fprintf(f2, '%6.4f \t %6.5e \n', ndx, er_uy);

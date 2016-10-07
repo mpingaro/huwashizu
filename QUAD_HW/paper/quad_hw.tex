@@ -99,32 +99,40 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-\title{Extension to Quadrilateral Element of Three 
+\title{Simply Extension to Quadrilateral Element of Three 
 Field Hu-Washizu 2D Elasticity Formulation Based on Biorthogonal Systems}
 
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{}
 %% \address[label1]{}
+	
 %% \address[label2]{}
 
 \author{B.P. Lamichhane\fnref{newcastle}}
+\ead{Bishnu.Lamichhane@newcastle.edu.au}
 \author{M.Pingaro\corref{cor}\fnref{pavia}}
-\author{P.Venini\fnref{pavia}}
-
-\address{School of Mathematical and Physical Sciences, University of Newcastle, Callaghan, NSW 2308 \fnref{newcastle}}
-\address{Department of Civil Engineering and Architecture,
-University of Pavia, Pavia, Italy \fnref{pavia}}
-
 \ead{marco.pingaro@iusspavia.it}
-\cortext[cor]{Corresponding author: Tel. +39 0382 98.5464}
+\author{P.Venini\fnref{pavia}}
+\ead{paolo.venini@unipv.it}
 
+\cortext[cor]{Corresponding author.}%: Tel. +39 0382 98.5464}
+
+%\address{School of Mathematical and Physical Sciences, %University of Newcastle, Callaghan, NSW 2308 \fnref{newcastle}}
+%\address{Department of Civil Engineering and Architecture,
+%University of Pavia, Pavia, Italy \fnref{pavia}}
+
+\fntext[newcastle]{School of Mathematical and Physical Sciences, University of Newcastle, Callaghan, NSW 2308}
+\fntext[pavia]{Department of Civil Engineering and Architecture,
+University of Pavia, Pavia, Italy}
 
 \begin{abstract}
 New quadrilateral mixed finite element based on modified Hu-Washizu formulation are presented.
-The stability and consistency of the element are obtained by adding bubble function at the displacement field.
-Different type of bubble functions are successfully tested. 
-Many examples prove the efficiency and the stability of the element. The extension at the 3D case is straightforward.
-
+Hu-Washizu is a three field formulation where the unknowns are: displacement, stress and strain.
+The stability and consistency of the element are obtained by adding differnt types of bubble functions at the displacement field. Different types of bubble functions are successfully investigated and analyzed. 
+In order to obtain an efficient discretization scheme, we use a pair of finite element bases forming a biorthogonal system for the strain and stress. 
+The biorthogonality relation allows us to statically condense out the strain and stress from the saddle-point system leading to a symmetric and positive-definite system. 
+The strain and stress can be recovered in a post-processing step simply by inverting a diagonal matrix.
+Numerical examples prove the efficiency and the stability of the elements in the case of incompressible limit and distorted meshes. The extension at the 3D case is straightforward.
 \end{abstract}
 
 \begin{keyword}
@@ -142,8 +150,23 @@ mixed finite elements \sep quadrilateral element \sep Hu-Washizu \sep biorthogon
 
 \linenumbers
 \section{Introduction}\label{sec:one}
-
-The structure of the papers are the following: first of all in the  first section we recall the basic equations of linear elastic problem, in the second section three we briefly recall the modified Hu-Washizu formulations, section four we develop the finite element spaces.
+In the linear and non-linear elasticity when the Lamé constant $\lambda$ tends to infinity the standard finite element exhibit some problem of convergence may be locking phenomena.
+In this context mixed formulations are used to solve this inconvenient.
+One of the most popular mixed formulation adopted is the Hellinger-Raisner formulation, in that we describe the problem using with variables the stresses and the displacements.
+This type of formulation requires the fulfillment of the inf-sup condition as described in \cite{boffi_book}.
+For the Hellinger-Reissner formulation many elements are created such as \cite{arnold} for triangle elements and \cite{arnold_quad} for quadrilateral. 
+Another type of formulation is the Hu-Washizu formulation (see \cite{hu,washizu}) that it was a three-field formulation.
+This was first introduced by \cite{veubeke}.
+One examples of Hu-Washizu formulation applied at linear and non-linear elasticity using quadrilaterals and hexahedra are reported in \cite{kasper_p1,kasper_p2}. 
+In \cite{lamichhane_conv} are showed that the modify Hu-Washizu formulation are able to obtaining uniform convergence of the finite nelement approximation in the nearly incompressible regime in the case of quadrilateral elements.
+The goal of this work is to present an extension using the quadrilateral elements of the modified three-field formulation Hu-Washizu presented in \cite{lamichhane_huwashizu}.
+In accordance to \cite{lamichhane_three} we adopt the idea to create a biorthogonal system between the stresses and strains.
+This assumption is essentially for the static condensation of the stresses and strains for obtain a linear system in the only unknown displacement field.
+In order to ensure the stability of the element we enrich the space of displacement field with different type of bubble functions in accordance to \cite{bai,lamichhane} for the Stokes problem. 
+In \cite{bai} we adopt two bubble functions to stabilize the element, while in \cite{lamichhane} use one single bubble function.  
+ 
+The structure of the papers are the following: first of all in Section \ref{sec:two} we recall the basic equations of linear elastic problem, in Section \ref{sec:three} we briefly recall the modified Hu-Washizu formulations, Section \ref{sec:four} we develop the finite element spaces.
+Finally in Section \ref{sec:five} we report some examples using the studied element and in Section \ref{sec:six} the conclusions of the work are detailed.
 
 \section{Linear elastic continuum problem}\label{sec:two}
 In this section we briefly recovery the equations governing the linear elastic problem. 
@@ -189,7 +212,7 @@ and rearranging the equation \eqref{eq:legame02}:
 \right)\:.
 \end{equation}
 
-\section{Briefly introduction to modify Hu-Washizu}
+\section{Briefly introduction to modify Hu-Washizu}\label{sec:three}
 We define the trial variables: $\bm{\varepsilon}(\bm{u})$, $\bm{d}$ and 
 $\bm{\sigma}$, while the test variables are: $\bm{\varepsilon}(\bm{v})$, 
 $\bm{e}$ and $\bm{\tau}$. 
@@ -298,7 +321,7 @@ $\bm{x}_{u}$:
 \bm{D}^{-1} \bm{W}^{T} \right] \bm{x}_{u} = \bm{b}_{f}
 \end{equation}
 
-\section{Finite element discretization}
+\section{Finite element discretization}\label{sec:four}
 We consider a quasi-uniform triangulation $\mathcal{T}_{h}$ of the polygonal domain $\Omega$ consists of simply, either quadrilateral or hexahedral.
 We take into account of standard bilinear finite element space $K_{h}\subset H^{1}(\Omega)$ defined on the triangulation $\mathcal{T}_{h}$, where:
 \begin{equation}
@@ -324,7 +347,7 @@ $\left\lbrace \mu_{1}, \cdots, \mu_{n}\right\rbrace$ the $n$ the basis functions
 \:\: 1 \leq i,j \leq n \:,
 \end{equation}
 where $\delta_{ij}$ is Kronecker symbol, and $c_{j}$ is a scaling factor which can be chosen to be proportion al to the area of support of $\phi_{j}$.
-The local basis function of $K_{h}$ and $M_{h}$ for the reference square element (see figure \ref{fig:ref_element}) $\hat{T}:=\left\lbrace (x,y): -1\leq x \leq 1 \:, -1\leq y \leq 1 \right\rbrace$ are:
+The local basis function of $K_{h}$ and $M_{h}$ for the reference square element (see figure \ref{fig:ref_element}) $\hat{T}:=\left\lbrace (\xi,\eta): -1\leq \xi \leq 1 \:, -1\leq \eta \leq 1 \right\rbrace$ are:
 \begin{figure}[h!]
 \begin{center}
 \include{figure/reference_element}
@@ -334,54 +357,56 @@ The local basis function of $K_{h}$ and $M_{h}$ for the reference square element
 %
 \begin{equation}
 \begin{split}
-&\phi_{1}=\frac{1}{4}(1-x)(1-y) \:, \:\:\:\: \phi_{2}=\frac{1}{4}(1+x)(1-y) \:,\\
-&\phi_{3}=\frac{1}{4}(1+x)(1+y) \:, \:\:\:\: \phi_{4}=\frac{1}{4}(1-x)(1+y) \:.
+&\phi_{1}=\frac{1}{4}(1-\xi)(1-\eta) \:, \:\:\:\: \phi_{2}=\frac{1}{4}(1+\xi)(1-\eta) \:,\\
+&\phi_{3}=\frac{1}{4}(1+\xi)(1+\eta) \:, \:\:\:\: \phi_{4}=\frac{1}{4}(1-\xi)(1+\eta) \:.
 \end{split}
 \end{equation}   
 and
 \begin{equation}
 \begin{split}
-&\mu_{1} = 1 - 3x - 3y + 9xy \:, \:\:\:\: \mu_{2} = 1 + 3x - 3y - 9xy \:,\\
-&\mu_{3} = 1 + 3x + 3y + 9xy \:, \:\:\:\: \mu_{4} = 1 - 3x + 3y + 9xy \:.
+&\mu_{1} = 1 - 3\xi - 3\eta + 9\xi\eta \:, \:\:\:\: 
+\mu_{2} = 1 + 3\xi - 3\eta - 9\xi\eta \:,\\
+&\mu_{3} = 1 + 3\xi + 3\eta + 9\xi\eta \:, \:\:\:\: 
+\mu_{4} = 1 - 3\xi + 3\eta + 9\xi\eta \:.
 \end{split}
 \end{equation}
 It is important to observe that the global basis functions of the space $M_{h}$ are not continuous.
    
-\section{Bubble functions}
+\subsection{Bubble functions}
 In this section we detail the different choosing of the bubble functions. Addition of the bubble functions is essential to create a stable space. we have four types of bubbles.
 In the first two cases we use a modification of the standard bubble function ,that is for the reference element:
 \begin{equation}\label{eq:standard_bubble_fun}
-b_{T}(x,y) = (1-x^{2})(1-y^{2})\:,
+b_{T}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:,
 \end{equation}
 while in the next two, we add to the standard bubble function another one.
-\subsection{One Bubble function (type 1)}
+\subsubsection{One Bubble function (type 1)}
 As a first choice of bubble function we use:
 \begin{equation}\label{eq:bubble_1}
-\hat{b}_{T}(x,y) = c_{T}\cdot\phi_{T}(x,y)\cdot b_{T}(x,y)\:, 
+\hat{b}_{T}(\xi,\eta) = c_{T}\cdot\phi_{T}(\xi,\eta)\cdot b_{T}(\xi,\eta)\:, 
 \end{equation}
-where $c_{T}$ is a coefficient in order to obtain $\hat{b}_{T}(x_{g},y_{g}) = 1$ (where $\bm{g}$ is the centroid of the elements), $\phi_{K}$ is the standard bilinear basis function corresponding to the lower-left corner of the square $T$.
+where $c_{T}$ is a coefficient in order to obtain $\hat{b}_{T}(\xi_{g},\eta_{g}) = 1$ (where $\bm{g}$ is the centroid of the elements), $\phi_{K}$ is the standard bilinear basis function corresponding to the lower-left corner of the square $T$.
 In the case of reference square element we obtain:
 \begin{equation} \label{eq:bubble_1_ref}
-\hat{b}_{T}(x,y) = (1-x)(1-y)(1-x^{2})(1-y^{2})\:.
+\hat{b}_{T}(\xi,\eta) = (1-\xi)(1-\eta)(1-\xi^{2})(1-\eta^{2})\:.
 \end{equation}
 
-\subsection{One Bubble function (type 2)}
+\subsubsection{One Bubble function (type 2)}
 The second choice of bubble function we take:
 \begin{equation}\label{eq:bubble_2}
-\hat{b}_{T}(x,y) = c_{T}\cdot (a+bx+cy)\cdot b_{T}(x,y)\:,
+\hat{b}_{T}(\xi,\eta) = c_{T}\cdot (a+b\xi+c\eta)\cdot b_{T}(\xi,\eta)\:,
 \end{equation}
 where $a,b,c \in \mathrm{R}$ and $a,b,c \neq 0$.
 For simplicity we set $a=b=c=1$ and we obtain for the reference square:
 \begin{equation}\label{eq:bubble_2_ref}
-\hat{b}_{T}(x,y) = (1+x+y)(1-x^{2})(1-y^{2})\:.
+\hat{b}_{T}(\xi,\eta) = (1+\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
 \end{equation} 
 
-\subsection{Two Bubble functions}
+\subsubsection{Two Bubble functions}
 Using two bubble functions, where the first is the standard bubble function and the second bubble is a modification of the standard bubble:
 \begin{equation}\label{eq:bubble_3}
 \begin{split}
-&\hat{b}_{T1}(x,y) = b_{T}\:, \\
-&\hat{b}_{T2}(x,y) = c_{T}\cdot (ax+by)\cdot b_{T}\:,
+&\hat{b}_{T1}(\xi,\eta) = b_{T}\:, \\
+&\hat{b}_{T2}(\xi,\eta) = c_{T}\cdot (a\xi+b\eta)\cdot b_{T}\:,
 \end{split}
 \end{equation}
 where $a,b \in \mathrm{R}$ and $a^{2}+b^{2}\neq 0$.
@@ -389,24 +414,24 @@ For the sake of simplicity we adopt $a=b=1$.
 One obtains:
 \begin{equation}\label{eq:bubble_3_ref}
 \begin{split}
-&\hat{b}_{T1}(x,y) = (1-x^{2})(1-y^{2})\:, \\
-&\hat{b}_{T2}(x,y) = (x+y)(1-x^{2})(1-y^{2})\:.
+&\hat{b}_{T1}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:, \\
+&\hat{b}_{T2}(\xi,\eta) = (\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
 \end{split}
 \end{equation}
 
-\subsection{Two Bubble functions, which one mixed}
+\subsubsection{Two Bubble functions, which one mixed}
 As a finally choice of bubbles we use a standard bubble function plus one mixed bubble function for the two components of displacement.
 \begin{equation}
 \begin{split}
-&\hat{b}_{T1}(x,y) = b_{T}\:, \\
-&\hat{b}_{T2,x}(x,y) = (\nabla \phi_{1})_{x}\cdot b_{T}\:, \\
-&\hat{b}_{T2,y}(x,y) = (\nabla \phi_{1})_{y}\cdot b_{T}\:,
+&\hat{b}_{T1}(\xi,\eta) = b_{T}\:, \\
+&\hat{b}_{T2,\xi}(\xi,\eta) = (\nabla \phi_{1})_{\xi}\cdot b_{T}\:, \\
+&\hat{b}_{T2,\eta}(\xi,\eta) = (\nabla \phi_{1})_{\eta}\cdot b_{T}\:,
 \end{split}
 \end{equation}
 where $(\nabla\phi_{1})_{i}$ is $i$-th component of the gradient of the first shape function $\phi$.
 In this way we have as shape function for the displacement using the mixed bubble function the vector $\left[\hat{b}_{T2,x}(x,y),\hat{b}_{T2,y}(x,y)\right]$. 
 
-\section{Numerical example}
+\section{Numerical example}\label{sec:five}
 In this section we report some examples using the presented formulation to proven the good behaviour. 
 
 \subsection{Square problem}
@@ -483,7 +508,7 @@ to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
 %
 
 \subsection{Cantilever beam problem}
-Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure (). The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$ and subjected to a distributed load as in figure \ref{fig:beam_geometry} with $f=300$.
+Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure \ref{fig:beam_geometry}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$ and subjected to a distributed load as in figure \ref{fig:beam_geometry} with $f=300$.
 %
 \begin{figure}[h!]
 \begin{center}
@@ -574,9 +599,12 @@ the number of elements per side}
 \end{figure}
 All elements return different behaviour using different coefficients $\alpha$. In the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results completely not converge to the reference solution.
 
-
-\section{Conclusions}
-
+\section{Conclusions}\label{sec:six}
+We present a new family of quadrilaterals mixed finite elements based on a modified Hu-Washizu formulation.
+We test the different types of enrichment and confirm the robustness of all elements created.
+Uniform convergence are archived in the incompressible regime.
+We study the robustness of the elements in the case of trapezoidal meshes.
+The extension to the 3D case using hexahedra is straightforward. 
 
 %% The Appendices part is started with the command \appendix;
 %% appendix sections are then done as normal sections
@@ -595,31 +623,55 @@ All elements return different behaviour using different coefficients $\alpha$. I
 %% TeX file.
 
 \begin{thebibliography}{00}
-
-%% \bibitem[Author(year)]{label}
-%% Text of bibliographic item
-
-\bibitem[W.Bai (2007)]{The quadrilateral `Mini' finite element for Stokes problem}
-
-%\bibitem[W.Bai (2007)]{ W.Bai. 
-%``The quadrilateral `Mini' finite element for Stokes problem'',
-%{\it{Comput. Methods Appl. Mech. Engrg.}}, 143: 41-47, 1997.}
-
-%\bibitem{boffi} D. Boffi. ``On the finite element method on quadrilateral meshes", 
-%{\it{Appl. Num. Mathematics}}, 56: 1271-1282, 2006.
-%
-%\bibitem{lamichhane} B.P. Lamichhane. ``A quadrilateral `mini' finite element for the  Stokes problem using a single bubble function", 
-%{\it{Appl. Num. Math.}}, 56: 1271-1282, 2015. 
-%
-%\bibitem{djoko} J.K. Djoko, B.D. Reddy. ``An extended Hu-Washizu formulation for elasticity", 
-%{\it{Comput. Methods Appl. Mech. Engrg.}}, 195: 6330-6346, 2006. 
-%
-%\bibitem{lamichhane_three} B.P. Lamichhane, A.T. McBride, 
-%B.D. Reddy. ``A finite element method for three-field formulation of linear elasticity based on biorthogonal systems", 
-%{\it{Comput. Methods Appl. Mech. Engrg.}}, 258: 109-117, 2013.
-%
-%\bibitem{lamichhane_conv} B.P. Lamichhane, B.D. Reddy, B.I. Wohlmuth. ``Convergence in the incompressible limit of finite element approximation based on Hu-Washizu formulation", 
-%{\it{Numer. Math.}}, 104: 151-175, 2006.
+% 1
+\bibitem[W.Bai (1997)]{bai} W.Bai. 
+``The quadrilateral `Mini' finite element for Stokes problem'',
+{\it{Comput. Methods Appl. Mech. Engrg.}}, 143: 41-47, 1997.
+% 2
+\bibitem[D.Boffi (2006)]{boffi} D.Boffi. ``On the finite element method on quadrilateral meshes", 
+{\it{Appl. Num. Mathematics}}, 56: 1271-1282, 2006.
+% 3
+\bibitem[B.P.Lamichhane (2015)]{lamichhane} B.P.Lamichhane. ``A quadrilateral `mini' finite element for the  Stokes problem using a single bubble function", {\it{Appl. Num. Math.}}, 56: 1271-1282, 2015. 
+% 4
+\bibitem[J.K.Djoko and B.D.Reddy (2006)]{djoko} J.K.Djoko, B.D.Reddy. ``An extended Hu-Washizu formulation for elasticity", {\it{Comput. Methods Appl. Mech. Engrg.}}, 195: 6330-6346, 2006. 
+% 5
+\bibitem[B.P.Lamichhane et al. (2013)]{lamichhane_three} B.P.Lamichhane, A.T.McBride, B.D.Reddy. ``A finite element method for three-field formulation of linear elasticity based on biorthogonal systems", 
+{\it{Comput. Methods Appl. Mech. Engrg.}}, 258: 109-117, 2013.
+% 6
+\bibitem[B.P.Lamichhane et al. (2006)]{lamichhane_conv} B.P.Lamichhane, B.D.Reddy, B.I.Wohlmuth. ``Convergence in the incompressible limit of finite element approximation based on Hu-Washizu formulation", 
+{\it{Numer. Math.}}, 104: 151-175, 2006.
+% 7
+\bibitem[D.Boffi and C.Lovadina (1997)]{boffi_lovadina} D.Boffi, C.Lovadina. ``Analisys of new augmented Lagrangian formulation for mixed finite element schemes", 
+{\it{Numer. Math.}}, 75: 405-419, 1997.
+% 8
+\bibitem[B.P.Lamichhane (2009)]{lamichhane_huwashizu} B.P.Lamichhane. ``From the Hu-Washizu formulation to the average nodal strain formulation", 
+{\it{Comput. Methods Appl. Mech. Engrg.}}, 198: 3957-3961, 2009.
+% 9
+\bibitem[D.N.Arnold and R.Winther (2002)]{arnold} D.N.Arnold, R.Winther. ``Mixed finite elements for elasticity", 
+{\it{Numer. Math.}}, 92: 401-419, 2002.
+% 10
+\bibitem[D.Boffi et al. (2013)]{boffi_book} D.Boffi, F.Brezzi, M.Fortin. ``Mixed Finite Element Methods and Applications", 
+{\it{Springer Series in Computational Mathematics}}, Vol.44, 2013.
+% 11
+\bibitem[D.N.Arnold and G.Awanou (2005)]{arnold_quad} D.N.Arnold, G.Awanou. ``Rectangular mixed finite elements for elasticity", 
+{\it{Models Methods Appl. Sci.}}, 15: 1417-1429, 2005.
+% 12
+\bibitem[H.Hu (1955)]{hu} H.Hu. ``On some variational principles in the theory of elasticity and the theory of plasticity", 
+{\it{Sci. Sin.}}, 4: 33-54, 1955.
+% 13
+\bibitem[K.Washizu (1982)]{washizu} K.Washizu. ``Variational Methods in Elasticity and Plasticity, third ed.", 
+{\it{Pergamon Press}}, 1982.
+% 14
+\bibitem[B.M.Fraeijs de Veubeke (1951)]{veubeke} B.M. Fraeijs de Veubeke. ``Diffusion des inconnues hyperstatiques dans les voilures á longeron couplés", {\it{Bull. Serv. Technique de l’Aeronautique Impremérie Marcel Hayez}}, Bruxelles, 1951.
+% 15
+\bibitem[E.P. Kasper and R.L. Taylor (2000)]{kasper_p1} E.P. Kasper, R.L. Taylor. ``A mixed-enhanced strain method Part I: geometrically linear problems", 
+{\it{Comput. Struct.}}, 75: 237-250, 2000.
+% 16
+\bibitem[E.P. Kasper and R.L. Taylor (2000)]{kasper_p2} E.P. Kasper, R.L. Taylor. ``A mixed-enhanced strain method Part II: geometrically nonlinear problems", 
+{\it{Comput. Struct.}}, 75: 251-260, 2000.
+% 17
+\bibitem[S.C. Brenner (1993)]{brenner} S.C. Brenner. ``A nonconforming mixed multigrid method for the pure displacement problem in planar linear elasticity", 
+{\it{SIAM J. Numer. Anal.}}, 30: 116–135, 1993.
 
 \end{thebibliography}
 \end{document}
