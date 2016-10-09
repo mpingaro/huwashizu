@@ -23,11 +23,8 @@ height = 1;                                   % heigth
 ndx = 1;                                      % partition in x direction
 ndy = 1;                                      % partition in y direction
 % Lamé constants
-% lambda = 123.0; 
-% mu = 79.3; 
 nu = 0.4999;
 mu = 1;
-%
 lambda = 2*mu*nu/(1-2*nu);
 
 % Neumann boudary conditions (edges)
@@ -49,20 +46,25 @@ ud(2,:) = [0, 0];                             % Displacement edge 2
 ud(3,:) = [0, 0];                             % Displacement edge 3
 ud(4,:) = [0, 0];                             % Displacement edge 4
 % Alpha coefficient
-alpha = 3*mu;
+alpha = 1*mu;
 
 % ----------------------------------------------------------------------- %
 nl = [4, 8, 16, 32, 64];
-%name_1 = 'elastic_error_disp_ux.txt';
-%name_2 = 'elastic_error_disp_uy.txt';
-%f1 = fopen(name_1, 'w');
-%f2 = fopen(name_2, 'w');
 
-name = 'elastic_error_disp_u_l2.txt';
-f = fopen( name, 'w' );
+name =   'elastic_error_disp_u_l2_1B.txt';
+name_1 = 'elastic_error_l2_strain_xx_1B.txt';
+name_2 = 'elastic_error_l2_strain_yy_1B.txt';
+name_3 = 'elastic_error_l2_strain_xy_1B.txt';
+
+f =  fopen( name, 'w' );
+f1 = fopen(name_1, 'w');
+f2 = fopen(name_2, 'w');
+f3 = fopen(name_3, 'w');
+
 fprintf(f, 'elements v.s. error in L2 norm\n'); 
-%fprintf(f1,'elements v.s. error in L2 norm\n');
-%fprintf(f2,'elements v.s. error in L2 norm\n');
+fprintf(f1,'elements v.s. error in L2 norm strain xx\n');
+fprintf(f2,'elements v.s. error in L2 norm strain yy\n');
+fprintf(f3,'elements v.s. error in L2 norm strain xy\n');
 
 for i=1:size(nl,2)
 
@@ -89,17 +91,19 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 %% POST PROCESSING
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
-% Compute error in norm L2
+% Compute error in norm L2 displacement
 er_u = error_l2_norm(spost, coordinates, lambda, mu);    
-
-
+% Compute error in norm L2 strain
+[er_exx,er_eyy, er_exy] = error_l2_strain_l2_norm(strain, coordinates, lambda, mu);
 
 % Print results
-%fprintf(f1, '%6.4f \t %6.5e \n', ndx, er_ux);
-%fprintf(f2, '%6.4f \t %6.5e \n', ndx, er_uy);
-fprintf(f, '%6.0f \t %6.5e \n', nelem, er_u);
+fprintf(f,  '%6.0f \t %6.5e \n', nelem, er_u);
+fprintf(f1, '%6.0f \t %6.5e \n', nelem, er_exx);
+fprintf(f2, '%6.0f \t %6.5e \n', nelem, er_eyy);
+fprintf(f3, '%6.0f \t %6.5e \n', nelem, er_exy);
 
 end
-%fclose(f1);
-%fclose(f2);
 fclose(f);
+fclose(f1);
+fclose(f2);
+fclose(f3);

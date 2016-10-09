@@ -2,7 +2,7 @@
 %
 % Solution present in the paper: Three field formulation
 
-function [er_exx,er_eyy,er_exy] = error_l2_norm(strain,cr,l,m)
+function [er_exx,er_eyy,er_exy] = error_strain_l2_norm(strain,cr,l,m)
     np = size(cr,1);
 
     strain = reshape(strain',3,[]);  
