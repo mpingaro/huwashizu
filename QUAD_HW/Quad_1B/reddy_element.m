@@ -46,8 +46,8 @@ for i = 1:size(weight,1) % Cycle on gauss points --> Da ottimizzare. (2 prima)
    grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
    grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
    % Grad of Boubble functions
-   %grdu(:,5) = DFF_i*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
-   grdu(:,5) = DFF_i*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
+   grdu(:,5) = DFF_i*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
+   %grdu(:,5) = DFF_i*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
 
    epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0, grdu(1,5), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...

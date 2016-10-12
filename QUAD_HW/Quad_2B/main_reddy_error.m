@@ -10,10 +10,10 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B   C^0               
-% ------- Strain       : tensor (2,2) = Q1       C^0              
-% ------- Stress       : tensor (2,2) = Q1       C^-1
-% -- B are the tow boubble functions
+% ------- Displacement : vertor (1,2) = Q1 + B1 + B2   C^0               
+% ------- Strain       : tensor (2,2) = Q1             C^0              
+% ------- Stress       : tensor (2,2) = Q1             C^-1
+% -- B1 and B2 are the tow boubble functions
 % ------------------------------------------------------------------------%
 clear all; close all; clc;
 
@@ -47,15 +47,16 @@ ud(2,:) = [0, 0];                             % Displacement edge 2
 ud(3,:) = [0, 0];                             % Displacement edge 3
 ud(4,:) = [0, 0];                             % Displacement edge 4
 % Alpha coefficient
-alpha = 1*mu;
-
-% ----------------------------------------------------------------------- %
 nl = [4, 8, 16, 32, 64];
+cf = [1,2,3];
 
-name =   'elastic_error_disp_u_l2_2B.txt';
-name_1 = 'elastic_error_l2_strain_xx_2B.txt';
-name_2 = 'elastic_error_l2_strain_yy_2B.txt';
-name_3 = 'elastic_error_l2_strain_xy_2B.txt';
+for k=1:numel(cf)
+alpha = cf(k)*mu;
+
+name =   sprintf('elastic_error_disp_u_l2_2B_%dmu.txt',cf(k));
+name_1 = sprintf('elastic_error_l2_strain_xx_2B_%dmu.txt',cf(k));
+name_2 = sprintf('elastic_error_l2_strain_yy_2B_%dmu.txt',cf(k));
+name_3 = sprintf('elastic_error_l2_strain_xy_2B_%dmu.txt',cf(k));
 
 f =  fopen( name, 'w' );
 f1 = fopen(name_1, 'w');
@@ -93,10 +94,10 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 % Compute error in norm L2
-er_u = error_l2_norm(spost, coordinates, lambda, mu);    
+er_u = error_l2_norm(spost, coordinates, lambda);    
 
 % Compute error in norm L2 strain
-[er_exx,er_eyy, er_exy] = error_l2_strain_l2_norm(strain, coordinates, lambda, mu);
+[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, lambda);
 
 
 % Print results
@@ -110,3 +111,4 @@ fclose(f);
 fclose(f1);
 fclose(f2);
 fclose(f3);
+end

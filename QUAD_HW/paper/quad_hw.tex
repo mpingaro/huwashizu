@@ -435,18 +435,18 @@ In this way we have as shape function for the displacement using the mixed bubbl
 In this section we report some examples using the presented formulation to proven the good behaviour. 
 
 \subsection{Square problem}
-First example is a unit square domain with homogeneous Dirichlet boundary conditions.
+First example is a unit square domain with homogeneous Dirichlet boundary conditions. This benchmark problem is analyzed in \cite{brenner}.
 The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$.
 By imposition of the previously exact solution one obtain for the body force $f$
 \begin{equation}
-\begin{split}
-&f_{1} = -\pi^{2} \cos(\pi x) \sin(\pi y) \left( \lambda + \mu + 2\lambda\cos(\pi y) + 
-12\mu\cos(\pi y)\right), \\
-&f_{2} = -\pi^{2}\sin(\pi x)\left( \lambda\cos(\pi y) + 3\mu\cos(\pi y) + 2\lambda\left(2\cos(\pi y)^{2} 
-- 1\right) \right.\\
-&\left. \hspace{24pt} + 2\mu\left(2\cos(\pi y)^{2} - 1\right) \right)
-\end{split}
+f_{1} = \beta \left(\pi^{2} \left(4\sin\left(\pi y\right)
+\left(-1+2\cos\left(2\pi x\right)\right)
+-\cos\left(\pi\left(x+y\right)\right) \right.
 \end{equation}
+%\begin{split}
+%&\left. \hspace{24pt} + A\sin\left(\pi x\right)\sin\left(\pi y\right)\right)
+%\end{split}
+
 The exact solution is
 \begin{equation} \label{eq:exact_solution}
 u_{1} = \cos (\pi x) \sin(2\pi y), \mbox{ } u_{2} = \sin(\pi x)\cos(\pi y). 
@@ -505,6 +505,40 @@ to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
 to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
 \end{center}
 \end{figure}
+%
+% Strain
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_2B}]
+{\input{square_example/bolla2/elastic_error_2B_l2_strain_xx.tex}}
+\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_2B_dist}]
+{\input{square_example/bolla2/elastic_error_2B_l2_strain_xx_dist.tex}}
+\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
+the number of elements (Case of two bubble functions)}
+\end{center}
+\end{figure}
+%
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_2B_mixed}]
+{\input{square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx.tex}}
+\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_2B_dist}]
+{\input{square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx_dist.tex}}
+\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
+the number of elements (Case of two bubble functions, which one mixed)}
+\end{center}
+\end{figure}
+%
+%\begin{figure}[h!]
+%\begin{center}
+%\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_1B_type1}]
+%{\input{square_example/bolla1/elastic_error_1B_l2_strain_xx.tex}}
+%\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_1B_type1}]
+%{\input{square_example/bolla1/elastic_error_1B_l2_strain_xx_dist.tex}}
+%\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
+%the number of elements (Case of one bubble function)}
+%\end{center}
+%\end{figure}
 %
 
 \subsection{Cantilever beam problem}

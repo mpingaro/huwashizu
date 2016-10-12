@@ -2,7 +2,7 @@
 %
 % Solution present in the paper: Three field formulation
 
-function [er_exx,er_eyy,er_exy] = error_strain_l2_norm(strain,cr,l,m)
+function [er_exx,er_eyy,er_exy] = error_strain_l2_norm(strain,cr,l)
     np = size(cr,1);
 
     strain = reshape(strain',3,[]);  
@@ -24,10 +24,10 @@ function [er_exx,er_eyy,er_exy] = error_strain_l2_norm(strain,cr,l,m)
         Bx = 0.5*A*pi*cos(pi*pt(1))*sin(pi*pt(2));
         By = 0.5*A*pi*sin(pi*pt(1))*cos(pi*pt(2));
     
-        u_xx = b*(-2*pi*sin(2*pi*y)*sin(2*pi*x) + Bx);
-        u_xy = b*(2*pi*cos(2*pi*y)*(-1+cos(2*pi*x)) + By); 
-        u_yx = b*(2*pi*cos(2*pi*x)*(1-cos(2*pi*y)) + Bx);
-        u_yy = b*(2*pi*cos(2*pi*x)*sin(2*pi*y) * By);
+        u_xx = b*(-2*pi*sin(2*pi*pt(2))*sin(2*pi*pt(1)) + Bx);
+        u_xy = b*(2*pi*cos(2*pi*pt(2))*(-1+cos(2*pi*pt(1))) + By); 
+        u_yx = b*(2*pi*cos(2*pi*pt(1))*(1-cos(2*pi*pt(2))) + Bx);
+        u_yy = b*(2*pi*cos(2*pi*pt(1))*sin(2*pi*pt(2)) + By);
 
         sol_exx(i) = u_xx;
         sol_eyy(i) = u_yy;

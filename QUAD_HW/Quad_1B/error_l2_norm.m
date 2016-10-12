@@ -2,7 +2,7 @@
 %
 % Solution present in the paper: Three field formulation
 
-function er_u = error_l2_norm(sp,cr,l,m)
+function er_u = error_l2_norm(sp,cr,l)
     np = size(cr,1);
     sp = reshape(sp, 2, [])';
     sol_a = zeros(np,2);

@@ -10,12 +10,12 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
+% ------- Displacement : vertor (1,2) = Q1 + B        C^0               
 % ------- Strain       : tensor (2,2) = Q1            C^0              
 % ------- Stress       : tensor (2,2) = Q1            C^-1
-% -- B1 and B2 are the two boubble functions
+% -- B is the boubble function
 % ------------------------------------------------------------------------%
-clear all; close all; clc;
+clear; close all; clc;
 
 %% INPUT
 length = 10;                                  % length 
@@ -25,8 +25,11 @@ ny = [2,4, 8,16,32,64];                       % partition in y direction
 young = 1500;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
 f = 300;                                      % max value of distributed load
+cf =[1,2,3];
 
-fname = 'error_beam_u_l2_type_2_3mu.txt';
+for k=1:numel(cf)
+
+fname = sprintf('error_beam_u_l2_type_1_%dmu.txt',cf(k));
 f = fopen( fname, 'w');
 fprintf(f, 'element vs. error u in norm L2\n');
 
@@ -47,7 +50,7 @@ mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stre
 ngdls = 3*nnod;
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = 3*mu;
+alpha = cf(k)*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
 [KASSEM,D,W,B,M,K] = assembly_beam(coordinates,element,mc,mc2,lambda,alpha,mu,nelem,ngdlu,ngdls);
@@ -66,3 +69,4 @@ end
 fclose(f);
 %% PLOT SOLUTION
 %plotsol(coordinates,defo,strain,stress,ndx,ndy)
+end

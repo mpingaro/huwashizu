@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.8.18)  7 OCT 2016 17:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.8.18)  12 OCT 2016 17:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -957,7 +957,14 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 File: pgflibraryarrows.code.tex 2013/09/23 v3.0.1a (rcs-revision 1.16)
 \arrowsize=\dimen187
 ))
-(./quad_hw.aux (./figure/reference_element.aux))
+(./quad_hw.aux (./figure/reference_element.aux)
+
+LaTeX Warning: Label `fig:error_strain_xx_l2_2B_dist' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:error_strain_xx_l2_2B_dist' multiply defined.
+
+)
 \openout1 = `quad_hw.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
@@ -972,8 +979,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
-
-ABD: EveryShipout initializing macros
+ ABD: EveryShipout initializing macros
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.13} into 
@@ -1022,7 +1028,29 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [5] [6
 
 
-] [7] (./figure/square_regular.tex) (./figure/square_trapezoidal.tex)
+]
+! You can't use `\eqno' in math mode.
+\endmathdisplay@a ...\df@tag \@empty \else \veqno 
+                                                  \alt@tag \df@tag \fi \ifx ...
+l.445 \end{equation}
+                    
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing \right. inserted.
+<inserted text> 
+                \right .
+l.445 \end{equation}
+                    
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[7] (./figure/square_regular.tex) (./figure/square_trapezoidal.tex)
 (./square_example/bolla1_type1/elastic_error_1B_l2.tex
 PGFPlots: reading {square_example/bolla1_type1/elastic_error_disp_u_l2_lmu1.txt
 }
@@ -1081,6 +1109,44 @@ PGFPlots: reading {square_example/bolla2_mixed/elastic_error_dist_disp_u_l2_2mu
 PGFPlots: reading {square_example/bolla2_mixed/elastic_error_dist_disp_u_l2_3mu
 .txt}
 )
+(./square_example/bolla2/elastic_error_2B_l2_strain_xx.tex
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_1mu.txt}
+
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_2mu.txt}
+
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_3mu.txt}
+
+)
+(./square_example/bolla2/elastic_error_2B_l2_strain_xx_dist.tex
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_dist_1mu
+.txt}
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_dist_2mu
+.txt}
+PGFPlots: reading {square_example/bolla2/elastic_error_l2_strain_xx_2B_dist_3mu
+.txt}
+)
+(./square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx.tex
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_1mu.txt}
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_2mu.txt}
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_3mu.txt}
+)
+(./square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx_dist.tex
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_dist_1mu.txt}
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_dist_2mu.txt}
+PGFPlots: reading {square_example/bolla2_mixed/elastic_error_l2_strain_xx_2B_mi
+xed_dist_3mu.txt}
+)
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1094,15 +1160,14 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 (./figure/beam.tex)
-Overfull \hbox (53.97653pt too wide) in paragraph at lines 95--516
+Overfull \hbox (53.97653pt too wide) in paragraph at lines 95--550
  [] 
  []
 
-[8] [9]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
+[8] [9]
 Overfull \vbox (21.83247pt too high) has occurred while \output is active []
 
 
@@ -1278,29 +1343,29 @@ ed via column names. on input line 64.
 
 )
 
-LaTeX Warning: Float too large for page by 376.04482pt on input line 599.
+LaTeX Warning: Float too large for page by 376.04482pt on input line 633.
 
-[12]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+[12] [13]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13] [14] [15] [16] [17] [18] [19] [20] (./quad_hw.aux
-(./figure/reference_element.aux)
+[14]
 
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) ) 
+[15] [16] [17] [18] [19] [20] [21] [22] (./quad_hw.aux
+(./figure/reference_element.aux))
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 24901 strings out of 493014
- 620305 string characters out of 6139343
- 1117930 words of memory out of 5000000
- 27828 multiletter control sequences out of 15000+600000
+ 25007 strings out of 493014
+ 624137 string characters out of 6139343
+ 1214730 words of memory out of 5000000
+ 27898 multiletter control sequences out of 15000+600000
  20125 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,21n,111p,724b,2319s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on quad_hw.dvi (20 pages, 492068 bytes).
+Output written on quad_hw.dvi (22 pages, 574660 bytes).
