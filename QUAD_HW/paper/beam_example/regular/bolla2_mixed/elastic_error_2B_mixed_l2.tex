@@ -22,13 +22,12 @@
 %\begin{figure}[!h]
 %\begin{center}
 \begin{tikzpicture}
- %transpose legend
  \begin{loglogaxis}[width=0.45\textwidth, height=0.45\textwidth,
   legend style={anchor=south, at={(0.5, 1.07)}, draw=none, font=\scriptsize},
   grid=major,
-  legend columns=3,
+  legend columns=3, transpose legend,
   xlabel={Number of Elements},
-  ylabel={$\frac{\parallel u_{h}-u \parallel_{L^{2}}}{\parallel u \parallel_{L^{2}}}$},
+  ylabel={$\left(\parallel u_{h}-u \parallel_{L^{2}}\right)/ \parallel u \parallel_{L^{2}}$},
   xmin=1, xmax=1e4,
   ymin=1e-3, ymax=1e0,
   ytick={1e-3, 1e-2, 1e-1, 1},

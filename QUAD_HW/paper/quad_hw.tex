@@ -99,7 +99,7 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-\title{Simply Extension to Quadrilateral Element of Three 
+\title{Efficient Extension to Quadrilateral Element of Three 
 Field Hu-Washizu 2D Elasticity Formulation Based on Biorthogonal Systems}
 
 %% use optional labels to link authors explicitly to addresses:
@@ -107,15 +107,17 @@ Field Hu-Washizu 2D Elasticity Formulation Based on Biorthogonal Systems}
 %% \address[label1]{}
 	
 %% \address[label2]{}
+\cortext[cor]{Corresponding author.}%: Tel. +39 0382 98.5464}
 
 \author{B.P. Lamichhane\fnref{newcastle}}
 \ead{Bishnu.Lamichhane@newcastle.edu.au}
-\author{M.Pingaro\corref{cor}\fnref{pavia}}
+\author{M.Pingaro\fnref{pavia}\corref{cor}}
 \ead{marco.pingaro@iusspavia.it}
 \author{P.Venini\fnref{pavia}}
 \ead{paolo.venini@unipv.it}
 
-\cortext[cor]{Corresponding author.}%: Tel. +39 0382 98.5464}
+%
+
 
 %\address{School of Mathematical and Physical Sciences, %University of Newcastle, Callaghan, NSW 2308 \fnref{newcastle}}
 %\address{Department of Civil Engineering and Architecture,
@@ -436,21 +438,38 @@ In this section we report some examples using the presented formulation to prove
 
 \subsection{Square problem}
 First example is a unit square domain with homogeneous Dirichlet boundary conditions. This benchmark problem is analyzed in \cite{brenner}.
-The Lamé constant are fix to $\lambda = 123$ and $\mu=79.3$.
-By imposition of the previously exact solution one obtain for the body force $f$
+The Lamé constant are fix to $\nu=0.49995$ and $\mu=1$.
+We impose the body forces in using the following expressions:
+$f$
 \begin{equation}
-f_{1} = \beta \left(\pi^{2} \left(4\sin\left(\pi y\right)
+\begin{split}
+&f_{1} = \beta \left(\pi^{2} \left(4\sin\left(\pi y\right)
 \left(-1+2\cos\left(2\pi x\right)\right)
--\cos\left(\pi\left(x+y\right)\right) \right.
+-\cos\left(\pi\left(x+y\right)\right) \right.\right. \\
+&\left.\left. \hspace{24pt} + A\sin\left(\pi x\right)\sin\left(\pi y\right)\right)\right)\:, \\
+&f_{2} = \beta \left(\pi^{2}\left(4\sin\left(2\pi x\right)
+\left(1-2\cos\left(2\pi y\right)\right)
+-\cos\left(\pi\left(x+y\right)\right)\right.\right. \\
+&\left.\left. \hspace{24pt} + A\sin\left(\pi x\right)\sin\left(\pi y\right)\right)\right)\:,
+\end{split}
 \end{equation}
-%\begin{split}
-%&\left. \hspace{24pt} + A\sin\left(\pi x\right)\sin\left(\pi y\right)\right)
-%\end{split}
-
-The exact solution is
+where
+\begin{equation}
+A=\frac{2}{1+\lambda} \:\: \mbox{and} \:\: \beta =\frac{1}{25}\:.
+\end{equation}
+By imposition of the previously body forces the exact solution is:
 \begin{equation} \label{eq:exact_solution}
-u_{1} = \cos (\pi x) \sin(2\pi y), \mbox{ } u_{2} = \sin(\pi x)\cos(\pi y). 
+\begin{split}
+&u_{1} = \beta\left(\sin\left(2\pi y\right)
+\left(-1+\cos\left(2\pi x\right)\right)+B\right)\:, \\
+&u_{2} = \beta\left(\sin\left(2\pi x\right)
+\left(1-\cos\left(2\pi y\right)\right)+B\right)\:,
+\end{split}
 \end{equation} 
+where 
+\begin{equation}
+B=0.5A\sin\left(\pi x\right)\sin\left(\pi y\right)\:.
+\end{equation}
 The problem is study using two type of mesh: first of all using a square mesh and before using a trapezoidal mesh. The two types of mesh are shown in figures \ref{fig:square_regular} and \ref{fig:square_irregular}.
 Figures \ref{fig:error_l2_1B_type1}, \ref{fig:error_l2_1B_type2}, \ref{fig:error_l2_2B} and \ref{fig:error_l2_2B_mixed} shown the error in norm $L^{2}$ in the case of regular mesh for the different types of bubble functions used and types of coefficient $\alpha$. All types of element converge in a good way.
 In Figures  \ref{fig:error_dist_l2_1B_type1}, \ref{fig:error_dist_l2_1B_type2}, \ref{fig:error_dist_l2_2B} and \ref{fig:error_dist_l2_2B_mixed} we report the previously results in the case of trapezoidal meshes. 
@@ -529,17 +548,28 @@ the number of elements (Case of two bubble functions, which one mixed)}
 \end{center}
 \end{figure}
 %
-%\begin{figure}[h!]
-%\begin{center}
-%\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_1B_type1}]
-%{\input{square_example/bolla1/elastic_error_1B_l2_strain_xx.tex}}
-%\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_1B_type1}]
-%{\input{square_example/bolla1/elastic_error_1B_l2_strain_xx_dist.tex}}
-%\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
-%the number of elements (Case of one bubble function)}
-%\end{center}
-%\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_1B_type1}]
+{\input{square_example/bolla1_type1/elastic_error_1B_l2_strain_xx.tex}}
+\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_1B_type1_dist}]
+{\input{square_example/bolla1_type1/elastic_error_1B_l2_strain_xx_dist.tex}}
+\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
+the number of elements (Case of one bubble function type 1)}
+\end{center}
+\end{figure}
 %
+\begin{figure}[h!]
+\begin{center}
+\subfigure[Case regular mesh \label{fig:error_strain_xx_l2_1B_type2}]
+{\input{square_example/bolla1_type2/elastic_error_1B_l2_strain_xx.tex}}
+\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_1B_type2_dist}]
+{\input{square_example/bolla1_type2/elastic_error_1B_l2_strain_xx_dist.tex}}
+\caption{The relative error of strain $\bm{d}_{xx}$ vs. 
+the number of elements (Case of one bubble function type 2)}
+\end{center}
+\end{figure}
+
 
 \subsection{Cantilever beam problem}
 Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure \ref{fig:beam_geometry}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$ and subjected to a distributed load as in figure \ref{fig:beam_geometry} with $f=300$.
@@ -560,6 +590,16 @@ The exact solution is:
 \end{split}
 \end{equation}
 We use to model the beam two types of mesh: regular anf trapezoidal as in the previously example (see figures \ref{fig:square_regular} and \ref{fig:square_irregular}).
+%
+\begin{figure}[!h]
+\begin{center}
+\subfigure[Deformation \label{fig:deformation_beam}]{\includegraphics[scale=0.42]{figure/deformata-crop.eps}}\\
+\subfigure[Strain $\bm{b}_{xx}$ \label{fig:strain_xx_beam}]{\includegraphics[scale=0.42]{figure/strain_xx-crop.eps}}
+\hspace{0.3cm}
+\subfigure[Strain $\bm{b}_{yy}$ \label{fig:strain_yy_beam}]{\includegraphics[scale=0.42]{figure/strain_yy-crop.eps}}
+\caption{Beam cantilever solution using $8192$ elements of two bubble functions and $\alpha/ \mu=3$}
+\end{center}
+\end{figure}
 %
 \begin{figure}[h!]
 \begin{center}

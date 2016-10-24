@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.8.18)  9 SEP 2016 14:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=latex 2016.8.18)  14 OCT 2016 18:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -27,7 +27,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.27  \begin{axis}
-                  [width=0.75\textwidth, height=0.55\textwidth,
+                  [width=0.45\textwidth, height=0.45\textwidth,
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -40,7 +40,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.27  \begin{axis}[
-                   width=0.75\textwidth, height=0.55\textwidth,
+                   width=0.45\textwidth, height=0.45\textwidth,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -53,13 +53,13 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no = in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no 7 in font nullfont!
+Missing character: There is no 4 in font nullfont!
 Missing character: There is no 5 in font nullfont!
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    h
-l.27  \begin{axis}[width=0.75\textwidth, h
-                                          eight=0.55\textwidth,
+l.27  \begin{axis}[width=0.45\textwidth, h
+                                          eight=0.45\textwidth,
 Dimensions can be in units of em, ex, in, pt, pc,
 cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
 I'll assume that you meant to say pt, for printer's points.
@@ -76,7 +76,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no = in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no . in font nullfont!
-Missing character: There is no 5 in font nullfont!
+Missing character: There is no 4 in font nullfont!
 Missing character: There is no 5 in font nullfont!
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
@@ -322,8 +322,6 @@ Missing character: There is no k in font nullfont!
 Missing character: There is no = in font nullfont!
 Missing character: There is no 0 in font nullfont!
 Missing character: There is no , in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no , in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no 4 in font nullfont!
@@ -348,7 +346,6 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no = in font nullfont!
-Missing character: There is no , in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no , in font nullfont!
 Missing character: There is no , in font nullfont!
@@ -440,12 +437,12 @@ Missing character: There is no d in font nullfont!
 <inserted text> 
                 $
 l.48  {quad_
-            cook_membrane_graph/alpa_1mu/cook_2B.txt};
+            cook_membrane_graph/alpha_1/cook_1B_type_1.txt};
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Extra }, or forgotten $.
-l.48 ..._cook_membrane_graph/alpa_1mu/cook_2B.txt}
+l.48 ...membrane_graph/alpha_1/cook_1B_type_1.txt}
                                                   ;
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -455,389 +452,66 @@ deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
 l.49  \addlegendentry
-                     {2 Bubble $\alpha / \mu=2$}
+                     {1B type 1}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.49  \addlegendentry{2 Bubble $
-                                \alpha / \mu=2$}
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.49  \addlegendentry{2 Bubble $\alpha
-                                       / \mu=2$}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.51  \addplot
-              [blue, mark=x, thick, dashed, mark options={solid}]
+              [red, mark=+, thick, mark options={solid}]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-Missing character: There is no [ in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no q in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-! Missing $ inserted.
-<inserted text> 
-                $
-l.53  {quad_
-            cook_membrane_graph/alpa_1mu/cook_1B_type_1.txt};
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-l.53 ...embrane_graph/alpa_1mu/cook_1B_type_1.txt}
-                                                  ;
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
 l.54  \addlegendentry
-                     {1 Bubble type 1 $\alpha / \mu=2$}
+                     {1B type 2}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.54  \addlegendentry{1 Bubble type 1 $
-                                       \alpha / \mu=2$}
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.54  \addlegendentry{1 Bubble type 1 $\alpha
-                                              / \mu=2$}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.56  \addplot
-              [green3, mark=o, thick, dashed, mark options={solid}]
+l.56   \addplot
+               [green3, mark=o, thick, mark options={solid}]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-Missing character: There is no [ in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no 3 in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no q in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-! Missing $ inserted.
-<inserted text> 
-                $
-l.58  {quad_
-            cook_membrane_graph/alpa_1mu/cook_1B_type_2.txt};
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-l.58 ...embrane_graph/alpa_1mu/cook_1B_type_2.txt}
-                                                  ;
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
 l.59  \addlegendentry
-                     {1 Bubble type 2 $\alpha / \mu=2$}
+                     {2B}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.59  \addlegendentry{1 Bubble type 2 $
-                                       \alpha / \mu=2$}
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.59  \addlegendentry{1 Bubble type 2 $\alpha
-                                              / \mu=2$}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
 l.61  \addplot
-              [red, mark=+, very thick]
+              [blue, mark=x, thick, mark options={solid}]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-Missing character: There is no [ in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no + in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no , in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no 1 in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no q in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no d in font nullfont!
-! Missing $ inserted.
-<inserted text> 
-                $
-l.63  {quad_
-            cook_membrane_graph/alpa_1mu/cook_2B_mixed.txt};
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-! Extra }, or forgotten $.
-l.63 ...membrane_graph/alpa_1mu/cook_2B_mixed.txt}
-                                                  ;
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
 
 ! Undefined control sequence.
 l.64  \addlegendentry
-                     {2 Bubble Mixed $\alpha / \mu=2$}
+                     {2B Mixed}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.64  \addlegendentry{2 Bubble Mixed $
-                                      \alpha / \mu=2$}
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.64  \addlegendentry{2 Bubble Mixed $\alpha
-                                             / \mu=2$}
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
 
 
 ! LaTeX Error: \begin{document} ended by \end{axis}.
@@ -851,6 +525,28 @@ l.76  \end{axis}
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.76  \end{axis}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.76  \end{axis}
+                
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
 
 ! LaTeX Error: \begin{document} ended by \end{tikzpicture}.
@@ -907,11 +603,6 @@ Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
 
 
 Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
-\OT1/cmr/m/n/10 1$
- []
-
-
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
 \OT1/cmr/m/n/10 2$
  []
 
@@ -936,47 +627,73 @@ Overfull \hbox (10.00003pt too wide) in paragraph at lines 27--81
  []
 
 
-Overfull \hbox (253.53459pt too wide) in paragraph at lines 27--81
-[]\OML/cmm/m/it/10 ook[]embrane[]raph=alpa[]mu=cook[]B:txt\OT1/cmr/m/n/10 ; []$
-$\OML/cmm/m/it/10 =^^V \OT1/cmr/m/n/10 =
+Overfull \hbox (297.45073pt too wide) in paragraph at lines 27--81
+[]\OML/cmm/m/it/10 ook[]embrane[]raph=alpha[]=cook[]B[]ype[]:txt\OT1/cmr/m/n/10
+ ; [][\OML/cmm/m/it/10 red; mark \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
-\OT1/cmr/m/n/10 2$
+Overfull \hbox (106.7364pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 +\OML/cmm/m/it/10 ; thick; markoptions \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (299.5492pt too wide) in paragraph at lines 27--81
-[]\OML/cmm/m/it/10 ook[]embrane[]raph=alpa[]mu=cook[]B[]ype[]:txt\OT1/cmr/m/n/1
-0 ; []$$\OML/cmm/m/it/10 =^^V \OT1/cmr/m/n/10 =
+Overfull \hbox (89.24103pt too wide) in paragraph at lines 27--81
+[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 table\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 xind
+ex \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
-\OT1/cmr/m/n/10 2$
+Overfull \hbox (50.28542pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; yindex \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (299.5492pt too wide) in paragraph at lines 27--81
-[]\OML/cmm/m/it/10 ook[]embrane[]raph=alpa[]mu=cook[]B[]ype[]:txt\OT1/cmr/m/n/1
-0 ; []$$\OML/cmm/m/it/10 =^^V \OT1/cmr/m/n/10 =
+Overfull \hbox (341.849pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 1][]; [][\OML/cmm/m/it/10 green\OT1/cmr/m/n/10 3\OML/cmm/m/it/1
+0 ; mark \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
-\OT1/cmr/m/n/10 2$
+Overfull \hbox (103.80583pt too wide) in paragraph at lines 27--81
+\OML/cmm/m/it/10 o; thick; markoptions \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (309.4637pt too wide) in paragraph at lines 27--81
-[]\OML/cmm/m/it/10 ook[]embrane[]raph=alpa[]mu=cook[]B[]ixed:txt\OT1/cmr/m/n/10
- ; []$$\OML/cmm/m/it/10 =^^V \OT1/cmr/m/n/10 =
+Overfull \hbox (89.24103pt too wide) in paragraph at lines 27--81
+[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 table\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 xind
+ex \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
-\OT1/cmr/m/n/10 2$
+Overfull \hbox (50.28542pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; yindex \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (283.45474pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 1][]; [][\OML/cmm/m/it/10 blue; mark \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (104.67387pt too wide) in paragraph at lines 27--81
+\OML/cmm/m/it/10 x; thick; markoptions \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (89.24103pt too wide) in paragraph at lines 27--81
+[]\OT1/cmr/m/n/10 ]\OML/cmm/m/it/10 table\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 xind
+ex \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (50.28542pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; yindex \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (279.37683pt too wide) in paragraph at lines 27--81
+\OT1/cmr/m/n/10 1][]; []$
  []
 
 )
@@ -989,7 +706,7 @@ Overfull \hbox (5.00002pt too wide) in paragraph at lines 27--81
 Here is how much of TeX's memory you used:
  11 strings out of 493014
  246 string characters out of 6139343
- 54629 words of memory out of 5000000
+ 55629 words of memory out of 5000000
  3655 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
