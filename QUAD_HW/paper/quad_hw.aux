@@ -7,7 +7,7 @@
 \citation{arnold_quad}
 \citation{hu,washizu}
 \citation{veubeke}
-\citation{kasper_p1,kasper_p2}
+\citation{kasper_p1}
 \citation{lamichhane_conv}
 \citation{lamichhane_huwashizu}
 \citation{lamichhane_three}
@@ -17,6 +17,7 @@
 \Newlabel{cor}{1}
 \Newlabel{newcastle}{1}
 \Newlabel{pavia}{2}
+\citation{lamichhane_three}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}}
 \newlabel{sec:one}{{1}{2}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Linear elastic continuum problem}{3}}
@@ -26,168 +27,185 @@
 \newlabel{eq:legame01}{{3}{3}}
 \newlabel{eq:legame02}{{4}{3}}
 \newlabel{eq:legame03}{{5}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Briefly introduction to modify Hu-Washizu}{3}}
-\newlabel{sec:three}{{3}{3}}
-\newlabel{eq:system_1}{{11}{4}}
-\newlabel{eq:system_2}{{12}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Finite element discretization}{4}}
-\newlabel{sec:four}{{4}{4}}
+\newlabel{eq:system_lin}{{6}{3}}
+\citation{lamichhane_three}
+\citation{lamichhane_huwashizu}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Briefly introduction to modify Hu-Washizu}{4}}
+\newlabel{sec:three}{{3}{4}}
+\newlabel{eq:system_hw}{{8}{4}}
+\newlabel{eq:system_hw_compact}{{10}{4}}
+\newlabel{eq:system_hw_modify}{{12}{4}}
 \@input{figure/reference_element.aux}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Bubble functions}{5}}
-\newlabel{eq:standard_bubble_fun}{{21}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Finite element discretization}{5}}
+\newlabel{sec:four}{{4}{5}}
+\newlabel{eq:biorth_prop}{{16}{5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Reference Element }}{6}}
 \newlabel{fig:ref_element}{{1}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}One Bubble function (type 1)}{6}}
-\newlabel{eq:bubble_1}{{22}{6}}
-\newlabel{eq:bubble_1_ref}{{23}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}One Bubble function (type 2)}{6}}
-\newlabel{eq:bubble_2}{{24}{6}}
+\newlabel{eq:system_hw_discrete}{{19}{6}}
+\newlabel{eq:system_hu_discrete_matrix}{{20}{6}}
+\citation{bai}
+\citation{lamichhane}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Bubble functions}{7}}
+\newlabel{eq:standard_bubble_fun}{{23}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}One Bubble function (type 1)}{7}}
+\newlabel{eq:bubble_1}{{24}{7}}
+\newlabel{eq:bubble_1_ref}{{25}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}One Bubble function (type 2)}{8}}
+\newlabel{eq:bubble_2}{{26}{8}}
+\newlabel{eq:bubble_2_ref}{{27}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Two Bubble functions}{8}}
+\newlabel{eq:bubble_3}{{29}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Two Bubble functions, which one mixed}{8}}
 \citation{brenner}
-\newlabel{eq:bubble_2_ref}{{25}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Two Bubble functions}{7}}
-\newlabel{eq:bubble_3}{{26}{7}}
-\newlabel{eq:bubble_3_ref}{{27}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Two Bubble functions, which one mixed}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical example}{7}}
-\newlabel{sec:five}{{5}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Square problem}{8}}
-\newlabel{eq:exact_solution}{{31}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cantilever beam problem}{8}}
-\newlabel{fig:square_regular}{{2(a)}{9}}
-\newlabel{sub@fig:square_regular}{{(a)}{9}}
-\newlabel{fig:square_irregular}{{2(b)}{9}}
-\newlabel{sub@fig:square_irregular}{{(b)}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Square Problem}}{9}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Regular mesh }}}{9}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Trapezoidal mesh }}}{9}}
-\newlabel{fig:error_l2_1B_type1}{{3(a)}{9}}
-\newlabel{sub@fig:error_l2_1B_type1}{{(a)}{9}}
-\newlabel{fig:error_l2_1B_type2}{{3(b)}{9}}
-\newlabel{sub@fig:error_l2_1B_type2}{{(b)}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and regular mesh)}}{9}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {type 1 }}}{9}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {type 2 }}}{9}}
-\newlabel{fig:error_l2_2B}{{4(a)}{10}}
-\newlabel{sub@fig:error_l2_2B}{{(a)}{10}}
-\newlabel{fig:error_l2_2B_mixed}{{4(b)}{10}}
-\newlabel{sub@fig:error_l2_2B_mixed}{{(b)}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The relative error versus the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{10}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cook's membrane}{10}}
+\citation{djoko}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Numerical examples}{9}}
+\newlabel{sec:five}{{5}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Square problem}{9}}
+\newlabel{eq:exact_solution}{{34}{9}}
+\newlabel{fig:square_regular}{{2(a)}{10}}
+\newlabel{sub@fig:square_regular}{{(a)}{10}}
+\newlabel{fig:square_irregular}{{2(b)}{10}}
+\newlabel{sub@fig:square_irregular}{{(b)}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Square Problem}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Regular mesh }}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Trapezoidal mesh }}}{10}}
+\newlabel{fig:error_l2_1B_type1}{{3(a)}{10}}
+\newlabel{sub@fig:error_l2_1B_type1}{{(a)}{10}}
+\newlabel{fig:error_l2_1B_type2}{{3(b)}{10}}
+\newlabel{sub@fig:error_l2_1B_type2}{{(b)}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and regular mesh)}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {type 1 }}}{10}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {type 2 }}}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cantilever beam problem}{10}}
+\newlabel{fig:error_l2_2B}{{4(a)}{11}}
+\newlabel{sub@fig:error_l2_2B}{{(a)}{11}}
+\newlabel{fig:error_l2_2B_mixed}{{4(b)}{11}}
+\newlabel{sub@fig:error_l2_2B_mixed}{{(b)}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The relative error versus the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{11}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{11}}
+\newlabel{fig:error_dist_l2_1B_type1}{{5(a)}{12}}
+\newlabel{sub@fig:error_dist_l2_1B_type1}{{(a)}{12}}
+\newlabel{fig:error_dist_l2_1B_type2}{{5(b)}{12}}
+\newlabel{sub@fig:error_dist_l2_1B_type2}{{(b)}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}}{12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {type 1 }}}{12}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {type 2 }}}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cook's membrane}{12}}
 \bibcite{bai}{{1}{1997}{{W.Bai }}{{}}}
 \bibcite{boffi}{{2}{2006}{{D.Boffi }}{{}}}
 \bibcite{lamichhane}{{3}{2015}{{B.P.Lamichhane }}{{}}}
+\newlabel{fig:error_dist_l2_2B}{{6(a)}{13}}
+\newlabel{sub@fig:error_dist_l2_2B}{{(a)}{13}}
+\newlabel{fig:error_dist_l2_2B_mixed}{{6(b)}{13}}
+\newlabel{sub@fig:error_dist_l2_2B_mixed}{{(b)}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}}{13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{13}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{13}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{13}}
+\newlabel{sec:six}{{6}{13}}
 \bibcite{djoko}{{4}{2006}{{J.K.Djoko and B.D.Reddy }}{{}}}
-\newlabel{fig:error_dist_l2_1B_type1}{{5(a)}{11}}
-\newlabel{sub@fig:error_dist_l2_1B_type1}{{(a)}{11}}
-\newlabel{fig:error_dist_l2_1B_type2}{{5(b)}{11}}
-\newlabel{sub@fig:error_dist_l2_1B_type2}{{(b)}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}}{11}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {type 1 }}}{11}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {type 2 }}}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{11}}
-\newlabel{sec:six}{{6}{11}}
 \bibcite{lamichhane_three}{{5}{2013}{{B.P.Lamichhane et al. }}{{}}}
 \bibcite{lamichhane_conv}{{6}{2006}{{B.P.Lamichhane et al. }}{{}}}
 \bibcite{boffi_lovadina}{{7}{1997}{{D.Boffi and C.Lovadina }}{{}}}
 \bibcite{lamichhane_huwashizu}{{8}{2009}{{B.P.Lamichhane }}{{}}}
+\newlabel{fig:error_strain_xx_l2_2B}{{7(a)}{14}}
+\newlabel{sub@fig:error_strain_xx_l2_2B}{{(a)}{14}}
+\newlabel{fig:error_strain_xx_l2_2B_dist}{{7(b)}{14}}
+\newlabel{sub@fig:error_strain_xx_l2_2B_dist}{{(b)}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of two bubble functions)}}{14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{14}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{14}}
 \bibcite{arnold}{{9}{2002}{{D.N.Arnold and R.Winther }}{{}}}
-\newlabel{fig:error_dist_l2_2B}{{6(a)}{12}}
-\newlabel{sub@fig:error_dist_l2_2B}{{(a)}{12}}
-\newlabel{fig:error_dist_l2_2B_mixed}{{6(b)}{12}}
-\newlabel{sub@fig:error_dist_l2_2B_mixed}{{(b)}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The relative error vs. the number of elements measured relative to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}}{12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{12}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{12}}
 \bibcite{boffi_book}{{10}{2013}{{D.Boffi et al. }}{{}}}
 \bibcite{arnold_quad}{{11}{2005}{{D.N.Arnold and G.Awanou }}{{}}}
 \bibcite{hu}{{12}{1955}{{H.Hu }}{{}}}
 \bibcite{washizu}{{13}{1982}{{K.Washizu }}{{}}}
 \bibcite{veubeke}{{14}{1951}{{B.M.Fraeijs de Veubeke }}{{}}}
-\bibcite{kasper_p1}{{15}{2000}{{E.P. Kasper and R.L. Taylor }}{{}}}
-\newlabel{fig:error_strain_xx_l2_2B}{{7(a)}{13}}
-\newlabel{sub@fig:error_strain_xx_l2_2B}{{(a)}{13}}
-\newlabel{fig:error_strain_xx_l2_2B_dist}{{7(b)}{13}}
-\newlabel{sub@fig:error_strain_xx_l2_2B_dist}{{(b)}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of two bubble functions)}}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{13}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{13}}
-\bibcite{kasper_p2}{{16}{2000}{{E.P. Kasper and R.L. Taylor }}{{}}}
-\bibcite{brenner}{{17}{1993}{{S.C. Brenner }}{{}}}
-\newlabel{fig:error_strain_xx_l2_2B_mixed}{{8(a)}{14}}
-\newlabel{sub@fig:error_strain_xx_l2_2B_mixed}{{(a)}{14}}
-\newlabel{fig:error_strain_xx_l2_2B_dist}{{8(b)}{14}}
-\newlabel{sub@fig:error_strain_xx_l2_2B_dist}{{(b)}{14}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of two bubble functions, which one mixed)}}{14}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{14}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{14}}
-\newlabel{fig:error_strain_xx_l2_1B_type1}{{9(a)}{15}}
-\newlabel{sub@fig:error_strain_xx_l2_1B_type1}{{(a)}{15}}
-\newlabel{fig:error_strain_xx_l2_1B_type1_dist}{{9(b)}{15}}
-\newlabel{sub@fig:error_strain_xx_l2_1B_type1_dist}{{(b)}{15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of one bubble function type 1)}}{15}}
+\newlabel{fig:error_strain_xx_l2_2B_mixed}{{8(a)}{15}}
+\newlabel{sub@fig:error_strain_xx_l2_2B_mixed}{{(a)}{15}}
+\newlabel{fig:error_strain_xx_l2_2B_mixed_dist}{{8(b)}{15}}
+\newlabel{sub@fig:error_strain_xx_l2_2B_mixed_dist}{{(b)}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of two bubble functions, which one mixed)}}{15}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{15}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{15}}
-\newlabel{fig:error_strain_xx_l2_1B_type2}{{10(a)}{16}}
-\newlabel{sub@fig:error_strain_xx_l2_1B_type2}{{(a)}{16}}
-\newlabel{fig:error_strain_xx_l2_1B_type2_dist}{{10(b)}{16}}
-\newlabel{sub@fig:error_strain_xx_l2_1B_type2_dist}{{(b)}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of one bubble function type 2)}}{16}}
+\bibcite{kasper_p1}{{15}{2000}{{E.P. Kasper and R.L. Taylor }}{{}}}
+\bibcite{kasper_p2}{{16}{2000}{{E.P. Kasper and R.L. Taylor }}{{}}}
+\bibcite{brenner}{{17}{1993}{{S.C. Brenner }}{{}}}
+\newlabel{fig:error_strain_xx_l2_1B_type1}{{9(a)}{16}}
+\newlabel{sub@fig:error_strain_xx_l2_1B_type1}{{(a)}{16}}
+\newlabel{fig:error_strain_xx_l2_1B_type1_dist}{{9(b)}{16}}
+\newlabel{sub@fig:error_strain_xx_l2_1B_type1_dist}{{(b)}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of one bubble function type 1)}}{16}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{16}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Beam cantilever geometry }}{16}}
-\newlabel{fig:beam_geometry}{{11}{16}}
-\newlabel{fig:deformation_beam}{{12(a)}{17}}
-\newlabel{sub@fig:deformation_beam}{{(a)}{17}}
-\newlabel{fig:strain_xx_beam}{{12(b)}{17}}
-\newlabel{sub@fig:strain_xx_beam}{{(b)}{17}}
-\newlabel{fig:strain_yy_beam}{{12(c)}{17}}
-\newlabel{sub@fig:strain_yy_beam}{{(c)}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Beam cantilever solution using $8192$ elements of two bubble functions and $\alpha / \mu =3$}}{17}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Deformation }}}{17}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Strain $\bm {b}_{xx}$ }}}{17}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Strain $\bm {b}_{yy}$ }}}{17}}
-\newlabel{fig:beam_reg_1B_type1}{{13(a)}{18}}
-\newlabel{sub@fig:beam_reg_1B_type1}{{(a)}{18}}
-\newlabel{fig:beam_reg_1B_type2}{{13(b)}{18}}
-\newlabel{sub@fig:beam_reg_1B_type2}{{(b)}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{18}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Type 1 }}}{18}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Type 2 }}}{18}}
-\newlabel{fig:beam_reg_2B}{{14(a)}{19}}
-\newlabel{sub@fig:beam_reg_2B}{{(a)}{19}}
-\newlabel{fig:beam_reg_2B_mixed}{{14(b)}{19}}
-\newlabel{sub@fig:beam_reg_2B_mixed}{{(b)}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{19}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{19}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{19}}
-\newlabel{fig:beam_trap_1B_type1}{{15(a)}{20}}
-\newlabel{sub@fig:beam_trap_1B_type1}{{(a)}{20}}
-\newlabel{fig:beam_trap_1B_type2}{{15(b)}{20}}
-\newlabel{sub@fig:beam_trap_1B_type2}{{(b)}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}}{20}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Type 1 }}}{20}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Type 2 }}}{20}}
-\newlabel{fig:beam_trap_2B}{{16(a)}{21}}
-\newlabel{sub@fig:beam_trap_2B}{{(a)}{21}}
-\newlabel{fig:beam_trap_2B_mixed}{{16(b)}{21}}
-\newlabel{sub@fig:beam_trap_2B_mixed}{{(b)}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}}{21}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{21}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Cook's Membrane geometry }}{21}}
-\newlabel{fig:cook}{{17}{21}}
-\newlabel{fig:cook_alpha_1}{{18(a)}{22}}
-\newlabel{sub@fig:cook_alpha_1}{{(a)}{22}}
-\newlabel{fig:cook_alpha_1mu}{{18(b)}{22}}
-\newlabel{sub@fig:cook_alpha_1mu}{{(b)}{22}}
-\newlabel{fig:cook_alpha_2mu}{{18(c)}{22}}
-\newlabel{sub@fig:cook_alpha_2mu}{{(c)}{22}}
-\newlabel{fig:cook_alpha_3mu}{{18(d)}{22}}
-\newlabel{sub@fig:cook_alpha_3mu}{{(d)}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Vertical Displacement of point A vs. the number of elements per side}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$\alpha =1$ }}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$\alpha / \mu =1$ }}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$\alpha / \mu =2$ }}}{22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$\alpha / \mu =3$ }}}{22}}
+\newlabel{fig:error_strain_xx_l2_1B_type2}{{10(a)}{17}}
+\newlabel{sub@fig:error_strain_xx_l2_1B_type2}{{(a)}{17}}
+\newlabel{fig:error_strain_xx_l2_1B_type2_dist}{{10(b)}{17}}
+\newlabel{sub@fig:error_strain_xx_l2_1B_type2_dist}{{(b)}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The relative error of strain $\bm  {d}_{xx}$ vs. the number of elements (Case of one bubble function type 2)}}{17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case regular mesh }}}{17}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case trapezoidal mesh }}}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Beam cantilever geometry }}{17}}
+\newlabel{fig:beam_geometry}{{11}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Beam Cantilever: deformation plot using $2000$ elements with two bubble functions and $\alpha / \mu =1$ }}{18}}
+\newlabel{fig:deformation_beam}{{12}{18}}
+\newlabel{fig:strain_xx_beam}{{13(a)}{18}}
+\newlabel{sub@fig:strain_xx_beam}{{(a)}{18}}
+\newlabel{fig:strain_xx_beam_analytical}{{13(b)}{18}}
+\newlabel{sub@fig:strain_xx_beam_analytical}{{(b)}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Beam Cantilever: strain $\left [\bm  {d}_{h}\right ]_{xx}$ vs. $\left [\bm  {d}\right ]_{xx}$ using $2000$ elements with two bubble functions and $\alpha / \mu =1$ }}{18}}
+\newlabel{fig:strain_xx}{{13}{18}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Strain $\bm {d}_{h}$ }}}{18}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Strain $\bm {d}$ }}}{18}}
+\newlabel{fig:strain_yy_beam}{{14(a)}{19}}
+\newlabel{sub@fig:strain_yy_beam}{{(a)}{19}}
+\newlabel{fig:strain_yy_beam_analytical}{{14(b)}{19}}
+\newlabel{sub@fig:strain_yy_beam_analytical}{{(b)}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Beam Cantilever: strain $\left [\bm  {d}_{h}\right ]_{yy}$ vs. $\left [\bm  {d}\right ]_{yy}$ using $2000$ elements with two bubble functions and $\alpha / =1$ }}{19}}
+\newlabel{fig:strain_yy}{{14}{19}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Strain $\bm {d}_{h}$ }}}{19}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Strain $\bm {d}$ }}}{19}}
+\newlabel{fig:beam_reg_1B_type1}{{15(a)}{19}}
+\newlabel{sub@fig:beam_reg_1B_type1}{{(a)}{19}}
+\newlabel{fig:beam_reg_1B_type2}{{15(b)}{19}}
+\newlabel{sub@fig:beam_reg_1B_type2}{{(b)}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{19}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Type 1 }}}{19}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Type 2 }}}{19}}
+\newlabel{fig:beam_reg_2B}{{16(a)}{20}}
+\newlabel{sub@fig:beam_reg_2B}{{(a)}{20}}
+\newlabel{fig:beam_reg_2B_mixed}{{16(b)}{20}}
+\newlabel{sub@fig:beam_reg_2B_mixed}{{(b)}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)}}{20}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{20}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{20}}
+\newlabel{fig:beam_trap_1B_type1}{{17(a)}{21}}
+\newlabel{sub@fig:beam_trap_1B_type1}{{(a)}{21}}
+\newlabel{fig:beam_trap_1B_type2}{{17(b)}{21}}
+\newlabel{sub@fig:beam_trap_1B_type2}{{(b)}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Type 1 }}}{21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Type 2 }}}{21}}
+\newlabel{fig:beam_trap_2B}{{18(a)}{22}}
+\newlabel{sub@fig:beam_trap_2B}{{(a)}{22}}
+\newlabel{fig:beam_trap_2B_mixed}{{18(b)}{22}}
+\newlabel{sub@fig:beam_trap_2B_mixed}{{(b)}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Case two bubble function }}}{22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Case two bubble function of which one mixed }}}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Cook's Membrane geometry }}{22}}
+\newlabel{fig:cook}{{19}{22}}
+\newlabel{fig:cook_alpha_1}{{20(a)}{23}}
+\newlabel{sub@fig:cook_alpha_1}{{(a)}{23}}
+\newlabel{fig:cook_alpha_1mu}{{20(b)}{23}}
+\newlabel{sub@fig:cook_alpha_1mu}{{(b)}{23}}
+\newlabel{fig:cook_alpha_2mu}{{20(c)}{23}}
+\newlabel{sub@fig:cook_alpha_2mu}{{(c)}{23}}
+\newlabel{fig:cook_alpha_3mu}{{20(d)}{23}}
+\newlabel{sub@fig:cook_alpha_3mu}{{(d)}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Vertical Displacement of point A vs. the number of elements per side}}{23}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {$\alpha =1$ }}}{23}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$\alpha / \mu =1$ }}}{23}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$\alpha / \mu =2$ }}}{23}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(d)}{\ignorespaces {$\alpha / \mu =3$ }}}{23}}

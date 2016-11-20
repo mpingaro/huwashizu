@@ -24,7 +24,7 @@ nx = [4,8,16,32,64,128];                      % partition in x direction
 ny = [2,4, 8,16,32,64] ;                      % partition in y direction
 young = 1500;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
-f = 300;                                      % max value of distributed load
+ld = 300;                                     % max value of distributed load
 cf = [1,2,3];
 
 
@@ -57,13 +57,13 @@ alpha = cf(k)*mu;
 [KASSEM,D,W,B,M,K] = assembly_beam(coordinates,element,mc,mc2,lambda,alpha,mu,nelem,ngdlu,ngdls);
 
 %% SOLVE
-spost = solve_HuWashizu_beam(KASSEM,coordinates,height,f,ndx,ndy,ngdlu);
+spost = solve_HuWashizu_beam(KASSEM,coordinates,height,ld,ndx,ndy,ngdlu);
 
 %% POST PROCESSING
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% Computing L2 error
-er_u = error_beam_l2_norm(spost, coordinates, height, young, poisson, f);
+er_u = error_beam_l2_norm(spost, coordinates, height, young, poisson, ld);
 fprintf(f, '%6.0f \t %6.5e \n', nelem, er_u);
 
 end

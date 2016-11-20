@@ -1,3 +1,4 @@
+
 %% 
 %% Copyright 2007, 2008, 2009 Elsevier Ltd
 %% 
@@ -117,8 +118,6 @@ Field Hu-Washizu 2D Elasticity Formulation Based on Biorthogonal Systems}
 \ead{paolo.venini@unipv.it}
 
 %
-
-
 %\address{School of Mathematical and Physical Sciences, %University of Newcastle, Callaghan, NSW 2308 \fnref{newcastle}}
 %\address{Department of Civil Engineering and Architecture,
 %University of Pavia, Pavia, Italy \fnref{pavia}}
@@ -130,11 +129,11 @@ University of Pavia, Pavia, Italy}
 \begin{abstract}
 New quadrilateral mixed finite element based on modified Hu-Washizu formulation are presented.
 Hu-Washizu is a three field formulation where the unknowns are: displacement, stress and strain.
-The stability and consistency of the element are obtained by adding differnt types of bubble functions at the displacement field. Different types of bubble functions are successfully investigated and analyzed. 
-In order to obtain an efficient discretization scheme, we use a pair of finite element bases forming a biorthogonal system for the strain and stress. 
+The stability and consistency of the element are obtained by adding different types of bubble functions at the displacement field. Different types of bubble functions are successfully investigated and analyzed. 
+In order to obtain an efficient discretization scheme, we use a pair of finite element bases forming a biorthogonal system between strain and stress. 
 The biorthogonality relation allows us to statically condense out the strain and stress from the saddle-point system leading to a symmetric and positive-definite system. 
 The strain and stress can be recovered in a post-processing step simply by inverting a diagonal matrix.
-Numerical examples prove the efficiency and the stability of the elements in the case of incompressible limit and distorted meshes. The extension at the 3D case is straightforward.
+Numerical examples prove the efficiency and the stability of the elements in the case of incompressible limit and distorted meshes.
 \end{abstract}
 
 \begin{keyword}
@@ -152,42 +151,45 @@ mixed finite elements \sep quadrilateral element \sep Hu-Washizu \sep biorthogon
 
 \linenumbers
 \section{Introduction}\label{sec:one}
-In the linear and non-linear elasticity when the Lamé constant $\lambda$ tends to infinity the standard finite element exhibit some problem of convergence may be locking phenomena.
-In this context mixed formulations are used to solve this inconvenient.
-One of the most popular mixed formulation adopted is the Hellinger-Raisner formulation, in that we describe the problem using with variables the stresses and the displacements.
+In the linear and non-linear elasticity when the Lamé constant $\lambda$ tends to infinity the standard finite element exhibit some problems of convergence as locking phenomena.
+In this context mixed formulations are used effectively to solve this inconvenient.
+One of the most popular mixed formulation adopted is the Hellinger-Reissner formulation, which one describe the problem adopting as variables the stresses and the displacements.
 This type of formulation requires the fulfillment of the inf-sup condition as described in \cite{boffi_book}.
-For the Hellinger-Reissner formulation many elements are created such as \cite{arnold} for triangle elements and \cite{arnold_quad} for quadrilateral. 
-Another type of formulation is the Hu-Washizu formulation (see \cite{hu,washizu}) that it was a three-field formulation.
-This was first introduced by \cite{veubeke}.
-One examples of Hu-Washizu formulation applied at linear and non-linear elasticity using quadrilaterals and hexahedra are reported in \cite{kasper_p1,kasper_p2}. 
-In \cite{lamichhane_conv} are showed that the modify Hu-Washizu formulation are able to obtaining uniform convergence of the finite nelement approximation in the nearly incompressible regime in the case of quadrilateral elements.
-The goal of this work is to present an extension using the quadrilateral elements of the modified three-field formulation Hu-Washizu presented in \cite{lamichhane_huwashizu}.
+Employing the Hellinger-Reissner formulation many elements have been created such as \cite{arnold} for triangle elements and \cite{arnold_quad} for quadrilateral. 
+Another type of mixed formulation is the Hu-Washizu formulation (see \cite{hu,washizu}) that it is a three-field formulation introduced by \cite{veubeke}.
+One examples of Hu-Washizu formulation applied at linear and non-linear elasticity using quadrilaterals and hexahedra are reported in \cite{kasper_p1}. 
+In \cite{lamichhane_conv} are showed that the modify Hu-Washizu formulation are able to obtaining uniform convergence of the finite element approximation in the nearly incompressible regime in the case of quadrilateral elements.
+The goal of this work is to present an extension of the modified three-field formulation Hu-Washizu presented in \cite{lamichhane_huwashizu} using the quadrilateral elements.
 In accordance to \cite{lamichhane_three} we adopt the idea to create a biorthogonal system between the stresses and strains.
 This assumption is essentially for the static condensation of the stresses and strains for obtain a linear system in the only unknown displacement field.
 In order to ensure the stability of the element we enrich the space of displacement field with different type of bubble functions in accordance to \cite{bai,lamichhane} for the Stokes problem. 
-In \cite{bai} we adopt two bubble functions to stabilize the element, while in \cite{lamichhane} use one single bubble function.  
+In \cite{bai} we adopt two bubble functions to stabilize the element, while in \cite{lamichhane} use one single bubble function are adopted.  
  
-The structure of the papers are the following: first of all in Section \ref{sec:two} we recall the basic equations of linear elastic problem, in Section \ref{sec:three} we briefly recall the modified Hu-Washizu formulations, Section \ref{sec:four} we develop the finite element spaces.
-Finally in Section \ref{sec:five} we report some examples using the studied element and in Section \ref{sec:six} the conclusions of the work are detailed.
+The structure of the paper is the following: first of all in Section \ref{sec:two} we recall the basic equations of linear elastic problem, Section \ref{sec:three} we briefly recall the modified Hu-Washizu formulations as in \cite{lamichhane_three}, Section \ref{sec:four} we develop the novel finite element spaces adopted.
+Finally, Section \ref{sec:five} we report many examples to prove the efficiency of the studied element and Section \ref{sec:six} the final remarks and the future developments.
 
 \section{Linear elastic continuum problem}\label{sec:two}
-In this section we briefly recovery the equations governing the linear elastic problem. 
+In this section we briefly recovery the equations governing the homogeneous isotropic linear elastic material body. 
+
+Let a bounded domain $\Omega \in \mathbb{R}^{n}$ with Lipschitz boundary $\Gamma= \Gamma_{d}\cup \Gamma_{n}$, where $\Gamma_{d}$ and $\Gamma_{n}$ are the Dirichlet and Neumann boundaries, respectively.   
 The equilibrium equation is:
 \begin{equation} \label{eq:equilibrio01}
 - \mbox{div}(\bm{\sigma}) = \bm{f}\:,
 \end{equation}
-while in small deformation is:
+where $\bm{\sigma}$ is the Cauchy stress tensor and $\bm{f}$ is the body forces per unit area or volume. 
+The small strain tensor $\bm{d}$ is defined by:
 \begin{equation}\label{eq:congruenza01}
 \bm{d} = \bm{\varepsilon}(\bm{u}) = 
-\frac{1}{2}(\bm{\nabla} \: \bm{u} + \bm{\nabla} \: \bm{u}^{T}) \:.
+\frac{1}{2}(\bm{\nabla} \: \bm{u} + \bm{\nabla} \: \bm{u}^{T}) \:,
 \end{equation}
+where $\bm{u}$ is the displacement field and $\bm{\nabla}$ is the gradient operator. 
 In the case of linear elasticity we have:
 \begin{equation} \label{eq:legame01}
-\bm{\sigma} = \lambda \: tr(\bm{\varepsilon}) \bm{I} 
-+ 2\mu \: \bm{\varepsilon}
+\bm{\sigma} = \lambda \: \mbox{tr}(\bm{\varepsilon}) \bm{I} 
++ 2\mu \: \bm{\varepsilon}\:,
 \end{equation}
-where $\mu$ and $\lambda$ are the Lamé constant.
-By some algebra one obtains:
+where $\mu$ and $\lambda$ are the Lamé parameters depending by the material, $\mbox{tr}(\bm{a})$ is the trace of the tensor $\bm{a}$ and $\bm{I}$ is the identity tensor. 
+Using  the equation \eqref{eq:legame01} and by some algebra one obtains:
 \begin{equation} \label{eq:legame02}
 \bm{\sigma} =
 \left(
@@ -214,113 +216,78 @@ and rearranging the equation \eqref{eq:legame02}:
 \right)\:.
 \end{equation}
 
-\section{Briefly introduction to modify Hu-Washizu}\label{sec:three}
-We define the trial variables: $\bm{\varepsilon}(\bm{u})$, $\bm{d}$ and 
-$\bm{\sigma}$, while the test variables are: $\bm{\varepsilon}(\bm{v})$, 
-$\bm{e}$ and $\bm{\tau}$. 
-\begin{equation}
--\int_{\Omega} \mbox{div} ( \bm{C} : \bm{d}) )\cdot \bm{v} = \bm{f}
-\end{equation}
-
-\begin{eqnarray}
-& a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
-+ b( (\bm{v}, \bm{e}), \bm{\sigma} ) &= l(\bm{v}) \\
-& b( (\bm{u},\bm{d}), \bm{\tau} )                                 &= 0
-\end{eqnarray}
-where:
-\begin{eqnarray}
-& a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
-&= \int_{\Omega} \bm{d} : (\bm{C}:\bm{e}) \: dx 
-+ \alpha \int_{\Omega} (\bm{\varepsilon}(\bm{u}) 
-- \bm{d}):(\bm{\varepsilon}(\bm{v}) - \bm{e}) \: dx \:, \\
-& b( (\bm{u},\bm{d}), \bm{\tau} ) &= 
-\int_{\Omega} (\bm{\varepsilon}(\bm{u}) - \bm{d}) : \bm{\tau} \: dx \:.
-\end{eqnarray}
-The modify weak formulation of the problem is:
-%\begin{equation} \label{eq:system_1}
-%\left\lbrace
-%\begin{array}{lll}
-%\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
-%\bm{\varepsilon}(\bm{v})\:dx 
-%+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega}
-%\bm{f}\cdot\bm{v}\:dx \\
-%\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
-%(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
-%-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
-%\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0 \\
-%\end{array}
-%\right.
-%\end{equation}
-
-
-\begin{equation} \label{eq:system_1}
+Using the equations \eqref{eq:equilibrio01}, \eqref{eq:congruenza01} and \eqref{eq:legame01} we obtain the resuming system for the linear elastic problem:
+\begin{equation}\label{eq:system_lin}
 \left\lbrace
 \begin{split}
-\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
-\bm{\varepsilon}(\bm{v})\:dx +\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega} \bm{f}\cdot\bm{v}\:dx \\
-\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
-(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
--\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
-\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0
+& \mbox{div}(\bm{\sigma}) + \bm{f} = \bm{0} \:, \\
+& \bm{\varepsilon}(\bm{u}) - \bm{d} = \bm{0} \:, \\
+& \bm{\sigma} - \bm{\mathbf{C}}\bm{d} = \bm{0} \:,
 \end{split}
 \right.
 \end{equation}
-by rearranging:
-\begin{equation} \label{eq:system_2}
+where $\bm{\mathbf{C}}$ is the fourth order elastic tensor. 
+On the boundary we have:
+\begin{equation}
+\begin{split}
+&\bm{u}_{d} = \overline{\bm{u}}\:, \hspace{30pt} \forall\bm{u}\subset \Gamma_{d}\:,\\ 
+&\bm{u}_{n} = \bm{t}\cdot \bm{n}\:, \hspace{16pt} \forall\bm{u}\subset \Gamma_{n}\:,\\
+\end{split}
+\end{equation}
+where $\bm{t}$ are the distributed traction and $\bm{n}$ is the unit normal vector along the Neumann boundary and $\overline{\bm{u}}$ is the prescribed displacement field along the Dirichlet boundary.
+
+
+\section{Briefly introduction to modify Hu-Washizu}\label{sec:three}
+Starting by the equations resumed in the system \eqref{eq:system_lin},
+need be tested with triplet of virtual displacements, strains, stresses, say 
+$\left(\bm{v}, \bm{e},\bm{\tau}\right)$ to arrive at the classical Hu-Washizu variational principle reads: 
+\begin{equation}\label{eq:system_hw}
 \left\lbrace
-\begin{array}{lll}
-\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\varepsilon}(\bm{v})\:dx 
--\alpha\int_{\Omega}\bm{d}:\bm{\varepsilon}(\bm{v})\:dx
-+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx 
-&=\int_{\Omega}\bm{f}\cdot\bm{v}\:dx\\ 
--\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{e}\:dx
-+\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx
-+\alpha\int_{\Omega}\bm{d}:\bm{e}\:dx
--\int_{\Omega}\bm{e}:\bm{\sigma}\:dx&= 0 \\
-\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\tau}\:dx
--\int_{\Omega}\bm{d}:\bm{\tau}\:dx &= 0 \\
-\end{array}
+\begin{split}
+&-\int_{\Omega} \sigma : \bm{\varepsilon}(\bm{v}) + \int_{\Omega} \bm{f}\cdot\bm{v} = 0\:, \hspace{20pt} \forall\bm{v}\in V \\
+&\int_{\Omega} \left( \bm{\varepsilon}(\bm{u}) - 
+\bm{d} \right):\bm{\tau} = 0\:, \hspace{54pt} \forall\bm{\tau}\in S_{0} \\
+&\int_{\Omega} \bm{\sigma}:\bm{e} - 
+\int_{\Omega}\bm{\mathbf{C}}\bm{d}:\bm{e} = 0\:, 
+\hspace{38pt} \forall\bm{e}\in S
+\end{split}
 \right.
 \end{equation}
-It is possible to rewrite the system in equation \eqref{eq:system_2} in matrix form in the following way: 
+where we define the spaces $V=\left[H^{1}_{0}(\Omega)\right]^{n}$, $S=L^{2}(\Omega)^{n\times n}_{sym}$ and
 \begin{equation}
-\left[
-\begin{array}{ccc}
-\alpha \bm{A} & -\alpha \bm{B} & \bm{W} \\
--\alpha \bm{B}^{T} & \bm{K}+\alpha \bm{M} & -\bm{D} \\
-\bm{W}^{T}  & - \bm{D}^{T} & \bm{0} \\ 
-\end{array}
-\right] 
-\left[
-\begin{array}{c}
-\bm{x}_{u} \\
-\bm{x}_{d} \\
-\bm{x}_{\sigma} \\
-\end{array}
-\right] =
-\left[
-\begin{array}{c}
-\bm{b}_{f} \\
-\bm{0} \\
-\bm{0} \\
-\end{array}
-\right]\:,
+S_{0} = \left\lbrace \bm{\tau}\in S \: \mid \: \int_{\Omega}\bm{\tau}:\bm{I} = 0\right\rbrace\:. 
+\end{equation} 
+The Hu-Washizu problem reads: Find $\left(\bm{u}, \bm{d},\bm{\sigma}\right)\in V\times S\times S_{0}$ such that:
+\begin{equation} \label{eq:system_hw_compact}
+\left\lbrace
+\begin{split}
+& \tilde{a}( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
++ b( (\bm{v}, \bm{e}), \bm{\sigma} ) = l(\bm{v})\:, 
+\hspace{20pt} \forall \left(\bm{u},\bm{d}\right)\in V \times S \\
+& b( (\bm{u},\bm{d}), \bm{\tau} ) = 0\:, 
+\hspace{127pt} \forall\bm{\tau}\in S_{0} \\
+\end{split}
+\right.
 \end{equation}
-where 
-$\bm{A}=\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\varepsilon}(\bm{v})$, 
-$\bm{B}=\int_{\Omega}\bm{d}:\bm{\varepsilon}(\bm{v})$, 
-$\bm{W}=\int_{\Omega}\bm{\sigma}:\bm{\varepsilon}(\bm{v})$, 
-$\bm{K}=\int_{\Omega}\bm{C}\bm{e}:\bm{d}$, 
-$\bm{M}=\int_{\Omega}\bm{e}:\bm{d}$, 
-$\bm{D}=\int_{\Omega}\bm{\sigma}:\bm{e}$.  
-$\bm{D}$ is a diagonal matrix.
-Using this property it is possible condense statically $\bm{x}_{d}$ and $\bm{x}_{\sigma}$, and we obtain the following system in the only unknown 
-$\bm{x}_{u}$:
+Due to the lack of ellipticity of the bilinear form $\tilde{a}( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) )$ on the space $V\times S$, as you can see in \cite{lamichhane_three} and \cite{lamichhane_huwashizu}, a positive scalar $\alpha$ is introduced so as the replace the bilinear form from $\tilde{a}( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) )$ with
 \begin{equation}
-\left[ \alpha \bm{A} - \alpha \left( \bm{B} \bm{D}^{-1} \bm{W}^{-T} 
-+ \bm{W} \bm{D}^{-1} \bm{B}^{T} \right) + 
-\bm{W} \bm{D}^{-1} \left( \bm{K} + \alpha \bm{M} \right) 
-\bm{D}^{-1} \bm{W}^{T} \right] \bm{x}_{u} = \bm{b}_{f}
+a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
+= \int_{\Omega} \bm{d} : \bm{C}\bm{e} 
++ \alpha \int_{\Omega} (\bm{\varepsilon}(\bm{u}) 
+- \bm{d}):(\bm{\varepsilon}(\bm{v}) - \bm{e})\:.
+\end{equation}
+By so doing, one ends up with the following stable Hu-Washizu continuous formulation: 
+Find $\left(\bm{u}, \bm{d},\bm{\sigma}\right)\in V\times S\times S_{0}$ such that:
+\begin{equation} \label{eq:system_hw_modify}
+\left\lbrace
+\begin{split}
+& a( (\bm{u},\bm{d}), (\bm{v}, \bm{e}) ) 
++ b( (\bm{v}, \bm{e}), \bm{\sigma} ) = l(\bm{v})\:, 
+\hspace{20pt} \forall \left(\bm{u},\bm{d}\right)\in V \times S \\
+& b( (\bm{u},\bm{d}), \bm{\tau} ) = 0\:, 
+\hspace{127pt} \forall\bm{\tau}\in S_{0} \\
+\end{split}
+\right.
 \end{equation}
 
 \section{Finite element discretization}\label{sec:four}
@@ -344,7 +311,7 @@ For the discrete stress space we use:
 \end{equation}
 and let $\left\lbrace \phi_{1}, \cdots, \phi_{n}\right\rbrace$ and 
 $\left\lbrace \mu_{1}, \cdots, \mu_{n}\right\rbrace$ the $n$ the basis functions for the space $V_{h}$ and $M_{h}$ respectively, we construct the functions $\mu_{i}$ using the following biorthogonality property between the space $V_{h}$ and $M_{h}$:
-\begin{equation}
+\begin{equation} \label{eq:biorth_prop}
 \int_{\Omega}\mu_{i}\phi_{j} \: dx = c_{j}\delta_{ij}\:, \:\: c_{j}\neq 0\:,
 \:\: 1 \leq i,j \leq n \:,
 \end{equation}
@@ -359,88 +326,158 @@ The local basis function of $K_{h}$ and $M_{h}$ for the reference square element
 %
 \begin{equation}
 \begin{split}
-&\phi_{1}=\frac{1}{4}(1-\xi)(1-\eta) \:, \:\:\:\: \phi_{2}=\frac{1}{4}(1+\xi)(1-\eta) \:,\\
-&\phi_{3}=\frac{1}{4}(1+\xi)(1+\eta) \:, \:\:\:\: \phi_{4}=\frac{1}{4}(1-\xi)(1+\eta) \:.
+&\hat{\phi}_{1}=\frac{1}{4}(1-\xi)(1-\eta) \:, \:\:\:\: \hat{\phi}_{2}=\frac{1}{4}(1+\xi)(1-\eta) \:,\\
+&\hat{\phi}_{3}=\frac{1}{4}(1+\xi)(1+\eta) \:, \:\:\:\: \hat{\phi}_{4}=\frac{1}{4}(1-\xi)(1+\eta) \:.
 \end{split}
 \end{equation}   
 and
 \begin{equation}
 \begin{split}
-&\mu_{1} = 1 - 3\xi - 3\eta + 9\xi\eta \:, \:\:\:\: 
-\mu_{2} = 1 + 3\xi - 3\eta - 9\xi\eta \:,\\
-&\mu_{3} = 1 + 3\xi + 3\eta + 9\xi\eta \:, \:\:\:\: 
-\mu_{4} = 1 - 3\xi + 3\eta + 9\xi\eta \:.
+&\hat{\mu}_{1} = 1 - 3\xi - 3\eta + 9\xi\eta \:, \:\:\:\: 
+\hat{\mu}_{2} = 1 + 3\xi - 3\eta - 9\xi\eta \:,\\
+&\hat{\mu}_{3} = 1 + 3\xi + 3\eta + 9\xi\eta \:, \:\:\:\: 
+\hat{\mu}_{4} = 1 - 3\xi + 3\eta + 9\xi\eta \:.
 \end{split}
 \end{equation}
 It is important to observe that the global basis functions of the space $M_{h}$ are not continuous.
-   
+
+Now it is possible to write the weak discrete problem as:   
+Find $\left(\bm{u}_{h}, \bm{d}_{h},\bm{\sigma}_{h}\right)\in V_{h}\times S_{h}\times M_{h}$ such that:
+\begin{equation} \label{eq:system_hw_discrete}
+\left\lbrace
+\begin{split}
+& a( (\bm{u}_{h},\bm{d}_{h}), (\bm{v}_{h}, \bm{e}_{h}) ) 
++ b( (\bm{v}_{h}, \bm{e}_{h}), \bm{\sigma}_{h} ) = l(\bm{v}_{h})\:, 
+\hspace{10pt} 
+\forall \left(\bm{u}_{h},\bm{d}_{h}\right)\in V_{h} \times S_{h} \\
+& b( (\bm{u},_{h}\bm{d}_{h}), \bm{\tau}_{h} ) = 0\:, 
+\hspace{144pt} \forall\bm{\tau}_{h}\in M_{h} \\
+\end{split}
+\right.
+\end{equation}
+The matrix-vector form of the weak variational system \eqref{eq:system_hw_discrete} may then be written as  
+\begin{equation}\label{eq:system_hu_discrete_matrix}
+\left[
+\begin{array}{ccc}
+\alpha \bm{A} & -\alpha \bm{B} & \bm{W} \\
+-\alpha \bm{B}^{T} & \bm{K}+\alpha \bm{M} & -\bm{D} \\
+\bm{W}^{T}  & - \bm{D}^{T} & \bm{0} \\ 
+\end{array}
+\right] 
+\left[
+\begin{array}{c}
+\bm{x}_{u} \\
+\bm{x}_{d} \\
+\bm{x}_{\sigma} \\
+\end{array}
+\right] =
+\left[
+\begin{array}{c}
+\bm{b}_{f} \\
+\bm{0} \\
+\bm{0} \\
+\end{array}
+\right]\:,
+\end{equation}
+where
+\begin{equation} 
+\begin{split}
+&\bm{A}=\int_{\Omega}\bm{\varepsilon}(\bm{u}_{h}):\bm{\varepsilon}(\bm{v}_{h})\:, \hspace{10pt} 
+\bm{B}=\int_{\Omega}\bm{d}_{h}:\bm{\varepsilon}(\bm{v}_{h})\:, \\ 
+&\bm{W}=\int_{\Omega}\bm{\sigma}_{h}:\bm{\varepsilon}(\bm{v}_{h})\:, \hspace{20pt}
+\bm{K}=\int_{\Omega}\bm{C}\bm{e}_{h}:\bm{d}_{h}\:, \\
+&\bm{M}=\int_{\Omega}\bm{e}_{h}:\bm{d}_{h}\:, \hspace{36pt}
+\bm{D}=\int_{\Omega}\bm{\sigma}_{h}:\bm{e}_{h}\:.  
+\end{split}
+\end{equation}
+$\bm{D}$ is a diagonal matrix.
+Using the property in equation \eqref{eq:biorth_prop} it is possible to condense statically $\bm{x}_{d}$ and $\bm{x}_{\sigma}$, and we obtain the following system in only displacement unknown 
+$\bm{x}_{u}$:
+\begin{equation}
+\left[ \alpha \bm{A} - \alpha \left( \bm{B} \bm{D}^{-1} \bm{W}^{-T} 
++ \bm{W} \bm{D}^{-1} \bm{B}^{T} \right) + 
+\bm{W} \bm{D}^{-1} \left( \bm{K} + \alpha \bm{M} \right) 
+\bm{D}^{-1} \bm{W}^{T} \right] \bm{x}_{u} = \bm{b}_{f}\:,
+\end{equation}
+whereas strains and stresses may be evaluated afterwords by back-substitution.
+
 \subsection{Bubble functions}
-In this section we detail the different choosing of the bubble functions. Addition of the bubble functions is essential to create a stable space. we have four types of bubbles.
+In this section we detail the different choosing of the bubble functions. Addition of the bubble functions is essential to create a stable space.
+Accordingly to \cite{bai} and \cite{lamichhane}, we obtain four types of elements with different bubble functions.
 In the first two cases we use a modification of the standard bubble function ,that is for the reference element:
 \begin{equation}\label{eq:standard_bubble_fun}
-b_{T}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:,
+\hat{b}_{T}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:,
 \end{equation}
 while in the next two, we add to the standard bubble function another one.
+
 \subsubsection{One Bubble function (type 1)}
 As a first choice of bubble function we use:
 \begin{equation}\label{eq:bubble_1}
-\hat{b}_{T}(\xi,\eta) = c_{T}\cdot\phi_{T}(\xi,\eta)\cdot b_{T}(\xi,\eta)\:, 
+\hat{b}_{T,1}(\xi,\eta) = c_{T}\cdot\phi_{T}(\xi,\eta)\cdot \hat{b}_{T}(\xi,\eta)\:, 
 \end{equation}
-where $c_{T}$ is a coefficient in order to obtain $\hat{b}_{T}(\xi_{g},\eta_{g}) = 1$ (where $\bm{g}$ is the centroid of the elements), $\phi_{K}$ is the standard bilinear basis function corresponding to the lower-left corner of the square $T$.
+where $c_{T}$ is a coefficient in order to obtain $\hat{b}_{T,1}(\xi_{g},\eta_{g}) = 1$ (where $\bm{g}$ is the centroid of the elements), $\phi_{K}$ is the standard bilinear basis function corresponding to the lower-left corner of the square $T$.
 In the case of reference square element we obtain:
 \begin{equation} \label{eq:bubble_1_ref}
-\hat{b}_{T}(\xi,\eta) = (1-\xi)(1-\eta)(1-\xi^{2})(1-\eta^{2})\:.
+\hat{b}_{T,1}(\xi,\eta) = (1-\xi)(1-\eta)(1-\xi^{2})(1-\eta^{2})\:.
 \end{equation}
 
 \subsubsection{One Bubble function (type 2)}
 The second choice of bubble function we take:
 \begin{equation}\label{eq:bubble_2}
-\hat{b}_{T}(\xi,\eta) = c_{T}\cdot (a+b\xi+c\eta)\cdot b_{T}(\xi,\eta)\:,
+\hat{b}_{T,1}(\xi,\eta) = c_{T}\cdot (a+b\xi+c\eta)\cdot 
+\hat{b}_{T}(\xi,\eta)\:,
 \end{equation}
-where $a,b,c \in \mathrm{R}$ and $a,b,c \neq 0$.
-For simplicity we set $a=b=c=1$ and we obtain for the reference square:
+where $a,b,c \in \mathbb{R}$ and $a,b,c \neq 0$.
+For simplicity we should take $a=b=c=1$ and we obtain for the reference square:
 \begin{equation}\label{eq:bubble_2_ref}
-\hat{b}_{T}(\xi,\eta) = (1+\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
+\hat{b}_{T,1}(\xi,\eta) = (1+\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
 \end{equation} 
 
 \subsubsection{Two Bubble functions}
-Using two bubble functions, where the first is the standard bubble function and the second bubble is a modification of the standard bubble:
+Using two bubble functions, where the first is the standard bubble function and the second bubble is a modification of the standard bubble. 
+We define a new space of bubble functions as follow:
+\begin{equation}
+\hat{B}^{+}_{h}=\left\lbrace \hat{\bm{v}} \in B_{h} \: \mid \: \hat{\bm{v}}=\left[\bm{v}_{0} + 
+\bm{v}_{01} (a\xi + b\eta)\right]\hat{b}_{T}\:, \bm{v}_{0},\bm{v}_{01}\in \mathbb{R}^{2} \right\rbrace \:, 
+\end{equation}
+where $a$ and $b$ are two arbitrary constants satisfying $a^{2}+b^{2}\neq 0$.
+For the sake of simplicity should take $a=b=1$.
+The two bubble functions are:
 \begin{equation}\label{eq:bubble_3}
 \begin{split}
-&\hat{b}_{T1}(\xi,\eta) = b_{T}\:, \\
-&\hat{b}_{T2}(\xi,\eta) = c_{T}\cdot (a\xi+b\eta)\cdot b_{T}\:,
-\end{split}
-\end{equation}
-where $a,b \in \mathrm{R}$ and $a^{2}+b^{2}\neq 0$.
-For the sake of simplicity we adopt $a=b=1$.
-One obtains:
-\begin{equation}\label{eq:bubble_3_ref}
-\begin{split}
-&\hat{b}_{T1}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:, \\
-&\hat{b}_{T2}(\xi,\eta) = (\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
+&\hat{b}_{T,1}(\xi,\eta) = \hat{b}_{T}\:, \\
+&\hat{b}_{T,2}(\xi,\eta) = (\xi+\eta)\: \hat{b}_{T}\:.
 \end{split}
 \end{equation}
 
 \subsubsection{Two Bubble functions, which one mixed}
 As a finally choice of bubbles we use a standard bubble function plus one mixed bubble function for the two components of displacement.
+We define the modify space of bubble functions:
+\begin{equation}
+\hat{B}^{++}_{h}=\left\lbrace \hat{\bm{v}} \in B_{h} \: \mid \: \hat{\bm{v}}=\left[\bm{v}_{0} + 
+w_{0} \bm{\nabla}\hat{\phi}_{1}\right]\hat{b}_{T},\: \bm{v}_{0}\in \mathbb{R}^{2}, \: w_{0}\in \mathbb{R} \right\rbrace \:, 
+\end{equation}
+where $\bm{\nabla}\hat{\phi}_{1}$ is the gradient of the first shape function 
+$\hat{\phi}$.
+The two bubble functions are:
+
 \begin{equation}
 \begin{split}
-&\hat{b}_{T1}(\xi,\eta) = b_{T}\:, \\
-&\hat{b}_{T2,\xi}(\xi,\eta) = (\nabla \phi_{1})_{\xi}\cdot b_{T}\:, \\
-&\hat{b}_{T2,\eta}(\xi,\eta) = (\nabla \phi_{1})_{\eta}\cdot b_{T}\:,
+&\hat{b}_{T,1}(\xi,\eta) = \hat{b}_{T}\:, \\
+&\hat{\bm{b}}_{T,2}(\xi,\eta) = \left[\hat{\phi}_{1,\xi},\: 
+\hat{\phi}_{1,\eta}\right]\hat{b}_{T}\:,
 \end{split}
 \end{equation}
-where $(\nabla\phi_{1})_{i}$ is $i$-th component of the gradient of the first shape function $\phi$.
-In this way we have as shape function for the displacement using the mixed bubble function the vector $\left[\hat{b}_{T2,x}(x,y),\hat{b}_{T2,y}(x,y)\right]$. 
+where $\hat{\phi}_{1,\xi}$ $\hat{\phi}_{1,\eta}$ are the derivatives of the first shape function $\hat{\phi}$ to $\xi$ and $\eta$ respectively.
+We can observe that $\hat{\bm{b}}_{T,2}$ is a vector. 
 
-\section{Numerical example}\label{sec:five}
-In this section we report some examples using the presented formulation to proven the good behaviour. 
+\section{Numerical examples}\label{sec:five}
+In this section we report some examples using the presented formulation to proven the good behaviour. All examples are studied in nearly incompressible limit.
 
 \subsection{Square problem}
 First example is a unit square domain with homogeneous Dirichlet boundary conditions. This benchmark problem is analyzed in \cite{brenner}.
 The Lamé constant are fix to $\nu=0.49995$ and $\mu=1$.
-We impose the body forces in using the following expressions:
-$f$
+We impose the following body forces:
 \begin{equation}
 \begin{split}
 &f_{1} = \beta \left(\pi^{2} \left(4\sin\left(\pi y\right)
@@ -470,9 +507,7 @@ where
 \begin{equation}
 B=0.5A\sin\left(\pi x\right)\sin\left(\pi y\right)\:.
 \end{equation}
-The problem is study using two type of mesh: first of all using a square mesh and before using a trapezoidal mesh. The two types of mesh are shown in figures \ref{fig:square_regular} and \ref{fig:square_irregular}.
-Figures \ref{fig:error_l2_1B_type1}, \ref{fig:error_l2_1B_type2}, \ref{fig:error_l2_2B} and \ref{fig:error_l2_2B_mixed} shown the error in norm $L^{2}$ in the case of regular mesh for the different types of bubble functions used and types of coefficient $\alpha$. All types of element converge in a good way.
-In Figures  \ref{fig:error_dist_l2_1B_type1}, \ref{fig:error_dist_l2_1B_type2}, \ref{fig:error_dist_l2_2B} and \ref{fig:error_dist_l2_2B_mixed} we report the previously results in the case of trapezoidal meshes. 
+The problem is studied using two type of mesh: first of all using a square mesh and before using a trapezoidal mesh. The two types of mesh are shown in figures \ref{fig:square_regular} and \ref{fig:square_irregular}. 
 %
 \begin{figure}[h!]
 \begin{center}
@@ -483,6 +518,11 @@ In Figures  \ref{fig:error_dist_l2_1B_type1}, \ref{fig:error_dist_l2_1B_type2}, 
 \caption{Square Problem}
 \end{center}
 \end{figure}
+Figures \ref{fig:error_l2_1B_type1}, \ref{fig:error_l2_1B_type2}, \ref{fig:error_l2_2B} and \ref{fig:error_l2_2B_mixed} shown the error in norm $L^{2}$ in the case of regular mesh for the different types of bubble functions and coefficients $\alpha$. 
+All types of element converge in a good way. 
+In Figures  \ref{fig:error_dist_l2_1B_type1}, 
+\ref{fig:error_dist_l2_1B_type2}, \ref{fig:error_dist_l2_2B} and \ref{fig:error_dist_l2_2B_mixed} we report the previously results in the case of trapezoidal meshes.
+In this example do not see an appreciable difference between the different choices of the $\alpha$ coefficient and types of mesh.
 % Error L2
 \begin{figure}[h!]
 \begin{center}
@@ -525,6 +565,10 @@ to the $L^{2}$ norm (Case one bubble function and Trapezoidal mesh)}
 \end{center}
 \end{figure}
 %
+
+In figures \ref{fig:error_strain_xx_l2_2B}, \ref{fig:error_strain_xx_l2_2B_dist}, \ref{fig:error_strain_xx_l2_2B_mixed}, \ref{fig:error_strain_xx_l2_2B_mixed_dist}, \ref{fig:error_strain_xx_l2_1B_type1}, \ref{fig:error_strain_xx_l2_1B_type1_dist}, 
+\ref{fig:error_strain_xx_l2_1B_type2} and 
+\ref{fig:error_strain_xx_l2_1B_type2_dist} we report the error in $L^{2}$ norm of the strain $d_{xx}$ for the the different choice of bubble functions and coefficient $\alpha$.
 % Strain
 \begin{figure}[h!]
 \begin{center}
@@ -541,7 +585,7 @@ the number of elements (Case of two bubble functions)}
 \begin{center}
 \subfigure[Case regular mesh \label{fig:error_strain_xx_l2_2B_mixed}]
 {\input{square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx.tex}}
-\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_2B_dist}]
+\subfigure[Case trapezoidal mesh \label{fig:error_strain_xx_l2_2B_mixed_dist}]
 {\input{square_example/bolla2_mixed/elastic_error_2B_mixed_l2_strain_xx_dist.tex}}
 \caption{The relative error of strain $\bm{d}_{xx}$ vs. 
 the number of elements (Case of two bubble functions, which one mixed)}
@@ -572,7 +616,8 @@ the number of elements (Case of one bubble function type 2)}
 
 
 \subsection{Cantilever beam problem}
-Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure \ref{fig:beam_geometry}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$ and subjected to a distributed load as in figure \ref{fig:beam_geometry} with $f=300$.
+Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figure \ref{fig:beam_geometry}. The Young modulus is set equal to $E=1500$ and the Poisson $\nu=0.4999$.
+The beam are fixed in the bottom left corner and subjected to a distributed load with $f=300$ on the right edge as shown in figure \ref{fig:beam_geometry}.
 %
 \begin{figure}[h!]
 \begin{center}
@@ -581,7 +626,7 @@ Now we consider the beam with length $L=10$ and height $l=2$ as we shown in figu
 \end{center}
 \end{figure}
 %
-The exact solution is:
+The exact solution reported in \cite{djoko} is:
 \begin{equation}
 \begin{split}
 &u(x,y) = \frac{2 f}{E l} (1-\nu^{2}) x \left( \frac{l}{2} - y \right)\: , \\
@@ -590,17 +635,36 @@ The exact solution is:
 \end{split}
 \end{equation}
 We use to model the beam two types of mesh: regular anf trapezoidal as in the previously example (see figures \ref{fig:square_regular} and \ref{fig:square_irregular}).
-%
-\begin{figure}[!h]
+
+In figure \ref{fig:deformation_beam} is shown the deformation resulting using 2000 elements with two bubble functions while in figure \ref{fig:strain_xx} and \ref{fig:strain_yy} are shown the comparison between the computed strain component $\left[\bm{d}_{h}\right]_{xx}$ and $\left[\bm{d}_{h}\right]_{yy}$ and the analytic strain component $\left[\bm{d}\right]_{xx}$ and $\left[\bm{d}\right]_{yy}$.
+The computed strain components are in a good agreement with the analytical ones.
+\begin{figure}[h!]
 \begin{center}
-\subfigure[Deformation \label{fig:deformation_beam}]{\includegraphics[scale=0.42]{figure/deformata-crop.eps}}\\
-\subfigure[Strain $\bm{b}_{xx}$ \label{fig:strain_xx_beam}]{\includegraphics[scale=0.42]{figure/strain_xx-crop.eps}}
-\hspace{0.3cm}
-\subfigure[Strain $\bm{b}_{yy}$ \label{fig:strain_yy_beam}]{\includegraphics[scale=0.42]{figure/strain_yy-crop.eps}}
-\caption{Beam cantilever solution using $8192$ elements of two bubble functions and $\alpha/ \mu=3$}
+\includegraphics[scale=0.30]{figure/defo_beam.eps}
+\caption{Beam Cantilever: deformation plot using $2000$ elements with 
+two bubble functions and $\alpha/ \mu=1$ \label{fig:deformation_beam}}
 \end{center}
 \end{figure}
 %
+\begin{figure}[!h]
+\begin{center}
+\subfigure[Strain $\bm{d}_{h}$ \label{fig:strain_xx_beam}]{\includegraphics[scale=0.33]{figure/strain_xx_beam.eps}}
+\subfigure[Strain $\bm{d}$ \label{fig:strain_xx_beam_analytical}]{\includegraphics[scale=0.33]{figure/strain_xx_beam_analytical.eps}}
+\caption{Beam Cantilever: strain $\left[\bm{d}_{h}\right]_{xx}$ vs. 
+$\left[\bm{d}\right]_{xx}$ using $2000$ elements with two bubble functions and $\alpha/ \mu=1$ \label{fig:strain_xx}}
+\end{center}
+\end{figure}
+%
+\begin{figure}[!h]
+\begin{center}
+\subfigure[Strain $\bm{d}_{h}$ \label{fig:strain_yy_beam}]{\includegraphics[scale=0.33]{figure/strain_yy_beam.eps}}
+\subfigure[Strain $\bm{d}$ \label{fig:strain_yy_beam_analytical}]{\includegraphics[scale=0.33]{figure/strain_yy_beam_analytical.eps}}
+\caption{Beam Cantilever: strain $\left[\bm{d}_{h}\right]_{yy}$ vs. 
+$\left[\bm{d}\right]_{yy}$ using $2000$ elements with two bubble functions and $\alpha/ =1$ \label{fig:strain_yy}}
+\end{center}
+\end{figure}
+
+% Error
 \begin{figure}[h!]
 \begin{center}
 \subfigure[Type 1 \label{fig:beam_reg_1B_type1}]
@@ -620,7 +684,7 @@ We use to model the beam two types of mesh: regular anf trapezoidal as in the pr
 \caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (regular mesh)} 
 \end{center}
 \end{figure}
-we shown in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} the $L^{2}$-norm error for different types of bubble functions used in the case of $\alpha/mu:={1,2,3}$, while in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} the same plots using trapezoidal meshes.
+In figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} are shown the $L^{2}$-norm error for different types of bubble functions used in the case of $\alpha/mu:={1,2,3}$, while in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, \ref{fig:beam_trap_2B} and \ref{fig:beam_trap_2B_mixed} the same plots using trapezoidal meshes.
 %% Trapezoidal mesh
 \begin{figure}[h!]
 \begin{center}
@@ -642,7 +706,7 @@ we shown in figures \ref{fig:beam_trap_1B_type1}, \ref{fig:beam_trap_1B_type2}, 
 \caption{Beam Cantilever: the relative error vs. the number of elements measured relative to the $L^{2}$ norm (trapezoidal mesh)}
 \end{center}
 \end{figure}
-In the all cases the elements distorted have a good behaviour respect to the regular mesh.  
+In all examples the parameter $\alpha$ influences the magnitude of the relative error but not the rate of convergence. Furthermore the distorted elements have a negligible difference in comparison to the regular mesh.  
 
 \subsection{Cook's membrane}
 The final example is the Cook's membrane. That is a typical benchmark and consist of a beam with vertex: $(0,0)$, $(48,44)$, $(48,60)$ and $(0,44)$.
@@ -655,7 +719,7 @@ The left vertical edge is clamped and the right vertical edge subjected to the v
 \end{center}
 \end{figure}
 The material properties are taken to be $E = 250$ and $\nu = 0.4999$, so that a nearly incompressible response is obtained.
-We report in figures \ref{fig:cook_alpha_1}, \ref{fig:cook_alpha_1mu}, \ref{fig:cook_alpha_2mu} and \ref{fig:cook_alpha_3mu} the vertical displacement of the point $A$ versus the number of element per side for different choosing of the parameter $\alpha=\left\lbrace 1, \mu, 2\mu, 3\mu \right\rbrace$.
+We report in figures \ref{fig:cook_alpha_1}, \ref{fig:cook_alpha_1mu}, \ref{fig:cook_alpha_2mu} and \ref{fig:cook_alpha_3mu} the vertical displacement of the point $A$ versus the number of element per side for different choices of the parameter $\alpha=\left\lbrace 1, \mu, 2\mu, 3\mu \right\rbrace$.
 % Alpha 1, 1*mu, 2*mu, 3*mu
 \begin{figure}[h!]
 \begin{center}
@@ -671,14 +735,19 @@ We report in figures \ref{fig:cook_alpha_1}, \ref{fig:cook_alpha_1mu}, \ref{fig:
 the number of elements per side}
 \end{center}
 \end{figure}
-All elements return different behaviour using different coefficients $\alpha$. In the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results completely not converge to the reference solution.
+The parameter $\alpha$ greatly influence the results, indeed, in the case of $\alpha=1$, figure \ref{fig:cook_alpha_1}, the obtained results are completely incorrect.
+However, the convergence is archived for all elements in the case of the normal range of the parameter $\alpha$.
+No locking phenomenon is highlighted in any of the cases. 
 
 \section{Conclusions}\label{sec:six}
 We present a new family of quadrilaterals mixed finite elements based on a modified Hu-Washizu formulation.
-We test the different types of enrichment and confirm the robustness of all elements created.
-Uniform convergence are archived in the incompressible regime.
-We study the robustness of the elements in the case of trapezoidal meshes.
-The extension to the 3D case using hexahedra is straightforward. 
+Different types of enrichment of the displacement field were successfully tested in the case of incompressible regime and trapezoidal meshes.
+
+The future developments are oriented to finding an optimal choosing of the parameter $\alpha$ and the extension to the 3-D case using hexahedral elements.   
+ 
+%We test the different types of enrichment and confirm the robustness of all elements created and uniform convergence are archived in the incompressible regime. 
+%We study the robustness of the elements in the case of trapezoidal meshes.
+
 
 %% The Appendices part is started with the command \appendix;
 %% appendix sections are then done as normal sections
@@ -751,3 +820,59 @@ The extension to the 3D case using hexahedra is straightforward.
 \end{document}
 
 \endinput
+
+
+
+%b( (\bm{u},\bm{d}), \bm{\tau} )= \int_{\Omega} (\bm{\varepsilon}(\bm{u}) - \bm{d}) : \bm{\tau} \: dx \:.
+%The modify weak formulation of the problem is:
+%\begin{equation} \label{eq:system_1}
+%\left\lbrace
+%\begin{array}{lll}
+%\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
+%\bm{\varepsilon}(\bm{v})\:dx 
+%+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega}
+%\bm{f}\cdot\bm{v}\:dx \\
+%\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
+%(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
+%-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
+%\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0 \\
+%\end{array}
+%\right.
+%\end{equation}
+%\begin{equation} \label{eq:system_1}
+%\left\lbrace
+%\begin{split}
+%\alpha\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):
+%\bm{\varepsilon}(\bm{v})\:dx +\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx &=\int_{\Omega} \bm{f}\cdot\bm{v}\:dx \\
+%\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx-\alpha\int_{\Omega}
+%(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{e}\:dx 
+%-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx &=0 \\
+%\int_{\Omega}(\bm{\varepsilon}(\bm{u})-\bm{d}):\bm{\tau}\:dx &= 0
+%\end{split}
+%\right.
+%\end{equation}
+%by rearranging:
+%\begin{equation} \label{eq:system_2}
+%\left\lbrace
+%\begin{array}{lll}
+%\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\varepsilon}(\bm{v})\:dx 
+%-\alpha\int_{\Omega}\bm{d}:\bm{\varepsilon}(\bm{v})\:dx
+%+\int_{\Omega}\bm{\varepsilon}(\bm{v}):\bm{\sigma}\:dx 
+%&=\int_{\Omega}\bm{f}\cdot\bm{v}\:dx\\ 
+%-\alpha\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{e}\:dx
+%+\int_{\Omega}\bm{d}:\bm{C}\bm{e}\:dx
+%+\alpha\int_{\Omega}\bm{d}:\bm{e}\:dx
+%-\int_{\Omega}\bm{e}:\bm{\sigma}\:dx&= 0 \\
+%\int_{\Omega}\bm{\varepsilon}(\bm{u}):\bm{\tau}\:dx
+%-\int_{\Omega}\bm{d}:\bm{\tau}\:dx &= 0 \\
+%\end{array}
+%\right.
+%\end{equation}
+
+%One obtains:
+%\begin{equation}\label{eq:bubble_3_ref}
+%\begin{split}
+%&\hat{b}_{T1}(\xi,\eta) = (1-\xi^{2})(1-\eta^{2})\:, \\
+%&\hat{b}_{T2}(\xi,\eta) = (\xi+\eta)(1-\xi^{2})(1-\eta^{2})\:.
+%\end{split}
+%\end{equation}

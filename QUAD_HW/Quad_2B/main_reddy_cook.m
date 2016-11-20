@@ -18,8 +18,8 @@
 clear all; close all; clc;
 %% COOK MEMBRANE PROBLEMS
 %% INPUT
-ndx = 32;                                      % partition in x direction
-ndy = 16;                                      % partition in y direction
+ndx = 32;                                     % partition in x direction
+ndy = 16;                                     % partition in y direction
 young = 250;                                  % young modulus
 poisson = 0.4999;                             % poisson modulus
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
@@ -57,7 +57,7 @@ mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stre
 ngdls = 3*nnod;
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = 2*mu;
+alpha = 3*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
@@ -69,4 +69,4 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-%plotsol(coordinates,defo,strain,stress,ndx,ndy);
+plotsol(coordinates,defo,strain,stress,ndx,ndy);
