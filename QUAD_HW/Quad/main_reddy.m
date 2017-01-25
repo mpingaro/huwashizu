@@ -18,26 +18,33 @@
 clear all; close all; clc;
 
 %% INPUT
-length = 10;                                  % length 
+length = 4;                                   % length 
 height = 2;                                   % heigth
-nx = 100; %[4,8,16,32,64,128];                      % partition in x direction
-ny = 20; %[2,4, 8,16,32,64] ;                      % partition in y direction
-young = 1500;                                 % young modulus
-poisson = 0.4999;                             % poisson modulus
-ld = 300;                                    % max value of distributed load
-%cf = [1,2,3];
-cf=1;
+ndx = 2;                                      % partition in x direction
+ndy = 1;                                      % partition in y direction
+young = 1.e3;                                 % young modulus
+poisson = 0.2;                             % poisson modulus
+% Neumann boudary conditions (edges)
+bcn = [];                                     % index of edges 
+fn(1,:) = [0, 0];                             % Traction edge 1
+fn(2,:) = [0, 0];                             % Traction edge 2
+fn(3,:) = [0, 0];                             % Traction edge 3
+fn(4,:) = [0, 0];                             % Traction edge 4
+% Neumann boudary conditions (vertex)
+bct = [];                                     % index of edges 
+ft(1,:) = [0, 0];                             % Traction vertex 1
+ft(2,:) = [0, 0];                             % Traction vertex 2
+ft(3,:) = [0, 0];                             % Traction vertex 3
+ft(4,:) = [0, 0];                             % Traction vertex 4
+% Dirichlet boudary conditions
+bcd = 3;                                      % index of edges
+ud(1,:) = [0, 0];                             % Displacement edge 1 
+ud(2,:) = [0, 0];                             % Displacement edge 2
+ud(3,:) = [0, 0];                             % Displacement edge 3
+ud(4,:) = [0, 0];                             % Displacement edge 4
+% Body load
+g       = [0,-10];                            % Body load
 
-for k=1:numel(cf)
-
-fname = sprintf('error_beam_u_l2_2B_%dmu.txt',cf(k));
-f = fopen( fname, 'w');
-fprintf(f, 'element vs. error u in norm L2\n');
-
-for i=1:numel(nx)
-
-ndx = nx(i);
-ndy = ny(i);
 %% GEOMETRY
 dx = length/ndx;
 dy = height/ndy;
@@ -51,23 +58,16 @@ mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stre
 ngdls = 3*nnod;
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = cf(k)*mu;
+alpha = 2*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
-[KASSEM,D,W,B,M,K] = assembly_beam(coordinates,element,mc,mc2,lambda,alpha,mu,nelem,ngdlu,ngdls);
+[KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
 
 %% SOLVE
-spost = solve_HuWashizu_beam(KASSEM,coordinates,height,ld,ndx,ndy,ngdlu);
+spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
-%% Computing L2 error
-er_u = error_beam_l2_norm(spost, coordinates, height, young, poisson, ld);
-fprintf(f, '%6.0f \t %6.5e \n', nelem, er_u);
-
-end
-fclose(f);
 %% PLOT SOLUTION
-plotsol_beam(coordinates,defo,strain,stress,ndx,ndy,height,young,poisson,ld)
-end
+%plotsol(coordinates,defo,strain,stress,ndx,ndy)

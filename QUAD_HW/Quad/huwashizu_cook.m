@@ -40,7 +40,7 @@ mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stre
 ngdls = 3*nnod;
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = 2*mu;
+alpha = 1;%1*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
@@ -54,5 +54,6 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 %% PLOT SOLUTION
 %plotsol(coordinates,defo,strain,stress,ndx,ndy);
 
-sp = spost(2*nnod);
+sp = spost(end);
+
 return

@@ -13,10 +13,9 @@
 %                                                                         %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = P1 + B  C^0               
+% ------- Displacement : vertor (1,2) = P1      C^0               
 % ------- Strain       : tensor (2,2) = P1      C^0              
 % ------- Stress       : tensor (2,2) = P1      C^-1
-% -- B is the space of boubble function!
 % ------------------------------------------------------------------------%
 %%
 clear; close all; clc;

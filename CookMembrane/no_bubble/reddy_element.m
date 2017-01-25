@@ -24,9 +24,9 @@ DFF(1,2) = -DF(2,1)/JF;
 DFF(2,1) = -DF(1,2)/JF;
 DFF(2,2) = DF(1,1)/JF;
 
-A = zeros(8,8); % A
-B = zeros(9,8); % B
-W = zeros(9,8); % W
+A = zeros(6,6); % A
+B = zeros(9,6); % B
+W = zeros(9,6); % W
 K = zeros(9,9); % K
 M = zeros(9,9); % M
 D = zeros(9,9); % D
@@ -42,13 +42,11 @@ for i = 1:size(weight,2) % Cycle on gauss points --> Da ottimizzare.
    y = gauss_y(1,i);
    w = weight(1,i);
    
-   % Grad of Boubble function
-   grdu(:,4) = DFF*[y-2*x*y-y*y; x-2*x*y-x*x]*27;
    
-   epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0;
-           grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2, grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2;
-           grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2, grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2;
-           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3), 0, grdu(2,4)];
+   epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0;
+           grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2, grdu(1,3)/2;
+           grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2, grdu(1,3)/2;
+           0, grdu(2,1), 0, grdu(2,2), 0, grdu(2,3)];
        
    d(1,1) = 1-x-y;
    d(1,2) = x;

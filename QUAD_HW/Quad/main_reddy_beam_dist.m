@@ -10,27 +10,25 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
+% ------- Displacement : vertor (1,2) = Q1 + B        C^0               
 % ------- Strain       : tensor (2,2) = Q1            C^0              
 % ------- Stress       : tensor (2,2) = Q1            C^-1
-% -- B1 and B2 are the two boubble functions
+% -- B is the boubble function
 % ------------------------------------------------------------------------%
 clear all; close all; clc;
 
 %% INPUT
 length = 10;                                  % length 
 height = 2;                                   % heigth
-nx = 100; %[4,8,16,32,64,128];                      % partition in x direction
-ny = 20; %[2,4, 8,16,32,64] ;                      % partition in y direction
+nx = [4,8,16,32,64,128];                      % partition in x direction
+ny = [2,4, 8,16,32,64];                       % partition in y direction
 young = 1500;                                 % young modulus
 poisson = 0.4999;                             % poisson modulus
-ld = 300;                                    % max value of distributed load
-%cf = [1,2,3];
-cf=1;
+ld = 300;                                     % max value of distributed load
+cf = [1,2,3];
 
 for k=1:numel(cf)
-
-fname = sprintf('error_beam_u_l2_2B_%dmu.txt',cf(k));
+fname = sprintf('error_beam_u_l2_type_1_dist_%dmu.txt',cf(k));
 f = fopen( fname, 'w');
 fprintf(f, 'element vs. error u in norm L2\n');
 
@@ -42,7 +40,9 @@ ndy = ny(i);
 dx = length/ndx;
 dy = height/ndy;
 % Mesh 
-[coordinates,nnod]=Coordinates(ndx,ndy,dx,dy);
+%[coordinates,nnod]=Coordinates(ndx,ndy,dx,dy);
+coordinates = beam_distorted(length, height, ndx, ndy);
+nnod = size(coordinates,1);
 [element,nelem]=Element(ndx,ndy);
 %
 [mc,ngdlu]=CorrispoMC(element,nelem,nnod);  % Corrispondence Matrix displacement 
@@ -69,5 +69,5 @@ fprintf(f, '%6.0f \t %6.5e \n', nelem, er_u);
 end
 fclose(f);
 %% PLOT SOLUTION
-plotsol_beam(coordinates,defo,strain,stress,ndx,ndy,height,young,poisson,ld)
+%plotsol(coordinates,defo,strain,stress,ndx,ndy)
 end

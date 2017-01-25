@@ -1,10 +1,10 @@
 % By Marco Pingaro & Paolo Venini
-clear all;
+clear;
 close all;
 clc;
 %% TEST CONVERGENCE
-nx = [1, 2, 8, 16, 32];
-ny = [1, 2, 8, 16, 32];
+nx = [1, 2, 8, 16, 32, 64];
+ny = [1, 2, 8, 16, 32, 64];
 
 name = 'cook_2B.txt';
 f = fopen( name, 'w' );

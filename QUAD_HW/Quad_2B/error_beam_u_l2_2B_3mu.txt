@@ -1,2 +1,0 @@
-element vs. error u in norm L2
-   128 	 1.29318e-02 

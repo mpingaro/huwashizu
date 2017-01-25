@@ -10,27 +10,27 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B1 + B2  C^0               
+% ------- Displacement : vertor (1,2) = Q1 + B        C^0               
 % ------- Strain       : tensor (2,2) = Q1            C^0              
 % ------- Stress       : tensor (2,2) = Q1            C^-1
-% -- B1 and B2 are the two boubble functions
+% -- B is the boubble function
 % ------------------------------------------------------------------------%
-clear all; close all; clc;
+clear; close all; clc;
 
 %% INPUT
 length = 10;                                  % length 
 height = 2;                                   % heigth
-nx = 100; %[4,8,16,32,64,128];                      % partition in x direction
-ny = 20; %[2,4, 8,16,32,64] ;                      % partition in y direction
+nx = 40; %[4,8,16,32,64,128];                      % partition in x direction
+ny =  8; %[2,4, 8,16,32,64];                       % partition in y direction
 young = 1500;                                 % young modulus
-poisson = 0.4999;                             % poisson modulus
-ld = 300;                                    % max value of distributed load
-%cf = [1,2,3];
-cf=1;
+poisson = 0.3;                             % poisson modulus
+ld = 300;                                     % max value of distributed load
+%cf =[1,2,3];
+cf = 1;
 
 for k=1:numel(cf)
 
-fname = sprintf('error_beam_u_l2_2B_%dmu.txt',cf(k));
+fname = sprintf('error_beam_u_l2_type_1_%dmu.txt',cf(k));
 f = fopen( fname, 'w');
 fprintf(f, 'element vs. error u in norm L2\n');
 

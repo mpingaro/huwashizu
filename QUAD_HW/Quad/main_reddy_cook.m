@@ -1,8 +1,25 @@
-% By Marco Pingaro & Paolo Venini
-% Test convergence
-
-function sp = huwashizu_cook(ndx,ndy)
-
+% ----------------------------------------------------------------------- %
+% ------ A FINITE ELEMENT METHOD FOR A THREE-FIELD FORMULATION OF ------- %  
+% ------    LINEAR ELASTICITY BASED ON BIORTHOGONAL SYSTEMS       ------- %
+% ----------------------------------------------------------------------- %
+% ----------------   By (Marco Pingaro, Paolo Venini)   ----------------- %
+%                                                                         %
+% - Marco Pingaro    : Phd Student of University of Pavia                 %
+%               mail : marco.pingaro@iusspavia.it                         %
+% - Paolo Venini     : Professor of University of Pavia                   %
+%               mail : paolo.venini@unipv.it                              %
+% ----------------------------------------------------------------------- %
+% SPACE APPROXIMATION:
+% ------- Displacement : vertor (1,2) = Q1 + B        C^0               
+% ------- Strain       : tensor (2,2) = Q1            C^0              
+% ------- Stress       : tensor (2,2) = Q1            C^-1
+% -- B is the boubble function
+% ------------------------------------------------------------------------%
+clear all; close all; clc;
+%% COOK MEMBRANE PROBLEMS
+%% INPUT
+ndx = 32;                                      % partition in x direction
+ndy = 32;                                      % partition in y direction
 young = 250;                                  % young modulus
 poisson = 0.4999;                             % poisson modulus
 nodes   = [0, 0; 48, 44; 48, 60; 0, 44] ;
@@ -40,7 +57,7 @@ mc2=CorrispoMC2(element,nelem);             % Corrispondence Matrix strain, stre
 ngdls = 3*nnod;
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = 2*mu;
+alpha = 1;%2*mu;
 
 %% ASSEMBLY GLOBAL MATRIX AND GLOBAL STIFFNESS MATRIX
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,g,nelem,ngdlu,ngdls);
@@ -49,10 +66,7 @@ alpha = 2*mu;
 spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 
 %% POST PROCESSING
-%[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
+[defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% PLOT SOLUTION
-%plotsol(coordinates,defo,strain,stress,ndx,ndy);
-
-sp = spost(2*nnod);
-return
+plotsol(coordinates,defo,strain,stress,ndx,ndy);

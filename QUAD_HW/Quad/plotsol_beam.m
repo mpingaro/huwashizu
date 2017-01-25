@@ -54,7 +54,7 @@ an_strain_xx = 2*ld/(young*height)*(1-poisson^2).*(height/2-coordinates(:,2));
 an_strain_xx = reshape(an_strain_xx,ndx+1,ndy+1) ;
 figure
 surf(defo_x,defo_y,an_strain_xx)
-title('Strain d_{xx}','fontsize', 20, 'interpreter', 'tex');
+title('Strain d_{xx} (Anlytical)','fontsize', 20, 'interpreter', 'tex');
 colorbar
 axis equal
 view(0,90)
@@ -85,7 +85,7 @@ an_strain_yy = ld/(young*height)*(poisson/(1-poisson)).*(2.*coordinates(:,2)-hei
 an_strain_yy = reshape(an_strain_yy,ndx+1,ndy+1) ;
 figure
 surf(defo_x,defo_y,an_strain_yy)
-title('Srain d_{yy}','fontsize', 20, 'interpreter', 'tex');
+title('Srain d_{yy} (Analytical)','fontsize', 20, 'interpreter', 'tex');
 colorbar
 axis equal
 view(0,90)
