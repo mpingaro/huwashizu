@@ -15,7 +15,7 @@
 % ------- Stress       : tensor (2,2) = Q1            C^-1
 % -- B is the boubble function
 % ------------------------------------------------------------------------%
-clear all; close all; clc;
+clear; close all; clc;
 %% COOK MEMBRANE PROBLEMS
 %% INPUT
 ndx = 32;                                      % partition in x direction

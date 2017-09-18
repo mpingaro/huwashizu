@@ -20,13 +20,12 @@ clear; close all; clc;
 %% INPUT
 length = 10;                                  % length 
 height = 2;                                   % heigth
-nx = 40; %[4,8,16,32,64,128];                      % partition in x direction
-ny =  8; %[2,4, 8,16,32,64];                       % partition in y direction
+nx = [4,8,16,32,64];                          % partition in x direction
+ny = [2,4, 8,16,32];                          % partition in y direction
 young = 1500;                                 % young modulus
-poisson = 0.3;                             % poisson modulus
+poisson = 0.3;                                % poisson modulus
 ld = 300;                                     % max value of distributed load
-%cf =[1,2,3];
-cf = 1;
+cf =[1,2,3];
 
 for k=1:numel(cf)
 
@@ -63,11 +62,11 @@ spost = solve_HuWashizu_beam(KASSEM,coordinates,height,ld,ndx,ndy,ngdlu);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 %% Computing L2 error
-er_u = error_beam_l2_norm(spost, coordinates, height, young, poisson, ld);
+er_u = error_beam_l2_norm(spost, mc, element, coordinates, height, young, poisson, ld);
 fprintf(f, '%6.0f \t %6.5e \n', nelem, er_u);
 
 end
 fclose(f);
 %% PLOT SOLUTION
-plotsol_beam(coordinates,defo,strain,stress,ndx,ndy,height,young,poisson,ld)
+%plotsol_beam(coordinates,defo,strain,stress,ndx,ndy,height,young,poisson,ld)
 end

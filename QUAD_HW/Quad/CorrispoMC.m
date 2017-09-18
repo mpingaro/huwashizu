@@ -2,7 +2,7 @@
 
 function [mc,ngdlu]=CorrispoMC(element,nelem,nnod)
 
-mc = zeros(nelem,10);         % prealloco matrice di corrispondenza
+mc = zeros(nelem,8);         % prealloco matrice di corrispondenza
 ngdlu = 2*nnod;
 
 mc(:,1)  = 2*element(:,1)-1;

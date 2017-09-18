@@ -4,7 +4,7 @@ function [A,B,K,M,W,D] = reddy_element(P,lambda,G)
 
 %% Quadrature
 %[weight,gauss_x,gauss_y] = gauss_quadrature();
-[weight, gauss] = GaussQuad2D(9,9);
+[weight, gauss] = GaussQuad2D(4,4);
 gauss_x = gauss(:,1);
 gauss_y = gauss(:,2);
 
@@ -41,13 +41,19 @@ for i = 1:size(weight,1) % Cycle on gauss points --> Da ottimizzare. (2 prima)
    
    % Trasformation of the gradient
    % Gradient of shape functions 
-   grdu(:,1) = DFF_i*[-(1-y); -(1-x)].*0.25; 
-   grdu(:,2) = DFF_i*[1-y; -(1+x)].*0.25;
-   grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
-   grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
+   grdu(:,1) = 0.25.*[-(1-y), -(1-x)]*DFF_i; 
+   grdu(:,2) = 0.25.*[1-y, -(1+x)]*DFF_i;
+   grdu(:,3) = 0.25.*[1+y, 1+x]*DFF_i;
+   grdu(:,4) = 0.25.*[-(1+y), 1-x]*DFF_i;
    % Grad of Boubble functions
-   %grdu(:,5) = DFF_i*[(-2*x-1+3*x^2)*(1-y-y^2+y^3); (-2*y-1+3*y^2)*(1-x-x^2+x^3)];
-   grdu(:,5) = DFF_i*[(1-2*x-2*x*y-3*x^2)*(1-y^2); (1-2*y-2*x*y-3*y^2)*(1-x^2)];
+   
+   %TEST
+   %grdu(:,5) = [-2*x*(1-y^2), -2*y*(1-x^2)]*DFF_i;
+   grdu(:,5) = [(1-3*x^2-2*x*y)*(1-y^2), (1-3*y^2-2*x*y)*(1-x^2)]*DFF_i;
+   
+   
+   %grdu(:,5) = [(-2*x-1+3*x^2)*(1-y-y^2+y^3), (-2*y-1+3*y^2)*(1-x-x^2+x^3)]*DFF_i;
+   %grdu(:,5) = [(1-2*x-2*x*y-3*x^2)*(1-y^2), (1-2*y-2*x*y-3*y^2)*(1-x^2)]*DFF_i;
 
    epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0, grdu(1,5), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2, grdu(1,3)/2, grdu(2,4)/2, grdu(1,4)/2, grdu(2,5)/2, grdu(1,5)/2;

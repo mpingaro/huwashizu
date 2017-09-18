@@ -10,12 +10,12 @@
 %               mail : paolo.venini@unipv.it                              %
 % ----------------------------------------------------------------------- %
 % SPACE APPROXIMATION:
-% ------- Displacement : vertor (1,2) = Q1 + B   C^0               
+% ------- Displacement : vertor (1,2) = Q1       C^0               
 % ------- Strain       : tensor (2,2) = Q1       C^0              
 % ------- Stress       : tensor (2,2) = Q1       C^-1
 % -- B is the single boubble functions
 % ------------------------------------------------------------------------%
-clear all; close all; clc;
+clear; close all; clc;
 
 %% INPUT
 length = 1;                                   % length 
@@ -23,7 +23,7 @@ height = 1;                                   % heigth
 ndx = 1;                                      % partition in x direction
 ndy = 1;                                      % partition in y direction
 % Lamé constants
-nu = 0.4999;
+nu = 0.49995;
 mu = 1;
 lambda = 2*mu*nu/(1-2*nu);
 
@@ -53,20 +53,20 @@ cf = [1,2,3];
 % Cycle on coefficient
 for k=1:size(cf,2)
 alpha = cf(k)*mu;
-name =   sprintf('elastic_error_disp_u_l2_1B_type1_%dmu.txt',cf(k));
-name_1 = sprintf('elastic_error_l2_strain_xx_1B_type1_%dmu.txt',cf(k));
-name_2 = sprintf('elastic_error_l2_strain_yy_1B_type1_%dmu.txt',cf(k));
-name_3 = sprintf('elastic_error_l2_strain_xy_1B_type1_%dmu.txt',cf(k));
+name =   sprintf('elastic_error_disp_u_l2_%dmu.txt',cf(k));
+%name_1 = sprintf('elastic_error_l2_strain_xx_%dmu.txt',cf(k));
+%name_2 = sprintf('elastic_error_l2_strain_yy_%dmu.txt',cf(k));
+%name_3 = sprintf('elastic_error_l2_strain_xy_%dmu.txt',cf(k));
 
 f =  fopen( name, 'w' );
-f1 = fopen(name_1, 'w');
-f2 = fopen(name_2, 'w');
-f3 = fopen(name_3, 'w');
+%f1 = fopen(name_1, 'w');
+%f2 = fopen(name_2, 'w');
+%f3 = fopen(name_3, 'w');
 
 fprintf(f, 'elements v.s. error in L2 norm\n'); 
-fprintf(f1,'elements v.s. error in L2 norm strain xx\n');
-fprintf(f2,'elements v.s. error in L2 norm strain yy\n');
-fprintf(f3,'elements v.s. error in L2 norm strain xy\n');
+%fprintf(f1,'elements v.s. error in L2 norm strain xx\n');
+%fprintf(f2,'elements v.s. error in L2 norm strain yy\n');
+%fprintf(f3,'elements v.s. error in L2 norm strain xy\n');
 
 % Cycle on elements
 for i=1:size(nl,2)
@@ -95,19 +95,19 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 % Compute error in norm L2 displacement
-er_u = error_l2_norm(spost, coordinates, lambda);    
+er_u = error_l2_norm(spost, mc, element, coordinates, lambda);    
 % Compute error in norm L2 strain
-[er_exx,er_eyy, er_exy] = error_l2_strain_l2_norm(strain, coordinates, lambda);
+%[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, lambda);
 
 % Print results
 fprintf(f,  '%6.0f \t %6.5e \n', nelem, er_u);
-fprintf(f1, '%6.0f \t %6.5e \n', nelem, er_exx);
-fprintf(f2, '%6.0f \t %6.5e \n', nelem, er_eyy);
-fprintf(f3, '%6.0f \t %6.5e \n', nelem, er_exy);
+%fprintf(f1, '%6.0f \t %6.5e \n', nelem, er_exx);
+%fprintf(f2, '%6.0f \t %6.5e \n', nelem, er_eyy);
+%fprintf(f3, '%6.0f \t %6.5e \n', nelem, er_exy);
 
 end
 fclose(f);
-fclose(f1);
-fclose(f2);
-fclose(f3);
+%fclose(f1);
+%fclose(f2);
+%fclose(f3);
 end

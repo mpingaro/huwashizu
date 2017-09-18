@@ -1,12 +1,12 @@
 % By Marco Pingaro & Paolo Venini
-clear all;
+clear;
 close all;
 clc;
 %% TEST CONVERGENCE
-nx = [1, 2, 8, 16, 32];
-ny = [1, 2, 8, 16, 32];
+nx = [1, 2, 8, 16, 32, 64];
+ny = [1, 2, 8, 16, 32, 64];
 
-name = 'cook_2B_mixed.txt';
+name = 'cook_2B_mixed_3mu.txt';
 f = fopen( name, 'w' );
 fprintf(f, 'number of element per side v.s. vertical diaplacement of point A\n' );
 

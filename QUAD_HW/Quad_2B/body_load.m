@@ -4,7 +4,7 @@ function load = body_load(P,g)
 
 %% Quadrature
 %[weight,gauss_x,gauss_y] = gauss_quadrature_25();
-[weight, gauss] = GaussQuad2D(9,9);
+[weight, gauss] = GaussQuad2D(4,4);
 gauss_x = gauss(:,1);
 gauss_y = gauss(:,2);
 

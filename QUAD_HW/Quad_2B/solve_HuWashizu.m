@@ -18,7 +18,6 @@ for iside=bct
     F(bt(1,1),1) = F(bt(1,1),1) + bt(2,1);
     F(bt(1,2),1) = F(bt(1,2),1) + bt(2,2);
 end
-
 % Dirichlet boundary conditions
 for iside = bcd
     ncont = 1;

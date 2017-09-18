@@ -15,7 +15,7 @@
 % ------- Stress       : tensor (2,2) = Q1             C^-1
 % -- B1 and B2 (mixed) are the two boubble functions
 % ------------------------------------------------------------------------%
-clear all; close all; clc;
+clear; close all; clc;
 
 %% INPUT
 length = 1;                                   % length 
@@ -93,10 +93,9 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 % Compute error in norm L2
-er_u = error_l2_norm(spost, coordinates, lambda);    
-
+er_u = error_l2_norm(spost, mc, element, coordinates, lambda);    
 % Compute error in norm L2 strain
-[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, lambda);
+[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, element, lambda);
 
 % Print results
 fprintf(f,  '%6.0f \t %6.5e \n', nelem, er_u);

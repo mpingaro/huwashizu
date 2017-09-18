@@ -4,7 +4,7 @@ function load = body_load_error(P,l,m)
 
 %% Quadrature
 %[weight,gauss_x,gauss_y] = gauss_quadrature();
-[weight, gauss] = GaussQuad2D(9,9);
+[weight, gauss] = GaussQuad2D(4,4);
 gauss_x = gauss(:,1);
 gauss_y = gauss(:,2);
 
@@ -15,22 +15,19 @@ gauss_y = gauss(:,2);
 load = zeros(11,1);
 for i = 1:size(weight,1) % 2 con vecchia integrazione
     
-   %x = gauss_x(1,i);
-   %y = gauss_y(1,i);
-   %w = weight(1,i);
- 
-   x = gauss_x(i,1);
-   y = gauss_y(i,1);
+   [x,y] = map_quad(P,gauss(i,:));
+   xi = gauss_x(i,1);
+   eta = gauss_y(i,1);
    w = weight(i,1);
    
    % Shape Functions
-   psi(1) = 0.25*(1-x)*(1-y);
-   psi(2) = 0.25*(1+x)*(1-y);
-   psi(3) = 0.25*(1+x)*(1+y);
-   psi(4) = 0.25*(1-x)*(1+y);
-   psi(5) = (1-x^2)*(1-y^2);
-   psi(6) = -1*(y-y^3-1+y^2)*(1-x^2);
-   psi(7) = -1*(x-x^3-1+x^2)*(1-y^2);
+   psi(1) = 0.25*(1-xi)*(1-eta);
+   psi(2) = 0.25*(1+xi)*(1-eta);
+   psi(3) = 0.25*(1+xi)*(1+eta);
+   psi(4) = 0.25*(1-xi)*(1+eta);
+   psi(5) = (1-xi^2)*(1-eta^2);
+   psi(6) = -1*(eta-eta^3-1+eta^2)*(1-xi^2);
+   psi(7) = -1*(xi-xi^3-1+xi^2)*(1-eta^2);
       
    v(1,:)  = [psi(1), 0];
    v(2,:)  = [0, psi(1)];

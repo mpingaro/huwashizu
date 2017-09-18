@@ -55,10 +55,10 @@ for k=1:3
 
 alpha = cf(k)*mu;
 
-name =   sprintf('elastic_error_disp_u_l2_1B_type1_%dmu_dist.txt',cf(k));
-name_1 = sprintf('elastic_error_l2_strain_xx_1B_type1_%dmu_dist.txt',cf(k));
-name_2 = sprintf('elastic_error_l2_strain_yy_1B_type1_%dmu_dist.txt',cf(k));
-name_3 = sprintf('elastic_error_l2_strain_xy_1B_type1_%dmu_dist.txt',cf(k));
+name =   sprintf('elastic_error_disp_u_l2_1B_type2_%dmu_dist.txt',cf(k));
+name_1 = sprintf('elastic_error_l2_strain_xx_1B_type2_%dmu_dist.txt',cf(k));
+name_2 = sprintf('elastic_error_l2_strain_yy_1B_type2_%dmu_dist.txt',cf(k));
+name_3 = sprintf('elastic_error_l2_strain_xy_1B_type2_%dmu_dist.txt',cf(k));
 
 f = fopen( name, 'w' );
 f1 = fopen(name_1, 'w');
@@ -99,10 +99,10 @@ spost = solve_HuWashizu(KASSEM,F,ndx,ndy,bcn,fn,bct,ft,bcd,ud);
 [defo,strain,stress] = postprocess_HuWashizu(coordinates,spost,D,W,B,M,K,alpha);
 
 % Compute error in norm L2 displacement
-er_u = error_l2_norm(spost, coordinates, lambda);    
+er_u = error_l2_norm(spost, mc, element, coordinates, lambda);    
 
 % Compute error in norm L2 strain
-[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, lambda);
+[er_exx,er_eyy, er_exy] = error_strain_l2_norm(strain, coordinates, element, lambda);
 
 % Print results
 fprintf(f,  '%6.0f \t %6.5e \n', nelem, er_u);

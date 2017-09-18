@@ -5,10 +5,10 @@ clc;
 %% TEST CONVERGENCE
 %nx = [1, 2, 8, 16, 32, 64];
 %ny = [1, 2, 8, 16, 32, 64];
-nx = 64;
-ny = 64;
+nx = 32;
+ny = 32;
 
-name = 'cook_1B_type_2.txt';
+name = 'cook_1B_type_2_3mu.txt';
 f = fopen( name, 'w' );
 fprintf(f, 'number of element per side v.s. vertical diaplacement of point A\n' );
 

@@ -20,4 +20,4 @@ for i = 1:size(nx,2)
     fprintf(f, '%3.0f \t %5.5e \n', py, sp(i)); 
 end
 fclose(f);
-%figure, plot(nel,sp,'-o');
+figure, plot(nx,sp,'-o');

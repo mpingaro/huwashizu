@@ -46,7 +46,7 @@ mc2=CorrispoMC2(element,nelem);    % Corrispondence Matrix strain, stress
 
 lambda = young*poisson/( (1+poisson)*(1-2*poisson) );
 mu = young/(2*(1+poisson));
-alpha = 1;%2*mu;
+alpha = 1;
 
 %% ASSEMBLY GLOBAL SYSTEM
 [KASSEM,F,D,W,B,M,K] = assembly(coordinates,element,mc,mc2,lambda,alpha,mu,nelem,ngdlu,ngdls);

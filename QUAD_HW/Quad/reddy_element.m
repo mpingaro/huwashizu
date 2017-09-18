@@ -4,7 +4,7 @@ function [A,B,K,M,W,D] = reddy_element(P,lambda,G)
 
 %% Quadrature
 %[weight,gauss_x,gauss_y] = gauss_quadrature();
-[weight, gauss] = GaussQuad2D(9,9);
+[weight, gauss] = GaussQuad2D(4,4);
 gauss_x = gauss(:,1);
 gauss_y = gauss(:,2);
 
@@ -19,9 +19,9 @@ C = [lambda+2*G, 0, 0, lambda;
 %% JACOBIAN MATRIX
 [DFF,JF] = jacobian(P);
 
-A = zeros(8);    % A
-B = zeros(12,8); % B
-W = zeros(12,8); % W
+A = zeros(8);     % A
+B = zeros(12,8);  % B
+W = zeros(12,8);  % W
 K = zeros(12);    % K
 M = zeros(12);    % M
 D = zeros(12);    % D
@@ -37,10 +37,10 @@ for i = 1:size(weight,1) % Cycle on gauss points --> Da ottimizzare. (2 prima)
    
    % Trasformation of the gradient
    % Gradient of shape functions 
-   grdu(:,1) = DFF_i*[-(1-y); -(1-x)].*0.25; 
-   grdu(:,2) = DFF_i*[1-y; -(1+x)].*0.25;
-   grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
-   grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
+   grdu(:,1) = 0.25.*[-(1-y), -(1-x)]*DFF_i; 
+   grdu(:,2) = 0.25.*[1-y, -(1+x)]*DFF_i;
+   grdu(:,3) = 0.25.*[1+y, 1+x]*DFF_i;
+   grdu(:,4) = 0.25.*[-(1+y), 1-x]*DFF_i;
 
    epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
