@@ -24,8 +24,8 @@ for i = 1:n_qp
    
     % Jacobian Matrix 
     J(1,1) = grad(1,:)*point(:,1) ; % x_xi
-    J(1,2) = grad(2,:)*point(:,1) ; % x_eta
-    J(2,1) = grad(1,:)*point(:,2) ; % y_xi
+    J(1,2) = grad(2,:)*point(:,1) ; % y_xi
+    J(2,1) = grad(1,:)*point(:,2) ; % x_eta
     J(2,2) = grad(2,:)*point(:,2) ; % y_eta
    
     % Determinant of Jacobian Matrix

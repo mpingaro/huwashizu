@@ -37,8 +37,8 @@ for i = 1:n_qp
     DJ(i) = J(1,1)*J(2,2)-J(1,2)*J(2,1) ;
     % Inverse transpose of Jacobian Matrix
     JJ(1,1,i) =  J(2,2)/DJ(i) ;  
-    JJ(1,2,i) = -J(1,2)/DJ(i) ;
-    JJ(2,1,i) = -J(2,1)/DJ(i) ; 
+    JJ(1,2,i) = -J(2,1)/DJ(i) ;
+    JJ(2,1,i) = -J(1,2)/DJ(i) ; 
     JJ(2,2,i) =  J(1,1)/DJ(i) ;
 
 end

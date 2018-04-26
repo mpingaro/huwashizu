@@ -3,13 +3,10 @@ clear;
 close all;
 clc;
 %% TEST CONVERGENCE
-%nx = [1, 2, 8, 16, 32];
-%ny = [1, 2, 8, 16, 32];
-nx =  32;
-ny =  32;
+nx = [1, 2, 8, 16, 32, 64];
+ny = [1, 2, 8, 16, 32, 64];
 
-
-name = 'cook_2B_3mu.txt';
+name = 'cook_2B_1.txt';
 f = fopen( name, 'w' );
 fprintf(f, 'number of element per side v.s. vertical diaplacement of point A\n' );
 
@@ -23,4 +20,4 @@ for i = 1:size(nx,2)
     fprintf(f, '%3.0f \t %5.5e \n', py, sp(i)); 
 end
 fclose(f);
-%figure, plot(nx,sp,'-o');
+figure, plot(nx,sp,'-o');

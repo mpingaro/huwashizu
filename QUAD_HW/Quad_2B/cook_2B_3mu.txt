@@ -1,2 +1,7 @@
 number of element per side v.s. vertical diaplacement of point A
- 32 	 5.83098e+00 
+  1 	 2.24987e+00 
+  2 	 3.59022e+00 
+  8 	 6.22353e+00 
+ 16 	 6.51239e+00 
+ 32 	 6.66173e+00 
+ 64 	 6.74105e+00 

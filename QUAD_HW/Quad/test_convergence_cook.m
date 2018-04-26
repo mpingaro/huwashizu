@@ -3,8 +3,8 @@ clear;
 close all;
 clc;
 %% TEST CONVERGENCE
-nx = [1, 2, 8, 16, 32, 64];
-ny = [1, 2, 8, 16, 32, 64];
+nx = [1, 2, 8, 16, 32,64];
+ny = [1, 2, 8, 16, 32,64];
 
 name = 'cook_noB_1.txt';
 f = fopen( name, 'w' );

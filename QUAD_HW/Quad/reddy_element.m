@@ -8,7 +8,6 @@ function [A,B,K,M,W,D] = reddy_element(P,lambda,G)
 gauss_x = gauss(:,1);
 gauss_y = gauss(:,2);
 
-
 %% - Legame
 C = [lambda+2*G, 0, 0, lambda; 
     0, 2*G, 0, 0;
@@ -37,10 +36,10 @@ for i = 1:size(weight,1) % Cycle on gauss points --> Da ottimizzare. (2 prima)
    
    % Trasformation of the gradient
    % Gradient of shape functions 
-   grdu(:,1) = 0.25.*[-(1-y), -(1-x)]*DFF_i; 
-   grdu(:,2) = 0.25.*[1-y, -(1+x)]*DFF_i;
-   grdu(:,3) = 0.25.*[1+y, 1+x]*DFF_i;
-   grdu(:,4) = 0.25.*[-(1+y), 1-x]*DFF_i;
+   grdu(:,1) = DFF_i*[-(1-y); -(1-x)].*0.25; 
+   grdu(:,2) = DFF_i*[1-y; -(1+x)].*0.25;
+   grdu(:,3) = DFF_i*[1+y; 1+x].*0.25;
+   grdu(:,4) = DFF_i*[-(1+y); 1-x].*0.25;
 
    epsi = [grdu(1,1), 0, grdu(1,2), 0, grdu(1,3), 0, grdu(1,4), 0;
            grdu(2,1)/2, grdu(1,1)/2, grdu(2,2)/2, grdu(1,2)/2, grdu(2,3)/2,...
